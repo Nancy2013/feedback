@@ -1,85 +1,93 @@
-
+/*
+ * @Author: your name
+ * @Date: 2021-07-12 14:38:33
+ * @LastEditTime: 2021-07-12 15:18:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \tcl\src\.mock\commom.js
+ */
 let currentState = (function () {
-    /* eslint-disable */
-    const intfs = PROFILE.suids && PROFILE.suids[0] && PROFILE.suids[0].intfs;
-    /* eslint-enable */
-    if(!intfs){
-        throw new Error('profile error!');
-    }
-    const status = {};
-    Object.keys(intfs).forEach(function (p) {
-        const descriptor = intfs[p][0];
-        // 1 表示枚举型
-        // 2 表示连续型
-        // 3 表示简单类型
-        const type = descriptor.in[0];
+  /* eslint-disable */
+  // const intfs = PROFILE.suids && PROFILE.suids[0] && PROFILE.suids[0].intfs;
+  // /* eslint-enable */
+  // if(!intfs){
+  //     throw new Error('profile error!');
+  // }
+  // const status = {};
+  // Object.keys(intfs).forEach(function (p) {
+  //     const descriptor = intfs[p][0];
+  //     // 1 表示枚举型
+  //     // 2 表示连续型
+  //     // 3 表示简单类型
+  //     const type = descriptor.in[0];
 
-        if(type === 1){
-            //[1, V1,V2,V3]
-            // {"act": 3,"idx": 1,"ifttt": 0,"in": [1,0,1]}
-            status[p] = descriptor.in[0];
-        }else if(type === 2){
-            //[2, 最小值，最大值，步长，倍数]
-            // { "act": 1,"idx": 1,"ifttt": 0, "in": [ 2,0,255,1,1] }
-            status[p] = descriptor.in[1];
-        }else if(type === 3){
-            status[p] = null;
-        }else{
-            console.log(`unsupported param type ${p} :${type}`)
-        }
-    });
+  //     if(type === 1){
+  //         //[1, V1,V2,V3]
+  //         // {"act": 3,"idx": 1,"ifttt": 0,"in": [1,0,1]}
+  //         status[p] = descriptor.in[0];
+  //     }else if(type === 2){
+  //         //[2, 最小值，最大值，步长，倍数]
+  //         // { "act": 1,"idx": 1,"ifttt": 0, "in": [ 2,0,255,1,1] }
+  //         status[p] = descriptor.in[1];
+  //     }else if(type === 3){
+  //         status[p] = null;
+  //     }else{
+  //         console.log(`unsupported param type ${p} :${type}`)
+  //     }
+  // });
 
-    return {
-        status,
-        online:'1',
-        name:'mock device'
-
-    };
-
+  return {
+    status: {
+      pwr: 1,
+    },
+    online: '1',
+    name: 'mock device',
+  };
 })();
 
 let _statusChangedCallback;
 
-const ready =function () {
-    return Promise.resolve(currentState);
+const ready = function () {
+  return Promise.resolve(currentState);
 };
 
-const setDeviceStatus =function (status) {
-
-    return new Promise(function(resolve, reject) {
-        setTimeout(function () {
-            if(Math.random()>0.3){
-                currentState.status = Object.assign({}, currentState.status,status);
-                if(_statusChangedCallback){
-                    _statusChangedCallback(currentState);
-                }
-                resolve(currentState)
-            }else{
-                let err = new Error('this is a fake error');
-                err.code = 1;
-                reject(err)
-            }
-        },3000)
-
-    });
+const setDeviceStatus = function (status) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      if (Math.random() > 0.3) {
+        currentState.status = Object.assign({}, currentState.status, status);
+        if (_statusChangedCallback) {
+          _statusChangedCallback(currentState);
+        }
+        resolve(currentState);
+      } else {
+        let err = new Error('this is a fake error');
+        err.code = 1;
+        reject(err);
+      }
+    }, 3000);
+  });
 };
 
-const getDeviceStatus =function () {
-    return Promise.resolve(currentState);
+const getDeviceStatus = function () {
+  return Promise.resolve(currentState);
 };
 
-const onStatusChanged =function (fn) {
-    _statusChangedCallback = fn;
+const onStatusChanged = function (fn) {
+  _statusChangedCallback = fn;
 };
 
-export default new Proxy({
+export default new Proxy(
+  {
     // platform:'mock',
     ready,
     setDeviceStatus,
     getDeviceStatus,
-    onStatusChanged
-}, {
+    onStatusChanged,
+  },
+  {
     get: function (target, key, receiver) {
-        return target[key] || receiver;
+      return target[key] || receiver;
     },
-})
+  }
+);
