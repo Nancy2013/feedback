@@ -1,0 +1,33 @@
+@import "../../common";
+.btn {
+    p {
+        width: 108rem/@font-size-base;
+        height: 54rem/@font-size-base;
+        border: 1px solid #9a9a9a;
+        border-radius: 60rem/@font-size-base;
+        position: relative;
+        display: inline-block;
+        i{
+            display: block;
+            width: 20rem/@font-size-base;
+            height: 20rem/@font-size-base;
+            position: absolute;
+            top: 17rem/@font-size-base;
+            left: 16rem/@font-size-base;
+            border-radius: 100%;
+            background-color: #9a9a9a;
+        }
+    }
+
+    p.on{
+        i{
+            left: inherit;
+            right: 16rem/@font-size-base;
+            background: @theme-color;
+        }
+        border-color:@theme-color
+    }
+}
+.btn.pwrOff{
+    p{border-color: #c8c8c8;i{background: #c8c8c8;}}
+}

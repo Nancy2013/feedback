@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="84px" height="84px" viewBox="0 0 84 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>煤气灶-on@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="42" cy="42" r="35"></circle>
+        <filter x="-9.3%" y="-9.3%" width="118.6%" height="118.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.898039216   0 0 0 0 0.247058824   0 0 0 0 0.356862745  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="D-设备控制、设备属性" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-97.000000, -364.000000)">
+            <g id="煤气灶-on" transform="translate(97.000000, 364.000000)">
+                <g id="椭圆形备份-3" stroke-dasharray="2,2">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use stroke="#E53F5B" stroke-width="1" xlink:href="#path-1"></use>
+                </g>
+                <path d="M37.8869962,43.9204068 C39.0069516,44.2898506 39.3802495,43.2738954 38.913604,42.9044819 C37.4203507,41.8885571 36.6737241,40.0414293 37.2337171,38.378993 C37.7936794,36.5318652 39.2869327,35.793008 39.2869327,33.0223011 C39.2869327,33.0223011 41.153484,34.4076697 40.780186,36.5318956 C42.6467374,34.4077001 41.8067939,31.6369932 41.4334959,30.3439704 C46.193237,32.8376096 50.2996684,38.2866776 45.5399272,42.9045123 C44.9799649,43.3662715 45.5399272,44.1975048 46.3799014,43.9204371 C59.3525052,36.6242413 49.5530724,25.7261053 47.8731547,24.4331128 C48.433117,25.7261053 48.5264645,27.757955 47.4065399,28.7739102 C45.4466104,21.4777144 40.6868999,20 40.6868999,20 C41.2468622,23.7866317 38.5403674,27.8503615 36.0204756,30.9904818 C35.9271587,29.4204216 35.8338419,28.4044968 35.0871846,27.0191282 C34.9005509,29.6974893 32.7539877,31.9140305 32.1940561,34.6847374 C31.4474294,38.378993 32.7540184,41.0573541 37.8870882,43.9204371 L37.8870882,43.9204371 L37.8869962,43.9204068 Z" id="路径" fill="#E53F5B" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

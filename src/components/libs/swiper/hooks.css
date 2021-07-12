@@ -1,0 +1,16 @@
+.swiper-wrapper {
+  padding-bottom: 0.5867rem;
+}
+.swiper-pagination-bullet {
+  width: 0.2133rem;
+  height: 0.2133rem;
+  background: #000;
+}
+.swiper-pagination-bullet-active {
+  opacity: 0.4;
+}
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: 0.3733rem;
+}

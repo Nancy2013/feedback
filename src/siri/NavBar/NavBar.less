@@ -1,0 +1,17 @@
+@import "../../components/common";
+
+.navBox{position: fixed;top: 0;width: 100%;z-index: @navBar-z-index;background: rgb(50,50,50);}
+.bottomHeight{position: relative;height: 88rem/@font-size-six;text-align:center;color:#fff;}
+.leftBox,.rightBox{position: absolute;top: 50%;margin-top: -22rem/@font-size-six;height: 44rem/@font-size-six;svg{width:100%;height: 100%;}line-height: normal;}
+.leftBox{width:44rem/@font-size-six;left: 30rem/@font-size-six;}.rightBox{width: 40%;right: 30rem/@font-size-six;text-align: right;p{.px2px(font-size,32px);color: #fff;line-height: 44rem/@font-size-six;}svg{width: 42rem/@font-size-six;}}
+.titleBox{p{.px2px(font-size,36px);}span{.px2px(font-size,20px);}}
+.lineHeight{line-height: 88rem/@font-size-six;}
+.navClickBox{
+  .maskLayer{.maskLayer();opacity: 0;z-index: 2001;}
+  .navClick{box-shadow: -3rem/@font-size-six 10rem/@font-size-six 45rem/@font-size-six 0rem/@font-size-six rgba(170,170,170,0.5);
+    min-width: 250rem/@font-size-six;padding-left: 30rem/@font-size-six;position: fixed;top: 148rem/@font-size-six;right: 20rem/@font-size-six;background: #fff;z-index: 2001;
+    div{padding-right: 80rem/@font-size-six;height: 116rem/@font-size-six;line-height: 116rem/@font-size-six;color: #222;.px2px(font-size,30px);position: relative;}
+    div:after{content: '';position: absolute;width: 200%;height: 1px;left: 0;top: 0;border-bottom: 1px solid rgb(225,225,225);-webkit-transform-origin: 0 0;transform-origin: 0 0;-webkit-transform: scale(.5,.5);transform: scale(.5,.5);-webkit-box-sizing: border-box;box-sizing: border-box;}
+    div:after:last-child{border-bottom: none;height: 0;}
+  }
+}

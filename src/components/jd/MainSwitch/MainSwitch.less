@@ -1,0 +1,61 @@
+@import "../../common";
+.box{
+    padding-left: 21rem/@font-size-base;
+    padding-right: 41rem/@font-size-base;
+    background: #ffffff;
+    height: 156rem/@font-size-base;
+    span{
+        line-height: 156rem/@font-size-base;
+    }
+    .px2px(font-size,32px);
+    color: #999999;
+    div {
+        width: 90rem/@font-size-base;
+        float: right;
+        img{
+            width: 100%;
+            vertical-align: middle;
+        }
+    }
+    div{
+        svg{
+            margin-top: 33rem/@font-size-base;
+            width: 90rem/@font-size-base;
+            path{
+                fill:@theme-color;
+            }
+        }
+        .svgStyleOff{
+            border: 1rem/@font-size-base solid #999;
+            border-radius: 50%;
+            path{
+                fill:@theme-color;
+            }
+        }
+        .svgStyleOff.disable{
+            border: 1rem/@font-size-base solid #C8C8C8;
+            border-radius: 50%;
+            path{
+                fill: #C8C8C8;
+            }
+        }
+        .svgStyleOn{
+            path{
+                fill:@theme-color;
+            }
+        }
+        .svgStyleOn.disable{
+            path{
+                fill: #C8C8C8;
+            }
+        }
+    }
+
+}
+.box.disable{
+    color: #C8C8C8;
+    background:rgba(244,244,244,1);
+}
+.on{
+    color: @theme-color;
+}

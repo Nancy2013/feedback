@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>switch-off</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="99.5233645" cy="99.5233645" r="92.5233645"></circle>
+        <filter x="-4.9%" y="-4.9%" width="109.7%" height="109.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.202414773 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="D-设备控制、设备属性" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-675.000000, -81.000000)">
+            <g id="off" transform="translate(675.000000, 81.000000)">
+                <g id="椭圆形">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M88.3618081,82.2744688 L88.3618078,82.274469 C89.3601389,81.7273704 90.6209648,82.0788124 91.1779396,83.059434 C91.7219515,84.0172282 91.3945411,85.2262222 90.4379456,85.7919247 L90.4379442,85.7919255 C81.5325177,90.8533306 78.4904465,102.047579 83.6432169,110.795018 C88.7960359,119.542457 100.192463,122.530561 109.097889,117.469203 C118.003316,112.407798 121.045387,101.21355 115.892617,92.4661106 C114.267863,89.7079157 111.937987,87.4142838 109.133596,85.8122735 L109.133596,85.8122735 C108.145879,85.246328 107.812253,84.0010364 108.38842,83.0308428 C108.964587,82.0606493 110.23237,81.7329419 111.220086,82.2988874 L111.220087,82.298888 C118.230896,86.3028034 122.542676,93.6688817 122.538458,101.634711 C122.538458,113.986459 112.34406,124 99.7692277,124 C87.1943953,124 77,113.986459 77,101.634711 C77,93.5669512 81.3882527,86.2473968 88.3618365,82.2744895 L88.3618081,82.2744688 Z M99.7691993,76 L99.7691993,76 C101.149151,76 101.839132,76.6777355 101.839132,78.0332111 L101.839132,90.2324684 C101.839132,91.5879394 101.149156,92.2656796 99.7691993,92.2656796 L99.7691993,92.2656796 C98.3892473,92.2656796 97.6992664,91.5879441 97.6992664,90.2324684 L97.6992664,78.0332111 C97.6992664,76.6777402 98.3892424,76 99.7691993,76 Z" id="形状" fill="#D72952" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

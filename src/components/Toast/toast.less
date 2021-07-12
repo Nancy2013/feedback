@@ -1,0 +1,46 @@
+@import "../common";
+.toast {
+    position: fixed;
+    top: 50%;
+    z-index: @toast-z-index;
+    left: 50%;
+    background-color: #5a5a5a;
+    -webkit-transform: translate(-50%, -50%);
+    color: white;
+    font-size: .43rem;
+    padding: .3rem;
+    border-radius: .13rem;
+    text-align: center;
+}
+
+.maskLayer {
+    .maskLayer();
+    background: #fff;
+    opacity: 0;
+    z-index: @maskLayer-z-index;
+}
+
+.hook {
+    position: relative;
+    padding: 34rem/@font-size-base 0 21rem/@font-size-six;
+    img {
+        width: 67rem/@font-size-six;
+        height: 67rem/@font-size-six;
+    }
+}
+
+.box {
+    width: 290rem/@font-size-six;
+    height: 190rem/@font-size-six;
+    position: fixed;
+    top: 50%;
+    z-index: @toast-z-index;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 8rem/@font-size-six;
+    text-align: center;
+    .px2px(font-size, 28px);
+    margin-left: -145rem/@font-size-six;
+    margin-top: -95rem/@font-size-six;
+}

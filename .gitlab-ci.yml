@@ -1,0 +1,16 @@
+before_script:
+- npm -v
+- node -v
+
+build:
+  stage: build
+  tags:
+  - nodejs
+  script:
+  - npm install
+  - npm run prod
+  artifacts:
+    paths:
+    - build/
+  only:
+  - master

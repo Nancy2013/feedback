@@ -1,0 +1,123 @@
+@import "../../common";
+
+.box{
+    width: 30rem/@font-size-six;
+    height: 30rem/@font-size-six;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -15rem/@font-size-six;
+    margin-top: -15rem/@font-size-six;
+}
+
+@keyframes loadBox {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes loadBox {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.loadBox {
+    position: relative;
+}
+.loadBox div {
+    left: 95rem/@font-size-six;
+    top: 48rem/@font-size-six;
+    position: absolute;
+    -webkit-animation: loadBox linear 0.7s infinite;
+    animation: loadBox linear 0.7s infinite;
+    background: #999999;
+    width: 10rem/@font-size-six;
+    height: 24rem/@font-size-six;
+    border-radius: 20%;
+    -webkit-transform-origin: 5rem/@font-size-six 52rem/@font-size-six;
+    transform-origin: 5rem/@font-size-six 52rem/@font-size-six;
+}
+.loadBox div:nth-child(1) {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-animation-delay: -0.641666666666667s;
+    animation-delay: -0.641666666666667s;
+}
+.loadBox div:nth-child(2) {
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+    -webkit-animation-delay: -0.583333333333333s;
+    animation-delay: -0.583333333333333s;
+}
+.loadBox div:nth-child(3) {
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+    -webkit-animation-delay: -0.525s;
+    animation-delay: -0.525s;
+}
+.loadBox div:nth-child(4) {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-animation-delay: -0.466666666666667s;
+    animation-delay: -0.466666666666667s;
+}
+.loadBox div:nth-child(5) {
+    -webkit-transform: rotate(120deg);
+    transform: rotate(120deg);
+    -webkit-animation-delay: -0.408333333333333s;
+    animation-delay: -0.408333333333333s;
+}
+.loadBox div:nth-child(6) {
+    -webkit-transform: rotate(150deg);
+    transform: rotate(150deg);
+    -webkit-animation-delay: -0.35s;
+    animation-delay: -0.35s;
+}
+.loadBox div:nth-child(7) {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-animation-delay: -0.291666666666667s;
+    animation-delay: -0.291666666666667s;
+}
+.loadBox div:nth-child(8) {
+    -webkit-transform: rotate(210deg);
+    transform: rotate(210deg);
+    -webkit-animation-delay: -0.233333333333333s;
+    animation-delay: -0.233333333333333s;
+}
+.loadBox div:nth-child(9) {
+    -webkit-transform: rotate(240deg);
+    transform: rotate(240deg);
+    -webkit-animation-delay: -0.175s;
+    animation-delay: -0.175s;
+}
+.loadBox div:nth-child(10) {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+    -webkit-animation-delay: -0.116666666666667s;
+    animation-delay: -0.116666666666667s;
+}
+.loadBox div:nth-child(11) {
+    -webkit-transform: rotate(300deg);
+    transform: rotate(300deg);
+    -webkit-animation-delay: -0.058333333333333s;
+    animation-delay: -0.058333333333333s;
+}
+.loadBox div:nth-child(12) {
+    -webkit-transform: rotate(330deg);
+    transform: rotate(330deg);
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.loadBox {
+    width: 6rem/@font-size-six;
+    height: 6rem/@font-size-six;
+    -webkit-transform: translate(-30rem/@font-size-six, -30rem/@font-size-six) scale(0.3) translate(30rem/@font-size-six, 30rem/@font-size-six);
+    transform: translate(-30rem/@font-size-six, -30rem/@font-size-six) scale(0.3) translate(30rem/@font-size-six, 30rem/@font-size-six);
+}
+

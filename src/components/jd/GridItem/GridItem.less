@@ -1,0 +1,85 @@
+@import "../../common";
+//(默认高度、字体大小等以各个平台控制区域的UI设计作为参考标准)，如不符需求，自行设置子组件样式
+.modeItem{
+  width: 100%;
+  a {
+    div{
+      width: 100%;
+    }
+    svg{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;color: #999;
+}
+.standardClass_item_a(@width){
+  display: inline-block;width: @width/@font-size-base;height: @width/@font-size-base;line-height: normal;
+}
+.standardClass_item_box(@fontSize,@height){
+  line-height: normal;
+  .px2px(font-size,@fontSize);
+  height: @height/@font-size-base;
+}
+.standardClass_item_heightSet(@height,@marginTp){
+  line-height: @height/@font-size-base;
+  height:@height/@font-size-base;
+  margin:@marginTp/@font-size-base auto;
+}
+/*---京东默认样式-----*/
+//两列//三列
+.jd2_standardClass,.jd3_standardClass{
+  .standardClass_item_box(24px,104rem);
+  a{margin: 32rem/@font-size-base 10rem/@font-size-base 32rem/@font-size-base 0;.standardClass_item_a(40rem);img{width: 100%;}}
+  span.text{.standardClass_item_heightSet(33rem,35rem); margin-left:10rem/@font-size-base;display: inline-block;vertical-align: bottom;}
+  .onlyText{ line-height: 104rem/@font-size-base; .px2px(font-size,28px);}
+}
+//四列
+.jd4_standardClass{
+  .standardClass_item_box(24px,155rem);
+  a{margin: 28rem/@font-size-base auto 17rem/@font-size-base;.standardClass_item_a(60rem);img{width: 100%;}}
+  span.text{height: 33rem/@font-size-base;line-height:33rem/@font-size-base;display: block}
+  .onlyText{line-height: 155rem/@font-size-base;.px2px(font-size,26px);}
+}
+/*---京东默认样式-----*/
+
+.themeColor{
+  background:@theme-color !important;
+  color: #fff !important;
+  .fillOn{
+    //fill: #ffffff;
+    //stroke: #ffffff;
+    *{ fill: #ffffff;
+      //stroke:#ffffff
+    }
+  }
+}
+.offColor{
+  background:#fff !important;
+  color:#999999 !important;
+  .fillOff{
+    //fill: #999999;
+    //stroke: #999999;
+    *{ fill: #999999;
+      //stroke:#999999
+    }
+  }
+}
+.disableStyle{
+  background:#efefef !important;
+  color:#c8c8c8 !important;
+  .fillDisable{
+    //fill: #c8c8c8;
+    //stroke: #c8c8c8;
+    *{ fill: #c8c8c8;
+      //stroke:#c8c8c8
+    }
+  }
+}
+
+
+
+
+

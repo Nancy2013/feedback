@@ -1,0 +1,30 @@
+@import "../../common";
+
+.box {
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  width: 100%;
+  padding: 32rem/@font-size-base 17rem/@font-size-base;
+  box-sizing: border-box;
+}
+
+.fatherBox {
+  .fatherBox();
+  color:@theme-color;
+  .childBox {
+    .childBox();
+    div {
+      background: @theme-color;
+      color: @theme-color;
+      width: 266rem/@font-size-base;
+      height: 89rem/@font-size-base;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 90rem/@font-size-base;
+      border: 1px solid @theme-color;
+      border-radius: 90rem/@font-size-base;
+      .px2px(font-size, 28px);
+    }
+  }
+}

@@ -1,0 +1,78 @@
+
+.colorPicker{
+  text-align: center;
+  background: #fff;
+  /*overflow: hidden;*/
+
+}
+.colorPicker.saturation{
+ padding: 0.5333333333333333rem 0;
+}
+.colorPicker .slider.slider-horizontal{
+  width: 8.506666666666667rem;
+  height: 1.066666666666667rem;
+
+}
+.colorPicker .slider.slider-horizontal .slider-track{
+  height: 1.066666666666667rem;
+  border-radius:0.1066666666666667rem;
+  background-image: -webkit-linear-gradient(right,rgb(255,0,0),rgb(236,255,0),rgb(0, 255, 61),rgb(0, 255, 249),rgb(2, 0,225),rgb(235, 0,225),rgb(255,0,0));
+  background-image: -o-linear-gradient(right,rgb(255,0,0),rgb(236,255,0),rgb(0, 255, 61),rgb(0, 255, 249),rgb(2, 0,225),rgb(235, 0,225),rgb(255,0,0));
+  background-image:  linear-gradient(to right,rgb(255,0,0),rgb(236,255,0),rgb(0, 255, 61),rgb(0, 255, 249),rgb(2, 0,225),rgb(235, 0,225),rgb(255,0,0));
+  top:0;
+  width: 100%;
+}
+.colorPicker .slider-handle{
+  width: 0.3rem;
+  height: 1.333333333333333rem;
+  background: rgb(255,255,255);
+  border:0.0133333333333333rem solid rgba(0,0,0,0.1);
+  webkit-box-shadow: 0 6px 6px 0 rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 6px 6px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,0.1);
+  top:0;
+  border-radius:0.1333333333333333rem;
+
+}
+.colorPicker .slider-selection{
+  border-radius:0.8rem;
+}
+.colorPicker .slider-selection.tick-slider-selection{
+  background-image: none;
+}
+.colorPicker .slider-tick{
+  visibility: hidden;
+}
+.colorPicker .tooltip-inner{
+  color:rgb(255,180,0);
+  display: none;
+}
+
+.colorTem .slider.slider-horizontal .slider-track{
+  background-image: -webkit-linear-gradient(left, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image: -o-linear-gradient(right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image:  linear-gradient(to right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+}
+.colorTem .sliderLight .slider-handle{
+  background:rgb(234,248,253);
+  border:0.0533333333333333rem solid rgb(234,248,253);
+}
+.colorTem .sliderLight .slider-selection{
+  background: none;
+}
+.colorPicker .slider.slider-horizontal .slider-handle{
+  margin-left: -0.1333333333333334rem;
+  margin-top: -0.2rem;
+}
+.colorPicker .slider.slider-horizontal .slider-tick-label-container{visibility: hidden;}
+
+/*增加slider可点击区域*/
+.colorPicker  .slider{
+  margin-left: 20px!important;
+  margin-right: 20px!important;
+}
+
+.colorPicker .slider.slider-horizontal .tooltip{
+  display: none;
+}
+

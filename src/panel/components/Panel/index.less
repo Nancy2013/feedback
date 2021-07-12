@@ -1,0 +1,28 @@
+@import '../../styles/base';
+
+.panel {
+  background: @white;
+  box-sizing: border-box;
+  color: @gray-4;
+  .px2px(font-size, 32px);
+
+  .extra {
+    display: flex;
+    align-items: center;
+    padding: 0.2667rem 0;
+    padding-right: 0.4rem;
+    margin-left: 0.4rem;
+    &.border {
+      border-bottom: @border-width-base @border-style-base @gray-2;
+    }
+  }
+  .left {
+    display: inline-block;
+    flex: 1;
+  }
+  .right {
+    display: inline-block;
+    flex: 2;
+    text-align: right;
+  }
+}

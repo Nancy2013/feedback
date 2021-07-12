@@ -1,0 +1,54 @@
+@import "../../common";
+
+.box{
+    width: 500rem/@font-size-base;
+    margin: 0 auto;
+    text-align: center;
+    color: #969696;
+    .px2px(font-size,24px);
+}
+.time{
+    padding-right: 14rem/@font-size-base;
+}
+.week{
+    display: inline;
+    span{
+        padding-left: 26rem/@font-size-base;
+        display: inline-block;
+    }
+    span:nth-child(6){
+        padding-left: 0;
+    }
+}
+//针对安卓
+[data-dpr="1"] .week span:nth-child(6){
+    padding-left: 26rem/@font-size-base;
+}
+//针对iphone 6plus
+@media screen and (-webkit-device-pixel-ratio:3){
+    .week span:nth-child(6){
+        padding-left: 26rem/@font-size-base;
+    }
+}
+//针对安卓且宽度在360及以下
+@media (max-device-width : 360px) and (-webkit-min-device-pixel-ratio : 1){
+    .time{
+        padding-right: 10rem/@font-size-base;
+    }
+    .week{
+        span{
+            padding-left: 20rem/@font-size-base;
+        }
+    }
+}
+//针对苹果5
+@media (device-width : 320px) and (-webkit-min-device-pixel-ratio : 2){
+    .time{
+        padding-right: 10rem/@font-size-base;
+    }
+    .week{
+        span{
+            padding-left: 16rem/@font-size-base;
+        }
+    }
+}

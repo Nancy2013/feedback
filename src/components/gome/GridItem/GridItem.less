@@ -1,0 +1,177 @@
+@import "../../common";
+//(默认高度、字体大小等以各个平台控制区域的UI设计作为参考标准)，如不符需求，自行设置子组件样式
+.modeItem{
+  width: 100%;
+  a {
+    //display: block;
+    //z-index: 1;
+    div{
+      width: 100%;
+    }
+    svg{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  //span{
+  //  text-align: center;
+  //  display: block;
+  //}
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;color: #999;
+}
+.standardClass_item_a(@width){
+  display: inline-block;width: @width/@font-size-base;height: @width/@font-size-base;line-height: normal;
+}
+.standardClass_item_box(@fontSize,@height){
+  line-height: normal;
+  .px2px(font-size,@fontSize);
+  height: @height/@font-size-base;
+}
+.standardClass_item_heightSet(@height,@marginTp){
+  line-height: @height/@font-size-base;
+  height:@height/@font-size-base;
+  margin:@marginTp/@font-size-base auto;
+}
+
+/*---国美默认样式-----*/
+//两列、三列、四列默认样式一样
+.gome2_standardClass,.gome3_standardClass,.gome4_standardClass{
+  .standardClass_item_box(30px,180rem);
+  .onlyText{
+    margin: .421875rem auto .15625rem;
+    border-radius: 50%;
+    border:2rem/@font-size-base solid @theme-color;
+    position: relative;
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: normal;
+    text-align: center;
+    position: relative;
+    >div{
+      //margin:0.2rem 0 0 0.2rem;
+      //position: absolute;
+      //top:20%;
+      //left:20%;
+      //height: 64rem/@font-size-six;
+      //width: 64rem/@font-size-six;
+    }
+    span{
+      //纯文本目前只支持一行两个字
+      line-height: 1.25rem;
+      //vertical-align: middle;
+    }
+    //line-height: 180rem/@font-size-base;
+  }
+  a{margin: 27rem/@font-size-base auto 10rem/@font-size-base;
+    border-radius: 50%;
+    position: relative;
+    >div{
+      height: 52rem/@font-size-six;
+      width: 52rem/@font-size-six;
+      margin: 0 auto;
+      vertical-align: middle;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      >div{
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
+    >i{
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      opacity: 0;
+      z-index: 2;
+    }
+    .standardClass_item_a(80rem);
+    img{width: 100%;}
+  }
+  span.text{display:block;height:42rem/@font-size-base;line-height:42rem/@font-size-base;}
+}
+.onlyTextHeight{
+  height: 2.2rem;
+}
+/*---国美默认样式-----*/
+
+
+.themeColor{
+  a{
+    border:2rem/@font-size-base solid @theme-color;
+    background:@theme-color;
+  }
+  .onlyText{
+    color: @theme-color;
+    border:2rem/@font-size-base solid @theme-color;
+  }
+  color: #646464 !important;
+  .fillOn{
+    //fill: #ffffff;
+    //stroke: #ffffff;
+    *{ fill: #ffffff;
+      //stroke:#ffffff
+    }
+  }
+}
+.offColor{
+  a{
+    border:2rem/@font-size-base solid @theme-color;
+    background:#fff ;
+  }
+  .onlyText{
+    color: #646464;
+    border:2rem/@font-size-base solid #646464;
+  }
+  //background: #fff !important;
+  color: #646464 !important;
+  .fillOff{
+    //fill: @theme-color;
+    //stroke: @theme-color;
+    *{ fill: @theme-color;
+      //stroke:@theme-color
+    }
+  }
+}
+.disableStyle{
+  a{
+    border:2rem/@font-size-base solid #a8a4a4;
+    background:transparent ;
+  }
+  .onlyText{
+    color: #999;
+    border:2rem/@font-size-base solid #999;
+  }
+  .fillDisable{
+    //fill: #a8a4a4;
+    //stroke: #a8a4a4;
+    *{ fill: #a8a4a4;
+      //stroke:#a8a4a4
+    }
+  }
+}
+.svgMasker{
+  //width: 100%;
+  //height: 100%;
+  ////margin: 27rem/@font-size-base auto 10rem/@font-size-base;
+  //border-radius: 50%;
+  //position: fixed;
+  //top: 0;
+  //left: 0;
+  //background-color: #000000;
+  //opacity: 0.3;
+  //z-index: 2;
+}
+
+
+
+
+

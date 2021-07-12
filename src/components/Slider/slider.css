@@ -1,0 +1,392 @@
+
+
+/** dna sliderLight**/
+.dna_sliderLight{
+  text-align: center;
+  overflow: hidden;
+  padding: .8rem 0 0.5333333333333333rem;
+  min-height:0.2133333333333333rem;
+}
+.dna_sliderLight .slider.slider-horizontal{
+  height: 0.4266666666666666rem;
+  width: 8.4rem;
+}
+.dna_sliderLight .slider.slider-horizontal .slider-track{
+  height:0.23rem;
+  border-radius:13px;
+  background-image: -webkit-linear-gradient(top, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  background-image: -o-linear-gradient(top, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  background-image: linear-gradient(to bottom, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  margin-top: -0.08rem;
+  width:100%;
+
+}
+
+.dna_sliderLight .slider-handle{
+  width: 0.6rem;
+  height:0.6rem;
+  background: #fff;
+  webkit-box-shadow:0 0px 10px 0 rgba(0,0,0,.15);
+  -moz-box-shadow: 0 0px 10px 0 rgba(0,0,0,.15);
+  box-shadow: 0 0px 10px 0 rgba(0,0,0,.15);
+}
+.dna_sliderLight .slider-selection{
+  border-radius:0.8rem;
+}
+.dna_sliderLight .slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+  font-size:0.3733333333333333rem;
+  color: rgb(85,85,85);
+}
+
+.dna_sliderLight .tooltip.top{
+  margin-top: -0.76rem;
+}
+.dna_sliderLight .slider.slider-horizontal .slider-tick {
+  margin-left:0;
+}
+.dna_sliderLight .slider.slider-horizontal .slider-handle{
+  margin-left:-0.3rem;
+  margin-top: -0.1066666666666667rem;
+}
+.dna_sliderLight .tooltip.top .tooltip-arrow,.sliderLight .tooltip-arrow{
+  display: none;
+}
+.dna_sliderLight .slider-tick{
+  width: 0.16rem;
+  height:0.16rem;
+  background-image: -webkit-linear-gradient(top,#fff,#fff);
+  background-image: -o-linear-gradient(top,#fff 0,#fff 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#fff));
+  background-image: linear-gradient(180deg,#fff 0,#fff);
+  opacity: 1;
+  top: 0.16rem;
+}
+
+/*增加slider可点击区域*/
+.dna_sliderLight  .slider{
+  margin-bottom: 30px!important;
+  margin-left:10px;
+  margin-right: 10px;
+}
+
+
+.dna_sliderLight.colorTemp .slider.slider-horizontal .slider-track{
+  background-image: -webkit-linear-gradient(left, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image: -o-linear-gradient(right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image:  linear-gradient(to right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+}
+.dna_sliderLight.colorTemp .slider-handle{
+  background:rgb(234,248,253);
+  border:0.0533333333333333rem solid rgb(234,248,253)!important;
+}
+.dna_sliderLight.colorTemp .slider-selection{
+  background: none;
+}
+
+.dna_sliderLight .slider.slider-horizontal .slider-tick-label-container{
+  margin-top: 0.5333333333333333rem;
+}
+.dna_sliderLight.Whiting .slider-tick-label-container .slider-tick-label{
+  color:#fff!important;
+}
+.dna_sliderLight.Whiting .tooltip-inner{
+  color:#fff !important;
+}
+.dna_sliderLight.Whiting .slider.slider-horizontal .slider-track{
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 100%);
+}
+.dna_sliderLight.Whiting .slider-selection.tick-slider-selection{
+  /*background-image: linear-gradient(to bottom, transparent 0%, transparent 100%);*/
+  background-image: linear-gradient(to bottom, #fff 0%, #fff 100%)!important;
+
+}
+.dna_sliderLight.Whiting .slider-handle{
+  border-color: #fff!important;
+}
+/*disabled css*/
+.dna_sliderLight.disabled .slider-selection.tick-slider-selection{
+  background-image: linear-gradient(to bottom, transparent 0%, transparent 100%)!important;
+}
+.dna_sliderLight.disabled .slider-handle{
+  border-color:#e1e1e1!important;
+  background-image: linear-gradient(to bottom, #f5f5f5 0%, #f5f5f5 100%);
+}
+
+
+
+
+/** jd sliderLight**/
+.jd_sliderLight{
+  padding: 0.7875rem;
+  text-align: center;
+  overflow: hidden;
+}
+.jd_sliderLight .slider.slider-horizontal{
+  width: 8.2rem;
+  height: .796875rem;
+}
+.jd_sliderLight .slider.slider-horizontal .slider-track{
+  height:.03125rem;
+  border-radius:13px;
+  background-image: -webkit-linear-gradient(top, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  background-image: -o-linear-gradient(top, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  background-image: linear-gradient(to bottom, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  margin-top: -0.04rem;
+  width:100%;
+
+}
+.jd_sliderLight .slider.slider-horizontal .slider-tick-container{
+  top:0.4rem
+}
+.jd_sliderLight .slider-handle{
+  width: 0.71875rem;
+  height:0.71875rem;
+  background: #fff;
+  webkit-box-shadow:0 0px 10px 0 rgba(0,0,0,.15);
+  -moz-box-shadow: 0 0px 10px 0 rgba(0,0,0,.15);
+  box-shadow: 0 0px 10px 0 rgba(0,0,0,.15);
+}
+.jd_sliderLight .slider-selection{
+  border-radius:0.8rem;
+}
+.jd_sliderLight .slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+  font-size:0.375rem;
+  color: #999;
+}
+
+.jd_sliderLight .tooltip.top{
+  margin-top: -0.76rem;
+}
+.jd_sliderLight .slider.slider-horizontal .slider-tick {
+  margin-left:0;
+}
+.jd_sliderLight .slider.slider-horizontal .slider-handle{
+  margin-left:-0.3rem;
+  margin-top: -.3984375rem;
+  top: 50%;
+}
+.jd_sliderLight .tooltip.top .tooltip-arrow,.jd_sliderLight .tooltip-arrow{
+  display: none;
+}
+.jd_sliderLight .slider-tick{
+  width: 0.16rem;
+  height:0.16rem;
+  background-image: -webkit-linear-gradient(top,#fff,#fff);
+  background-image: -o-linear-gradient(top,#fff 0,#fff 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#fff));
+  background-image: linear-gradient(180deg,#fff 0,#fff);
+  opacity: 1;
+  margin-top: -.1rem;
+  top: 50%;
+
+}
+
+/*增加slider可点击区域*/
+.jd_sliderLight .slider{
+  margin-bottom: 0.46875rem!important;
+  /*margin-left:10px;*/
+  margin-right: 10px;
+}
+
+
+.jd_sliderLight.colorTemp .slider.slider-horizontal .slider-track{
+  background-image: -webkit-linear-gradient(left, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image: -o-linear-gradient(right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image:  linear-gradient(to right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+}
+.jd_sliderLight.colorTemp .slider-handle{
+  background:rgb(234,248,253);
+  border:0.0533333333333333rem solid rgb(234,248,253)!important;
+}
+.jd_sliderLight.colorTemp .slider-selection{
+  background: none;
+}
+
+.jd_sliderLight .slider.slider-horizontal .slider-tick-label-container{
+  margin-top: 1.0625rem;
+}
+.jd_sliderLight.Whiting .slider-tick-label-container .slider-tick-label{
+  color:#fff!important;
+}
+.jd_sliderLight.Whiting .tooltip-inner{
+  color:#fff;
+}
+.jd_sliderLight.Whiting .slider.slider-horizontal .slider-track{
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 100%);
+}
+.jd_sliderLight.Whiting .slider-selection.tick-slider-selection{
+  /*background-image: linear-gradient(to bottom, transparent 0%, transparent 100%);*/
+  background-image: linear-gradient(to bottom, #fff 0%, #fff 100%)!important;
+
+}
+.jd_sliderLight.Whiting .slider-handle{
+  border-color: #fff!important;
+}
+/*.jd_sliderLight .slider .tooltip-inner{*/
+  /*display: none;*/
+/*}*/
+.jd_sliderLight .slider-selection.tick-slider-selection{
+  background: #C8C8C8;
+}
+/*disabled css*/
+.jd_sliderLight.disabled .slider-selection.tick-slider-selection{
+  background: #C8C8C8 !important;
+}
+.jd_sliderLight.disabled .slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+  color:#C8C8C8 !important;
+}
+.jd_sliderLight.disabled .slider-track-high{
+  background: #C8C8C8 !important;
+}
+.jd_sliderLight.disabled .slider-tick{
+  background: #C8C8C8 !important;
+}
+.jd_sliderLight.disabled .slider-handle{
+  border-color:#C8C8C8!important;
+  background:rgba(244,244,244,1);
+}
+
+
+
+/** gome sliderLight**/
+.gome_sliderLight{
+  text-align: center;
+  overflow: hidden;
+  padding: .8rem 0 0.5333333333333333rem;
+  min-height:0.2133333333333333rem;
+}
+.gome_sliderLight .slider.slider-horizontal{
+  height: 0.4266666666666666rem;
+  width: 8.2rem;
+}
+.gome_sliderLight .slider.slider-horizontal .slider-track{
+  height:0.25rem;
+  border-radius:13px;
+  background-image: -webkit-linear-gradient(top, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  background-image: -o-linear-gradient(top, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  background-image: linear-gradient(to bottom, rgb(225,225,225) 0%, rgb(225,225,225) 100%);
+  margin-top: -0.08rem;
+  width:100%;
+
+}
+
+.gome_sliderLight .slider-handle{
+  width: 0.78125rem;
+  height:0.78125rem;
+  background: #fff;
+  webkit-box-shadow:0 0px 10px 0 rgba(0,0,0,.15);
+  -moz-box-shadow: 0 0px 10px 0 rgba(0,0,0,.15);
+  box-shadow: 0 0px 10px 0 rgba(0,0,0,.15);
+}
+.gome_sliderLight .slider-selection{
+  border-radius:0.8rem;
+}
+.gome_sliderLight .slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+  font-size:0.4375rem;
+  color: rgb(85,85,85);
+}
+
+.gome_sliderLight .tooltip.top{
+  margin-top: -0.76rem;
+}
+.gome_sliderLight .slider.slider-horizontal .slider-tick {
+  margin-left:0;
+}
+.gome_sliderLight .slider.slider-horizontal .slider-handle{
+  margin-left:-0.3rem;
+  margin-top: -0.16rem;
+}
+.gome_sliderLight .tooltip.top .tooltip-arrow,.sliderLight .tooltip-arrow{
+  display: none;
+}
+.gome_sliderLight .slider-tick{
+  width: 0.2rem;
+  height:0.2rem;
+  background-image: -webkit-linear-gradient(top,#fff,#fff);
+  background-image: -o-linear-gradient(top,#fff 0,#fff 100%);
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#fff));
+  background-image: linear-gradient(180deg,#fff 0,#fff);
+  opacity: 1;
+  top: 0.16rem;
+}
+
+/*增加slider可点击区域*/
+.gome_sliderLight .slider{
+  margin-bottom: .8rem!important;
+  margin-left:10px;
+  margin-right: 10px;
+}
+
+
+.gome_sliderLight.colorTemp .slider.slider-horizontal .slider-track{
+  background-image: -webkit-linear-gradient(left, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image: -o-linear-gradient(right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+  background-image:  linear-gradient(to right, rgb(212,244,255), rgb(225,225,225),rgb(225,231,198));
+}
+.gome_sliderLight.colorTemp .slider-handle{
+  background:rgb(234,248,253);
+  border:0.0533333333333333rem solid rgb(234,248,253)!important;
+}
+.gome_sliderLight.colorTemp .slider-selection{
+  background: none;
+}
+
+.gome_sliderLight .slider.slider-horizontal .slider-tick-label-container{
+  margin-top: 0.8rem;
+}
+.gome_sliderLight.Whiting .slider-tick-label-container .slider-tick-label{
+  color:#fff!important;
+}
+.gome_sliderLight.Whiting .tooltip-inner{
+  color:#fff;
+}
+.gome_sliderLight.Whiting .slider.slider-horizontal .slider-track{
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 100%);
+}
+.gome_sliderLight.Whiting .slider-selection.tick-slider-selection{
+  /*background-image: linear-gradient(to bottom, transparent 0%, transparent 100%);*/
+  background-image: linear-gradient(to bottom, #fff 0%, #fff 100%)!important;
+
+}
+.gome_sliderLight.Whiting .slider-handle{
+  border-color: #fff!important;
+}
+/*disabled css*/
+.gome_sliderLight.disabled .slider-selection.tick-slider-selection{
+  background-image: linear-gradient(to bottom, transparent 0%, transparent 100%)!important;
+}
+.gome_sliderLight.disabled .slider-handle{
+  border-color:#e1e1e1!important;
+  background-image: linear-gradient(to bottom, #f5f5f5 0%, #f5f5f5 100%);
+}
+
+
+/* others css */
+.tempSet .dna_sliderLight .slider.slider-horizontal{
+    height: 2.133333333333333rem;
+    width: 5.866666666666667rem;
+ }
+
+ .tempSet .dna_sliderLight .slider.slider-horizontal .slider-track{
+    height:0.8533333333333333rem; 
+    margin-top: -0.4266666666666667rem;
+    border-radius: 0.5333333333333333rem;
+ }
+.tempSet .dna_sliderLight .slider-selection{
+    border-radius: 0.5333333333333333rem;
+}
+ .tempSet .dna_sliderLight .slider-handle{
+    width:1.066666666666667rem; 
+    height:1.066666666666667rem; 
+    box-sizing: border-box;
+ }
+ .tempSet .themeColor_sliderHandle__5knW_{
+    border: 0.0533333333333333rem solid #E53F5B !important;
+ }
+ .tempSet .dna_sliderLight .slider.slider-horizontal .slider-handle{
+    margin-top:0.5333333333333333rem;
+    margin-left: -0.5333333333333333rem;
+ }
+ .tempSet .dna_sliderLight .slider.slider-horizontal .slider-tick-label-container{
+    margin-top:1.066666666666667rem;
+ }

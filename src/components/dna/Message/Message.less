@@ -1,0 +1,30 @@
+@import '../../common';
+.errorBar {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.2133rem 0.3733rem;
+  color: #fff;
+  width: 100%;
+  z-index: 2;
+  top: 1.17333333rem;
+  .px2px(font-size,28px);
+  .error {
+    position: relative;
+    img {
+      width: 0.4267rem;
+      height: 0.4267rem;
+      padding-right: 0.1867rem;
+    }
+    .close {
+      width: 0.2933rem;
+      height: 0.2933rem;
+      position: absolute;
+      top: 50%;
+      right: 0.3733rem;
+      transform: translate(-100%, -50%);
+    }
+  }
+}
+.none {
+  display: none;
+}

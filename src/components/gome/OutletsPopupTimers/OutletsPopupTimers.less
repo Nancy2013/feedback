@@ -1,0 +1,59 @@
+@import "../../common";
+
+.box{
+  border-bottom: 1px solid #dedede;
+  height: 89rem/@font-size-base;
+  background: #fff;
+  position: relative;
+}
+.left{
+  position: absolute;
+  left: 36rem/@font-size-base;
+}
+.leftTop{
+  display: inline-block;
+  color: #333333;
+  line-height: 52rem/@font-size-base;
+}
+.timeShow{
+  .px2px(font-size,22px);
+  padding-right: 52rem/@font-size-base;
+  font-weight: bold;
+}
+.switchShow{
+  .px2px(font-size,24px);
+}
+.right{
+  position: absolute;
+  right: 29rem/@font-size-base;
+  top: 50%;
+  margin-top: -20rem/@font-size-base;
+  div{
+    float: right;
+  }
+}
+.right>div:first-child{
+    padding-left: 45rem/@font-size-base;
+    padding-top: 3rem/@font-size-base;
+  div{
+    padding-right: 0;
+    width: 34rem/@font-size-base;
+    height: 34rem/@font-size-base;
+  }
+}
+
+.weekBox{
+  width: 400rem/@font-size-base;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  div{
+    display: inline-block;
+    color: #666666;
+    .px2px(font-size,22px);
+    padding-right: 16rem/@font-size-base;
+  }
+  div:last-child{
+    padding-right: 0;
+  }
+}

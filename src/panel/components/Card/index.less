@@ -1,0 +1,28 @@
+@import '../../styles/base';
+.card {
+  display: flex;
+  color: @gray-5;
+  .item {
+    flex: 1;
+    text-align: center;
+    border-right: @border-width-base @border-style-base @gray-6;
+    border-image: -webkit-linear-gradient(top, @white 0% 20%, @gray-6 20%) 1; /* 支持 Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+    border-image: -moz-linear-gradient(top, @white 0% 20%, @gray-6 20%) 1; /* 支持 Firefox (3.6 to 15) */
+    border-image: -o-linear-gradient(top, @white 0% 20%, @gray-6 20%) 1; /* 支持旧 Opera (11.1 to 12.0) */
+    border-image: linear-gradient(to bottom, @white 0% 20%, @gray-6 20%) 1; /* 标准语法; 需要最新版本 */
+    border-image-width: 0 @border-width-base 0 0;
+    .text {
+      .px2px(font-size,24px);
+      padding-bottom: 0.16rem;
+    }
+    .value {
+      .px2px(font-size,36px);
+    }
+    .unit {
+      padding-left: 0.16rem;
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+}

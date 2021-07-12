@@ -1,0 +1,62 @@
+@import '../common';
+
+.maskLayer {
+  .maskLayer();
+}
+.commonBox {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: @modalZindex;
+}
+.alertBox {
+  width: 590rem / @font-size-six;
+  margin-left: -296rem / @font-size-six;
+  background: #fff;
+  top: 30%;
+  border-radius: 10rem / @font-size-six;
+  position: fixed;
+  left: 50%;
+  .alertTitle {
+    color: #323232;
+    .px2px(font-size,32px);
+    padding: 60rem / @font-size-six 50rem / @font-size-six 50rem /
+      @font-size-six;
+    text-align: center;
+    line-height: 54rem / @font-size-six;
+  }
+  .alertContent {
+    height: 100rem / @font-size-six;
+    line-height: 100rem / @font-size-six;
+    .px2px(font-size,36px);
+    div {
+      border-top: 1px solid #e1e1e1;
+      border-right: 1px solid #e1e1e1;
+    }
+    div:last-child {
+      border-right: none;
+      color: @theme-color;
+    }
+  }
+}
+
+//father-box/child-box
+.fatherBox {
+  .fatherBox();
+}
+.childBox {
+  .childBox();
+}
+.popupBox .maskLayer {
+  opacity: 0;
+}
+.popupBox:first-child .maskLayer {
+  opacity: 0.3;
+}
+.modalZindex {
+  z-index: @modalZindex;
+}
+.highlighted {
+  .childBox();
+  color: @theme-color;
+}
