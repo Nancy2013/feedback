@@ -1,10 +1,15 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-12 16:00:45
+ * @LastEditTime: 2021-07-12 16:09:00
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \tcl\src\components\Root.js
+ */
 import React, { PureComponent } from 'react';
 import * as logic from './logic';
-// import Toast from './Toast';
 import Modal from './Modal';
 import Loading from './ActivityIndicator';
-// import initReactFastclick from 'react-fastclick';
-import JdOfflineMask from './jd/OffLineMask';
 import { notifyError } from './utils';
 
 function autoCloseModal(Component) {
@@ -60,26 +65,17 @@ class Root extends PureComponent {
   componentDidMount() {
     const { loading, ready, settings } = this.props;
     const defaultLogicProp = {
-      // updateStrategy:'immediate',
       loading,
       onFail: (e) => {
         notifyError(e);
-        // return true
       },
-      // retry:{
-      //     errorCode:1,
-      //     retryCount:3,
-      //     timeout:500
-      // }
     };
 
-    logic.ready(this.update).catch((e) => {
+    logic.ready().catch((e) => {
       // Modal.alert(e.message||e.msg);
-      notifyError(e);
-      ready();
+      //   notifyError(e);
+      //   ready();
     });
-    logic.updateDefaultControlOpts({ ...defaultLogicProp, ...settings });
-    // initReactFastclick();
   }
 
   update = (stauts, isFirstTime) => {
@@ -89,23 +85,14 @@ class Root extends PureComponent {
   };
 
   render() {
-    const {
-      isReady,
-      isLoading,
-      children,
-      history,
-      location,
-      match,
-      isStatusReady,
-      isOnline,
-    } = this.props;
+    const { isReady, isLoading, children, history, location, match } =
+      this.props;
     return (
       <React.Fragment>
         {React.Children.map(children, (child) =>
           React.cloneElement(child, { history, location, match })
         )}
-        {(!isReady || isLoading || !isStatusReady) && <Loading />}
-        {!isOnline && <JdOfflineMask />}
+        {/* {(!isReady || isLoading || !isStatusReady) && <Loading />} */}
       </React.Fragment>
     );
   }
