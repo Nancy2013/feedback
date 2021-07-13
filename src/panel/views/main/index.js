@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 17:07:44
- * @LastEditTime: 2021-07-13 11:24:32
+ * @LastEditTime: 2021-07-13 11:28:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \panel\Main.js
@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import Page from 'componentsPath/dna/Page';
 import NavBar from 'componentsPath/dna/NavBar';
-import List from './List000';
+import List from './List';
 import style from 'stylesPath/index.less';
 import empty from '@/panel/images/empty.svg';
 
