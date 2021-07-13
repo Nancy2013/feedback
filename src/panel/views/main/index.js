@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 17:07:44
- * @LastEditTime: 2021-07-13 11:28:06
+ * @LastEditTime: 2021-07-13 17:32:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \panel\Main.js
@@ -20,7 +20,7 @@ import empty from '@/panel/images/empty.svg';
 const Main = (props) => {
   const data = [''];
   return (
-    <Page saveBottom className={style.bgColor}>
+    <Page className={style.bgColor}>
       {/* navbar */}
       <NavBar exit title={'title'} color={'#000'} opacity />
       <div className={style.main}>

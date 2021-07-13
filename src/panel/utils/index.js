@@ -1,12 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2020-11-26 16:24:58
- * @LastEditTime: 2021-07-12 16:11:49
+ * @LastEditTime: 2021-07-13 14:50:09
  * @LastEditors: Please set LastEditors
  * @Description: utils function
  * @FilePath: \curtain\src\panel\utils.js
  */
 import sdk from 'broadlink-jssdk';
+import moment from 'moment';
 import $ from 'jquery';
 import { statusBarHeight, ratio, isIOS } from 'componentsPath/device';
 
@@ -102,6 +103,39 @@ const looseBody = () => {
   var top = body.style.top;
   document.body.scrollTop = document.documentElement.scrollTop = -parseInt(top);
   body.style.top = '';
+};
+
+/** 格式化nickname
+ * @method formatNickName
+ */
+export const formatNickName = (nickName) => {
+  var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+  if (re.test(nickName)) {
+    let arr = nickName.split('@');
+    let tmp = arr[0].substring(0, arr[0].length - 2);
+    //let replaceStr = new Array(tmp.length+1).join("*");
+    nickName = nickName.replace(tmp, '*');
+  } else if (nickName.length >= 9) {
+    let tmp = nickName.substring(3, nickName.length - 4);
+    // let replaceStr = new Array(tmp.length+1).join("*");
+    nickName = nickName.replace(tmp, '*');
+  }
+  return nickName;
+};
+/** 格式化时间
+ * @method formatTime
+ */
+export const formatTime = (time) => {
+  time = moment(time * 1000);
+  let d = time.calendar(null, {
+    sameDay: '[today]',
+    lastDay: '[yesterday]',
+    nextDay: 'YYYY.MM.DD',
+    nextWeek: 'YYYY.MM.DD',
+    lastWeek: 'YYYY.MM.DD',
+    sameElse: 'YYYY.MM.DD',
+  });
+  return d;
 };
 
 export {
