@@ -1,20 +1,20 @@
 /*
  * @Author: your name
- * @Date: 2020-12-07 14:25:16
- * @LastEditTime: 2021-07-13 10:10:53
+ * @Date: 2021-02-23 10:09:50
+ * @LastEditTime: 2021-07-13 10:12:09
  * @LastEditors: Please set LastEditors
- * @Description: 方法组件
- * @FilePath: \curtain\src\panel\components\Function\function.js
+ * @Description: In User Settings Edit
+ * @FilePath: \integrated-stove\src\panel\views\home\Close.js
  */
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
-import style from './index.less';
+import style from 'stylesPath/index.less';
 
 const Component = (props) => {
   const { className } = props;
-  return <div className={className}>Component</div>;
+  return <div className={className}>Detail</div>;
 };
 
 export default Component;
