@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-13 11:23:19
+ * @LastEditTime: 2021-07-14 11:28:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -12,14 +12,14 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
 import style from 'stylesPath/index.less';
+import EmptyPage from './EmptyPage';
 
 const Component = (props) => {
-  const { className, history } = props;
+  const { history } = props;
+  const onRefresh = () => {};
   return (
-    <div className={className}>
-      <div onClick={() => history.push('/detail/1')}>详情</div>
-      <div onClick={() => history.push('/add')}>添加</div>
-      <div onClick={() => history.push('/success')}>成功</div>
+    <div className={classNames(style.content, style.list)}>
+      <EmptyPage status="error" onRefresh={onRefresh} />
     </div>
   );
 };
