@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-26 16:24:58
- * @LastEditTime: 2021-07-13 14:50:09
+ * @LastEditTime: 2021-07-14 15:41:38
  * @LastEditors: Please set LastEditors
  * @Description: utils function
  * @FilePath: \curtain\src\panel\utils.js
@@ -105,6 +105,28 @@ const looseBody = () => {
   body.style.top = '';
 };
 
+/** 获得url的参数
+ * @method getUrlParams
+ * @param {string} key 需要查找的参数的key
+ */
+export const getUrlParams = (key) => {
+  let search = window.location.search.split('?')[1] || '';
+  let locationParams = search ? decodeURIComponent(search).split('&') : [];
+  let paramsObj = {};
+  locationParams.forEach((_e, _i) => {
+    try {
+      paramsObj[_e.split('=')[0]] = JSON.parse(_e.split('=')[1]);
+    } catch (err) {
+      paramsObj[_e.split('=')[0]] = _e.split('=')[1];
+    }
+  });
+  if (key) {
+    return paramsObj[key] || '';
+  } else {
+    return paramsObj;
+  }
+};
+
 /** 格式化nickname
  * @method formatNickName
  */
@@ -136,6 +158,18 @@ export const formatTime = (time) => {
     sameElse: 'YYYY.MM.DD',
   });
   return d;
+};
+export const formatTag = (post) => {
+  let tagName = '';
+  if (post.replied && post.replied === 1) {
+    // 官方已回复
+    tagName = 'replied';
+  }
+  if (post.resolved && post.resolved === 1) {
+    // 已解决
+    tagName = 'resolved';
+  }
+  return tagName;
 };
 
 export {

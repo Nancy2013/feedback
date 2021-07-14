@@ -2,7 +2,7 @@
  * @Description: SDK
  * @Author: your name
  * @Date: 2019-05-17 17:02:04
- * @LastEditTime: 2021-07-13 15:19:29
+ * @LastEditTime: 2021-07-14 17:57:24
  * @LastEditors: Please set LastEditors
  */
 import sdk from 'broadlink-jssdk';
@@ -39,10 +39,13 @@ export const getUserInfo = () => {
   return sdk.platformSDK
     .callNative('getUserInfo')
     .then((res) => {
-      if (res.nickName && res.nickName === res.userName) {
-        res.nickName = formatNickName(res.nickName);
-      } else if (!res.nickName) {
-        res.nickName = formatNickName(res.userName);
+      console.log('【res】', res);
+      if (res) {
+        if (res.nickName && res.nickName === res.userName) {
+          res.nickName = formatNickName(res.nickName);
+        } else if (!res.nickName) {
+          res.nickName = formatNickName(res.userName);
+        }
       }
       return res;
     })

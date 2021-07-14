@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 17:07:44
- * @LastEditTime: 2021-07-13 17:32:39
+ * @LastEditTime: 2021-07-14 15:54:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \panel\Main.js
@@ -18,13 +18,12 @@ import style from 'stylesPath/index.less';
 import empty from '@/panel/images/empty.svg';
 
 const Main = (props) => {
-  const data = [''];
   return (
     <Page className={style.bgColor}>
       {/* navbar */}
       <NavBar exit title={'title'} color={'#000'} opacity />
       <div className={style.main}>
-        {data.length === 0 ? <img src={empty} /> : <List {...props} />}
+        <List {...props} />
       </div>
     </Page>
   );
