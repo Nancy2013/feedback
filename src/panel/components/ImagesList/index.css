@@ -1,0 +1,27 @@
+.viewer-canvas img{
+    width: 100% !important;
+    height: auto !important;
+    margin-left: 0px !important;
+}
+.viewPointer{
+    color: #fff;
+    margin-top: 0.533333rem;
+    position: absolute;
+    left: 0.4rem;
+    text-shadow:0px 2px 4px rgba(0,0,0,0.5);
+    font-size: 0.426667rem;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height: 0.586667rem;
+}
+.viewPointer.isIphoneX{
+    margin-top: 1.173333rem;
+}
+.bgImgItem .imgShow{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 0;
+    padding-bottom: 100%;
+    width: 100%;
+}

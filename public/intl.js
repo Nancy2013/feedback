@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-15 11:23:58
+ * @LastEditTime: 2021-07-15 16:29:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -9,6 +9,7 @@
 var __APP_STRINGS__ = {
   zh: {
     loading: '加载中',
+    feedBack: '反馈问题',
     title: '添加反馈',
     done: '完成',
     success: '提交成功!',
@@ -25,6 +26,7 @@ var __APP_STRINGS__ = {
   en: {
     loading: 'loading',
     done: 'done',
+    feedBack: 'Feedback',
     title: 'Add Feedback',
     success: 'Submitted Successful!',
     successText: 'successText',

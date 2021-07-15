@@ -1,0 +1,128 @@
+.replyBox{
+    padding:0 0.4rem;
+    background: #fff;
+    border-top: 1px solid rgba(225,225,225,1);
+    display: flex;
+    height: 1.6rem;
+    align-items: center;
+}
+.replyBoxInputWrap .rightBox{
+    color: #007FFF;
+}
+.replyBoxInputWrap.disbled .rightBox{
+    color: #999;
+}
+.replyBoxInputWrap.isIphoneX .btnWrap2{
+    bottom: 1.7rem;
+}
+.replyBox .placeBox{
+    height: 0.853333rem;
+    line-height: 0.853333rem;
+    background:rgba(247,247,247,1);
+    border-radius: 0.106667rem;
+    border:1px solid rgba(225,225,225,1);
+    font-size: 0.373333rem;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    padding-left: 0.266667rem;
+    box-sizing: border-box;
+    flex: 1;
+}
+.cameraIcon{
+    height: .853333rem;
+    width: 1.04rem;
+    background-repeat: no-repeat;
+    background-size: auto 0.64rem;
+    background-position: right center;
+    background-image: url("./images/camera.png");
+}
+.cameraIcon.disable{
+    background-image: url("./images/camera_disabled.png");
+}
+.replyBoxInput{
+    display: flex;
+    padding: 0.266667rem 0;
+    background: #fff;
+}
+.replyBoxInput .left{
+    flex: 1;
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    border:1px solid rgba(225,225,225,1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.replyBoxInput .right{
+    width: 1.44rem;
+    position: relative;
+}
+.replyBoxInput .left textarea{
+    padding: 0.16rem 0.4rem;
+    box-sizing: border-box;
+}
+.replyBoxInputWrap{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2004;
+    background: #fff;
+}
+.replyBoxInputWrap .btnWrap2{
+    position: fixed;
+    width: 100%;
+    bottom: .746667rem;
+}
+.replyBoxInputWrap .btnWrap2 .button{
+    display: block;
+    margin: 0 0.4rem;
+}
+.replyBoxInputWrap .mask{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.replyBoxInput{
+    width: 100%;
+    box-sizing: content-box;
+}
+.replyBoxInput .imgList{
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 0;
+    display: flex;
+}
+.replyBoxInput .imgList .imgItem{
+    width: 1.6rem;
+    height: 1.6rem;
+    box-sizing: content-box;
+    box-sizing: border-box;
+    margin-left: 0.4rem;
+    margin-bottom: 0.4rem;
+    padding: 0px;
+}
+.replyBoxInput .bgImgItem{
+    position: relative;
+}
+.replyBoxInput .bgImgItem .del{
+    position: absolute;
+    width: 0.426667rem;
+    height: 0.426667rem;
+    top: 0px;
+    right: 0px;
+    background-image: url('./../../Feedback/images/del.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.replyBoxInput .bgImgItem .uploadImgWrap{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

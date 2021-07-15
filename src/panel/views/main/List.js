@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-15 11:29:28
+ * @LastEditTime: 2021-07-15 16:45:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -9,13 +9,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import Toast from 'componentsPath/Toast';
-import MyScroll from 'componentsPath/dna/Scroller';
+import MyScroll from '@/panel/components/Scroller';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
+import NavBar from 'componentsPath/dna/NavBar';
 import EmptyPage from './EmptyPage';
 import { getMyPosts, setResolved } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
-import './../../styles/list.css';
+import 'stylesPath/community.css';
+import 'stylesPath/list.css';
 
 let requestLock = false;
 let canClick = true;
@@ -321,20 +323,32 @@ class List extends React.Component {
     );
   }
   render() {
-    const { intl } = this.props;
+    const {
+      intl: { formatMessage },
+    } = this.props;
     const { pageStatus, postsList, deleteTipDailog } = this.state;
     return (
-      <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>
-        {
-          //  数据为空
-          pageStatus === 'null' ? <EmptyPage /> : null
-        }
-        {pageStatus === 'success' ? this.renderList() : null}
-        {pageStatus === 'loading' ? <LoadingPage /> : null}
-        {
-          //  加载失败
-          pageStatus === 'error' ? <EmptyPage /> : null
-        }
+      <div className={classNames('messagePage')}>
+        <NavBar
+          exit
+          title={formatMessage({ id: 'feedBack' })}
+          color={'#000'}
+          opacity
+        />
+        <div className={'myPostsIndex'}>
+          <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>
+            {
+              //  数据为空
+              pageStatus === 'null' ? <EmptyPage /> : null
+            }
+            {pageStatus === 'success' ? this.renderList() : null}
+            {pageStatus === 'loading' ? <LoadingPage /> : null}
+            {
+              //  加载失败
+              pageStatus === 'error' ? <EmptyPage /> : null
+            }
+          </div>
+        </div>
       </div>
     );
   }
