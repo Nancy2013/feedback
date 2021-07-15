@@ -1,31 +1,11 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-14 14:55:14
+ * @LastEditTime: 2021-07-15 11:29:28
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
  */
-// import React, { useState, useEffect, useMemo, useCallback } from 'react';
-// import { injectIntl } from 'react-intl';
-// import { useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-// import classNames from 'classnames';
-// import style from 'stylesPath/index.less';
-// import EmptyPage from './EmptyPage';
-
-// const Component = (props) => {
-//   const { history } = props;
-//   const onRefresh = () => {};
-//   return (
-//     <div className={classNames(style.content, style.list)}>
-//       <EmptyPage status="error" onRefresh={onRefresh} />
-//     </div>
-//   );
-// };
-
-// export default injectIntl(Component);
-
 import React from 'react';
 import classNames from 'classnames';
 import Toast from 'componentsPath/Toast';
@@ -40,7 +20,7 @@ import './../../styles/list.css';
 let requestLock = false;
 let canClick = true;
 
-class Message extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,7 +77,8 @@ class Message extends React.Component {
               postsList: [...newPostsList],
             },
             () => {
-              Toast.hide();
+              // TODO Toast
+              // Toast.hide();
               requestLock = false;
               if (init) {
                 this.scrollerChild.onRefresh(true);
@@ -358,4 +339,4 @@ class Message extends React.Component {
     );
   }
 }
-export default injectIntl(Message);
+export default injectIntl(List);

@@ -1,12 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 17:16:42
- * @LastEditTime: 2021-07-13 15:17:08
+ * @LastEditTime: 2021-07-15 11:17:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\services\appAsk.js
  */
 import axios from 'axios';
+const BASE_URL = '';
 
 let commonHeader = {
   licenseid: '1a04dfbce6df97d592a694af8824f6c3',
@@ -321,7 +322,7 @@ export const getMyMessage = (userid = '', lid, params) => {
 
 export const getMyPosts = (userid = '', lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/my', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/my`, params, {
       headers: {
         ...commonHeader,
         userid: userid,

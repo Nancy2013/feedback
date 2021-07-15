@@ -192,7 +192,7 @@ const platformSDK = (() => {
       console.log(`bridge-call :${tag} params:${JSON.stringify(params)}`);
       console.log(`bridge-call-success : ${JSON.stringify(backData[action])}`);
 
-      resolve();
+      resolve(backData[action]);
     });
   };
 
