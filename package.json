@@ -63,7 +63,7 @@
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
     "jquery": "^3.4.1",
-    "jroll": "^2.6.6",
+    "jroll": "^2.6.5",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "lodash": "^4.17.15",

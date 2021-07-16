@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import NavBar from '../../components/NavBar';
+import NavBar from 'componentsPath/dna/NavBar';
 import Toast from '../../components/Toast';
 import Dialog from '../../components/Dialog';
 import PageStatus from '../../components/PageStatus';
@@ -478,7 +478,8 @@ class PostDetail extends React.Component {
       >
         <NavBar
           title={intl.formatMessage({ id: 'detail' })}
-          backHome={this.handleBackHome.bind(this)}
+          opacity
+          color={'#000'}
         />
         {pageStatus === 'success' && postDetail ? (
           <Scroller

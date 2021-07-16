@@ -121,7 +121,7 @@ class ReplyItem extends React.Component {
           <div className="replyMessage">
             {reply.replypostid ? (
               <span className="replyTo">
-                {intl.formatMessage({ id: 'replyTo' })}
+                {intl.formatMessage({ id: 'reply' })}
                 <span className="replyToName">
                   {`@${
                     postMap[reply.replypostid] &&

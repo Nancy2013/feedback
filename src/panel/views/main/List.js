@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-16 10:36:36
+ * @LastEditTime: 2021-07-16 14:48:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -14,6 +14,7 @@ import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import NavBar from 'componentsPath/dna/NavBar';
 import EmptyPage from './EmptyPage';
+import Page from 'componentsPath/dna/Page';
 import { getMyPosts, setResolved } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
 import 'stylesPath/community.css';
@@ -332,13 +333,14 @@ class List extends React.Component {
       intl: { formatMessage },
     } = this.props;
     const { pageStatus, postsList, deleteTipDailog } = this.state;
+    // TODO Scroller滚动
     return (
       <div className={classNames('messagePage')}>
         <NavBar
-          exit
           title={formatMessage({ id: 'feedBack' })}
-          color={'#000'}
+          exit
           opacity
+          color={'#000'}
         />
         <div className={'myPostsIndex'}>
           <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>

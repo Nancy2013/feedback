@@ -548,3 +548,11 @@ textarea::-webkit-input-placeholder {
   line-height: 0.53333rem;
   margin-top: 0.58667rem;
 }
+textarea {
+  outline: none;
+  border: none;
+}
+textarea,
+textarea::-webkit-input-placeholder {
+  font-family: PingFangSC-Regular;
+}

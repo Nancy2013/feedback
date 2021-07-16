@@ -178,3 +178,16 @@
 .myPosts .loadingPageIcon {
   position: relative;
 }
+
+/* 超出省略 */
+.tomit2 {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+}
