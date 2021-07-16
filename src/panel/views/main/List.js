@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-15 16:45:41
+ * @LastEditTime: 2021-07-16 10:36:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
  */
 import React from 'react';
 import classNames from 'classnames';
-import Toast from 'componentsPath/Toast';
+import Toast from './../../components/Toast';
 import MyScroll from '@/panel/components/Scroller';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
@@ -46,8 +46,13 @@ class List extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.show && !this.props.show) {
-      this.scrollerChild && this.scrollerChild.onRefresh(true);
+      // this.scrollerChild && this.scrollerChild.onRefresh(true);
     }
+  }
+  componentWillUnmount() {
+    this.setState = (state, callback) => {
+      return;
+    };
   }
   getData = (init) => {
     let { userId, lid, intl } = this.props;
@@ -80,7 +85,7 @@ class List extends React.Component {
             },
             () => {
               // TODO Toast
-              // Toast.hide();
+              Toast.hide();
               requestLock = false;
               if (init) {
                 this.scrollerChild.onRefresh(true);
@@ -239,7 +244,7 @@ class List extends React.Component {
         )
       ) {
         history.push({
-          pathname: `/postdetail/${post.threadid}`,
+          pathname: `/detail/${post.threadid}`,
           state: {
             post: { ...post },
           },

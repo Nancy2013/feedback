@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-15 16:29:06
+ * @LastEditTime: 2021-07-16 11:10:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -22,6 +22,17 @@ var __APP_STRINGS__ = {
     problemSolved: '问题已解决',
     reply: '回复',
     replied: '官方已回复',
+    cancel: '取消',
+    delete: '删除',
+    postYourQuestion: '回复',
+    detail: '反馈详情',
+    postHasBeenDeleted: '反馈已被删除',
+    comment: '发评论',
+    send: '发送',
+
+    // 无效
+    community_theme_1006: '功能建议',
+    deletePostTip: '确定要删除当前反馈？',
   },
   en: {
     loading: 'loading',
@@ -38,5 +49,16 @@ var __APP_STRINGS__ = {
     problemSolved: 'Problem solved',
     reply: 'Reply',
     replied: 'Replied officially',
+    cancel: 'Cancel',
+    delete: 'Delete',
+    postYourQuestion: 'Write a reply',
+    detail: 'Feedback details',
+    postHasBeenDeleted: 'Feedback has been deleted.',
+    comment: 'Comment',
+    send: 'Send',
+
+    // 无效
+    community_theme_1006: 'Suggestions',
+    deletePostTip: 'Are you sure you want to delete this feedback?',
   },
 };
