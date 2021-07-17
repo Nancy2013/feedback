@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-16 14:48:24
+ * @LastEditTime: 2021-07-17 17:01:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -17,6 +17,7 @@ import EmptyPage from './EmptyPage';
 import Page from 'componentsPath/dna/Page';
 import { getMyPosts, setResolved } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
+import add from '@/panel/images/add.svg';
 import 'stylesPath/community.css';
 import 'stylesPath/list.css';
 
@@ -331,6 +332,7 @@ class List extends React.Component {
   render() {
     const {
       intl: { formatMessage },
+      history,
     } = this.props;
     const { pageStatus, postsList, deleteTipDailog } = this.state;
     // TODO Scroller滚动
@@ -341,6 +343,12 @@ class List extends React.Component {
           exit
           opacity
           color={'#000'}
+          right={{
+            icon: add,
+            handler: () => {
+              history.push('/add');
+            },
+          }}
         />
         <div className={'myPostsIndex'}>
           <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>

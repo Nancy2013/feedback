@@ -187,9 +187,17 @@ class NavBar extends React.PureComponent {
         );
       });
       rightButton = (function () {
-        if (right.length > 1 || exit) return listIcon;
-        if (right.length === 1 && right[0].text.length > 0)
-          return <p>{right[0].text}</p>;
+        if (right.length > 1) return listIcon;
+        if (right.length === 1) {
+          const { text, icon } = right[0];
+
+          return (
+            <>
+              {text && <p>{text}</p>}
+              {icon && <img src={icon} alt="" />}
+            </>
+          );
+        }
         return '';
       })();
     }
