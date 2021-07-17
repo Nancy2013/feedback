@@ -621,23 +621,35 @@ class PostDetail extends React.Component {
           // <div className="handleReplay" onClick={this.handleReply.bind(this)}>{"手动造一条回复的数据呀呀呀呀呀呀"}</div>
         }
         {pageStatus === 'success' ? (
-          <ReplyInput
-            intl={intl}
-            focus={focus}
-            onRef={this.onRef.bind(this)}
-            replyFlag={replyFlag}
-            replyName={
-              replyObj.official === 1
-                ? intl.formatMessage({ id: 'systemReply' })
-                : replyObj.username
+          <div
+            className={classNames('replyBox')}
+            onClick={() =>
+              this.props.history.push(
+                `/add/${postDetail.threadid}/${replyObj.postid}`
+              )
             }
-            handleFocusThread={this.handleClickReplyPost.bind(this)}
-            onSend={this.onSendReply.bind(this)}
-            changeFoucus={(flag) => {
-              this.setState({ focus: flag });
-            }}
-          />
-        ) : null}
+          >
+            <div className="tomit placeBox">
+              {intl.formatMessage({ id: 'postYourQuestion' })}
+            </div>
+          </div>
+        ) : // <ReplyInput
+        //   intl={intl}
+        //   focus={focus}
+        //   onRef={this.onRef.bind(this)}
+        //   replyFlag={replyFlag}
+        //   replyName={
+        //     replyObj.official === 1
+        //       ? intl.formatMessage({ id: 'systemReply' })
+        //       : replyObj.username
+        //   }
+        //   handleFocusThread={this.handleClickReplyPost.bind(this)}
+        //   onSend={this.onSendReply.bind(this)}
+        //   changeFoucus={(flag) => {
+        //     this.setState({ focus: flag });
+        //   }}
+        // />
+        null}
         <PopupBtn
           visible={showDelete}
           cancelText={intl.formatMessage({ id: 'cancel' })}

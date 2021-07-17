@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 17:22:09
- * @LastEditTime: 2021-07-14 15:49:53
+ * @LastEditTime: 2021-07-17 11:25:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \curtain\src\panel\App.js
@@ -80,7 +80,7 @@ const APP = class extends React.PureComponent {
           render={(props) => <Detail {...props} {...this.state} />}
         />
         <Route
-          path="/add"
+          path="/add/:threadid?/:postid?"
           exact
           render={(props) => <Add {...props} {...this.state} />}
         />
