@@ -33,6 +33,8 @@ class NavBar extends React.PureComponent {
       //3.不传为undefined 右键为【...】，点击打开属性页
     ]),
     opacity: PropTypes.bool, //是否透明 ture 透明 false 黑色
+    leftHandler: PropTypes.func, // 点击左侧图标
+    disbled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -40,6 +42,7 @@ class NavBar extends React.PureComponent {
     title: '',
     exit: false,
     color: '#fff',
+    disbled: false,
   };
 
   state = {
@@ -97,7 +100,13 @@ class NavBar extends React.PureComponent {
   };
 
   clickLeft = () => {
-    if (this.props.exit) {
+    const { exit, leftHandle } = this.props;
+    if (leftHandle) {
+      leftHandle();
+      return;
+    }
+
+    if (exit) {
       this.closeWebView();
     } else {
       window.history.back();
@@ -134,7 +143,7 @@ class NavBar extends React.PureComponent {
   };
 
   render() {
-    const { title, subtitle, exit, opacity, color } = this.props;
+    const { title, subtitle, exit, opacity, color, disbled } = this.props;
     let right = this.pretreatRight();
     const colorStyle = opacity ? { background: 'none' } : {};
     const colorText = color ? { color: color } : {};
@@ -168,7 +177,7 @@ class NavBar extends React.PureComponent {
     );
     if (right.length === 1 && right[0] === undefined) {
       rightList = '';
-      rightButton = listIcon;
+      rightButton = '';
     } else {
       rightList = right.map(({ text, handler }, index) => {
         return (
@@ -217,7 +226,16 @@ class NavBar extends React.PureComponent {
               </p>
               <span>{subtitle}</span>
             </div>
-            <div className={style.rightBox} onClick={this.clickRight}>
+            <div
+              className={classnames(style.rightBox, {
+                [style.disbled]: disbled,
+              })}
+              onClick={() => {
+                if (!disbled) {
+                  this.clickRight();
+                }
+              }}
+            >
               {rightButton}
             </div>
           </div>

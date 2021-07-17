@@ -468,6 +468,9 @@ class PostDetail extends React.Component {
       time === 'yesterday' || time === 'today'
         ? intl.formatMessage({ id: time })
         : time;
+    const right = {
+      text: '',
+    };
     return (
       <div
         className={classNames('postDetailPage', {

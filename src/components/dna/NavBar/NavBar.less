@@ -37,9 +37,12 @@
   width: 40%;
   right: 30rem / @font-size-six;
   text-align: right;
+  &.disbled {
+    opacity: 0.5;
+  }
   p {
     .px2px(font-size,32px);
-    color: #fff;
+    color: @theme-color;
     line-height: 44rem / @font-size-six;
   }
   svg {

@@ -336,13 +336,14 @@ class ReplyInput extends React.PureComponent {
         })}
       >
         <NavBar
-          title={intl.formatMessage({ id: 'comment' })}
+          title={intl.formatMessage({ id: 'reply' })}
+          opacity
+          color={'#000'}
           right={{
             text: intl.formatMessage({ id: 'send' }),
             handler: this.handleSendBtn.bind(this),
           }}
-          left={'close'}
-          onBack={this.handlePageBack.bind(this)}
+          disbled={!(message2.length > 0 || showLen > 0)}
         />
         <div
           className="replyBoxInput"
