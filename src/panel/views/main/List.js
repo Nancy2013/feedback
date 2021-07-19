@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-17 17:01:47
+ * @LastEditTime: 2021-07-19 17:52:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -15,7 +15,9 @@ import LoadingPage from 'componentsPath/dna/LoadingPage';
 import NavBar from 'componentsPath/dna/NavBar';
 import EmptyPage from './EmptyPage';
 import Page from 'componentsPath/dna/Page';
-import { getMyPosts, setResolved } from 'servicesPath';
+import Modal from 'componentsPath/Modal';
+import PopupBtn from './../../components/PopupBtn';
+import { getMyPosts, setResolved, removeThread } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
 import add from '@/panel/images/add.svg';
 import 'stylesPath/community.css';
@@ -34,6 +36,7 @@ class List extends React.Component {
       haveData: true,
       deletePost: {},
       loadError: false,
+      showDelete: false,
     };
     this.postParams = {
       page: 1, // 第几页
@@ -213,14 +216,10 @@ class List extends React.Component {
     this.delPost && clearTimeout(this.delPost);
     this.delPost = setTimeout(() => {
       canClick = false;
-      this.setState(
-        {
-          deletePost: { ...post },
-        },
-        () => {
-          this.props.showDelete(post);
-        }
-      );
+      this.setState({
+        deletePost: { ...post },
+        showDelete: true,
+      });
     }, 1000);
     console.error('touchStart');
   };
@@ -256,6 +255,56 @@ class List extends React.Component {
     }
     canClick = true;
   };
+  handleDeletePostDialog() {
+    const {
+      intl: { formatMessage },
+    } = this.props;
+    this.setState({
+      showDelete: false,
+    });
+    Modal.confirm(formatMessage({ id: 'deletePostTip' }), () => {
+      this.handleDelete();
+      return true;
+    });
+  }
+  handleHideDelete() {
+    this.setState({
+      showDelete: false,
+    });
+  }
+  handleDelete() {
+    let { userId, lid, intl } = this.props;
+    const { deletePost } = this.state;
+    Toast.show({
+      type: 'loading',
+      autoHide: false,
+      content: intl.formatMessage({ id: 'loading' }),
+    });
+    this.setState(
+      {
+        deleteTipDailog: false,
+      },
+      () => {
+        removeThread(userId, lid, {
+          threadid: deletePost.threadid,
+        }).then((res) => {
+          if (res.status === 0) {
+            Toast.show({
+              type: 'success',
+              content: intl.formatMessage({ id: 'deleteSuccess' }),
+              onDidHide: () => {
+                this.getData(true);
+              },
+            });
+          } else {
+            Toast.show({
+              content: intl.formatMessage({ id: 'loadError' }),
+            });
+          }
+        });
+      }
+    );
+  }
   renderList() {
     const { intl, supportPersonal, showDeleteVisible, height } = this.props;
     const { postsList, haveData, deletePost, loadError } = this.state;
@@ -334,7 +383,7 @@ class List extends React.Component {
       intl: { formatMessage },
       history,
     } = this.props;
-    const { pageStatus, postsList, deleteTipDailog } = this.state;
+    const { pageStatus, postsList, deleteTipDailog, showDelete } = this.state;
     // TODO Scroller滚动
     return (
       <div className={classNames('messagePage')}>
@@ -364,6 +413,18 @@ class List extends React.Component {
             }
           </div>
         </div>
+        <PopupBtn
+          visible={showDelete}
+          cancelText={formatMessage({ id: 'cancel' })}
+          clickMask={this.handleHideDelete.bind(this)}
+          clickCancel={this.handleHideDelete.bind(this)}
+          btnList={[
+            {
+              text: formatMessage({ id: 'delete' }),
+              handler: this.handleDeletePostDialog.bind(this),
+            },
+          ]}
+        />
       </div>
     );
   }

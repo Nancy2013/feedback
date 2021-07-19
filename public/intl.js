@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-16 15:01:16
+ * @LastEditTime: 2021-07-19 17:59:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -13,7 +13,7 @@ var __APP_STRINGS__ = {
     title: '添加反馈',
     done: '完成',
     success: '提交成功!',
-    successText: 'successText',
+    successText: '您的反馈将被发送到我们的服务人员，我们将尽快为您解决问题。',
     refresh: '重新加载',
     loadText: '加载失败，请检查网络状态',
     today: '今日',
@@ -33,6 +33,10 @@ var __APP_STRINGS__ = {
     systemReply: 'TCL',
     deleteSuccess: '删除成功',
 
+    //Modal
+    'internal.Modal.confirm': '确定',
+    'internal.Modal.cancel': '取消',
+
     // 无效
     community_theme_1006: '功能建议',
     deletePostTip: '确定要删除当前反馈？',
@@ -44,7 +48,8 @@ var __APP_STRINGS__ = {
     feedBack: 'Feedback',
     title: 'Add Feedback',
     success: 'Submitted Successful!',
-    successText: 'successText',
+    successText:
+      'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
     refresh: 'refresh',
     loadText: 'Loading failed, please check network status',
     today: 'Today',
@@ -63,6 +68,10 @@ var __APP_STRINGS__ = {
     inTheEnd: 'No more',
     systemReply: 'TCL',
     deleteSuccess: 'Deleted',
+
+    //Modal
+    'internal.Modal.confirm': 'confirm',
+    'internal.Modal.cancel': 'cancel',
 
     // 无效
     community_theme_1006: 'Suggestions',

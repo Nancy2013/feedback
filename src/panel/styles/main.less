@@ -7,6 +7,7 @@
 }
 
 .content {
+  padding: 0.4rem;
 }
 
 // 列表
@@ -23,18 +24,27 @@
 
 // 添加成功
 .success {
+  background: @white;
+  height: 100%;
   .title {
+    .px2px(font-size,40px);
+    color: @black-1;
+    font-weight: @font-weight-base;
+    padding-bottom: 0.4267rem;
   }
   .text {
+    .px2px(font-size,28px);
+    color: @black-3;
   }
 }
 // components hook css
 .fixedBtn {
   width: 100%;
+  padding: 0.3733rem;
   background: @theme-color;
-  color: @black;
+  color: @white;
   text-align: center;
-  .px2px(font-size,28px);
+  .px2px(font-size,32px);
 }
 
 .empty {
