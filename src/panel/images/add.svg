@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <title>添加定时@2x</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="图标" transform="translate(-29.000000, -605.000000)">
-            <g id="分组" transform="translate(17.000000, 87.000000)">
-                <g id="添加定时" transform="translate(12.000000, 518.000000)">
-                    <circle id="icon" stroke="#4994F5" cx="11" cy="11" r="10.5"></circle>
-                    <path d="M11.75,10.25 L16.25,10.25 C16.6642136,10.25 17,10.5857864 17,11 C17,11.4142136 16.6642136,11.75 16.25,11.75 L11.75,11.75 L11.75,16.25 C11.75,16.6642136 11.4142136,17 11,17 C10.5857864,17 10.25,16.6642136 10.25,16.25 L10.25,11.75 L5.75,11.75 C5.33578644,11.75 5,11.4142136 5,11 C5,10.5857864 5.33578644,10.25 5.75,10.25 L10.25,10.25 L10.25,5.75 C10.25,5.33578644 10.5857864,5 11,5 C11.4142136,5 11.75,5.33578644 11.75,5.75 L11.75,10.25 Z" id="icon_add" fill="#4994F5"></path>
-                </g>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Combined Shape@2x</title>
+    <g id="feedback" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-feedback-空" transform="translate(-342.000000, -32.000000)" fill="#343434">
+            <g id="头部">
+                <path d="M351,32 C351.552285,32 352,32.57136 352,33.2761682 L352,40 L358.723832,40 C359.42864,40 360,40.4477153 360,41 C360,41.5522847 359.42864,42 358.723832,42 L352,42 L352,48.7238318 C352,49.42864 351.552285,50 351,50 C350.447715,50 350,49.42864 350,48.7238318 L350,42 L343.276168,42 C342.57136,42 342,41.5522847 342,41 C342,40.4477153 342.57136,40 343.276168,40 L350,40 L350,33.2761682 C350,32.57136 350.447715,32 351,32 Z" id="Combined-Shape"></path>
             </g>
         </g>
     </g>

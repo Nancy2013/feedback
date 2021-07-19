@@ -408,13 +408,14 @@ class PostDetail extends React.Component {
     }
   }
   handleClickReplayItem(reply) {
-    const { postDetail } = this.state;
-    console.log('我要回复某一条回复:', reply);
-    this.setState({
-      focus: true,
-      replyObj: reply,
-      replyFlag: `${postDetail.threadid}_${reply.postid}`,
-    });
+    this.setState(
+      {
+        replyObj: reply,
+      },
+      () => {
+        this.reply();
+      }
+    );
   }
   onRef(ref) {
     this.replyInput = ref;
@@ -449,6 +450,12 @@ class PostDetail extends React.Component {
       }
     );
   }
+  // 回复
+  reply = () => {
+    const { postDetail, replyObj } = this.state;
+    const { history } = this.props;
+    history.push(`/add/${postDetail.threadid}/${replyObj.postid}`);
+  };
   render() {
     const { intl, userId, lid, urlPrefix, urlParams } = this.props;
     const {
@@ -621,35 +628,12 @@ class PostDetail extends React.Component {
           // <div className="handleReplay" onClick={this.handleReply.bind(this)}>{"手动造一条回复的数据呀呀呀呀呀呀"}</div>
         }
         {pageStatus === 'success' ? (
-          <div
-            className={classNames('replyBox')}
-            onClick={() =>
-              this.props.history.push(
-                `/add/${postDetail.threadid}/${replyObj.postid}`
-              )
-            }
-          >
+          <div className={classNames('replyBox')} onClick={this.reply}>
             <div className="tomit placeBox">
               {intl.formatMessage({ id: 'postYourQuestion' })}
             </div>
           </div>
-        ) : // <ReplyInput
-        //   intl={intl}
-        //   focus={focus}
-        //   onRef={this.onRef.bind(this)}
-        //   replyFlag={replyFlag}
-        //   replyName={
-        //     replyObj.official === 1
-        //       ? intl.formatMessage({ id: 'systemReply' })
-        //       : replyObj.username
-        //   }
-        //   handleFocusThread={this.handleClickReplyPost.bind(this)}
-        //   onSend={this.onSendReply.bind(this)}
-        //   changeFoucus={(flag) => {
-        //     this.setState({ focus: flag });
-        //   }}
-        // />
-        null}
+        ) : null}
         <PopupBtn
           visible={showDelete}
           cancelText={intl.formatMessage({ id: 'cancel' })}

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-17 11:40:43
+ * @LastEditTime: 2021-07-19 14:30:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -24,6 +24,7 @@ import {
   rePly,
   followPost,
   unFollowPost,
+  postFeedback,
 } from 'servicesPath';
 import WxImageViewer from '@/panel/components/ImageView/WxImageViewer';
 import 'stylesPath/add.css';
@@ -193,17 +194,31 @@ class ReplyInput extends React.PureComponent {
   onSend = (msg, cb) => {
     const { userInfo, userId, lid, intl, history } = this.props;
     const { threadid, postid = 0 } = this.props.match.params;
-    console.log();
-    const { postDetail, replyObj } = this.state;
-    const params = {
-      threadid: parseInt(threadid),
-      forumtag: config.forumtag,
-      userid: userInfo.userId, // 用户ID
-      username: userInfo.nickName, // 用户昵称
-      usericon: userInfo.userIcon, // 用户头像地址
-      replypostid: parseInt(postid) || 0, // 回复另外一个回帖; 0-表示回复主题
+    const { forumtag, personal, category, type } = config;
+
+    console.log('[onSend]', this.props.match);
+    let params = {
+      forumtag,
       ...msg,
     };
+    if (threadid === undefined) {
+      params = {
+        ...params,
+        personal,
+        category,
+        type,
+      };
+    } else {
+      params = {
+        ...params,
+        threadid: parseInt(threadid),
+        userid: userInfo.userId, // 用户ID
+        username: userInfo.nickName, // 用户昵称
+        usericon: userInfo.userIcon, // 用户头像地址
+        replypostid: parseInt(postid) || 0, // 回复另外一个回帖; 0-表示回复主题
+      };
+    }
+
     Toast.show({
       type: 'loading',
       content: intl.formatMessage({ id: 'loading' }),
@@ -211,8 +226,19 @@ class ReplyInput extends React.PureComponent {
     });
     // this.scrollY =
     //   (this.scrollerChild.jroll && this.scrollerChild.jroll.y) || 0;
+    if (threadid === undefined) {
+      this.post(userId, lid, params);
+    } else {
+      this.reply(userId, lid, params, cb);
+    }
+  };
+
+  // 回复帖子
+  reply = (userId, lid, params, cb) => {
+    const { history, intl } = this.props;
     rePly(userId, lid, params).then((res) => {
       if (res.status === 0) {
+        cb && cb(res);
         history.goBack();
       } else {
         Toast.show({
@@ -228,8 +254,39 @@ class ReplyInput extends React.PureComponent {
       }
     });
   };
+
+  // 添加反馈
+  post = (userId, lid, params) => {
+    const { history, intl } = this.props;
+    postFeedback(userId, lid, params).then((_e) => {
+      if (_e && _e.status === 0) {
+        Toast.hide();
+        history.push({
+          pathname: '/success',
+          state: {
+            id: _e.result,
+          },
+        });
+      } else {
+        let status = _e.status || '';
+        Toast.show({
+          content: status
+            ? intl.formatMessage({
+                id: status,
+                defaultMessage: intl.formatMessage(
+                  { id: 'unknowError' },
+                  { code: status }
+                ),
+              })
+            : intl.formatMessage({ id: 'loadError' }),
+        });
+      }
+    });
+  };
+
   // 点击发送反馈的信息
   handleSendBtn() {
+    console.log('[requestLock]', requestLock);
     const { intl } = this.props;
     let { files, message, replyFlag } = this.state;
     if (requestLock) {
@@ -269,7 +326,6 @@ class ReplyInput extends React.PureComponent {
               message: '',
               files: [],
             };
-            console.log(this.msgHistory, replyFlag, res, '执行清空操作');
             if (res.status === 0) {
               this.setState({
                 focus: false,
@@ -281,6 +337,7 @@ class ReplyInput extends React.PureComponent {
         );
     }
   }
+
   handlePageBack() {
     const { intl } = this.props;
     const { files } = this.state;
