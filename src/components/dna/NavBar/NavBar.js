@@ -35,6 +35,11 @@ class NavBar extends React.PureComponent {
     opacity: PropTypes.bool, //是否透明 ture 透明 false 黑色
     leftHandler: PropTypes.func, // 点击左侧图标
     disbled: PropTypes.bool,
+    className: PropTypes.oneOfType([
+      // 样式
+      PropTypes.string,
+      PropTypes.array,
+    ]),
   };
 
   static defaultProps = {
@@ -143,7 +148,9 @@ class NavBar extends React.PureComponent {
   };
 
   render() {
-    const { title, subtitle, exit, opacity, color, disbled } = this.props;
+    const { title, subtitle, exit, opacity, color, disbled, className } =
+      this.props;
+    const classes = Array.isArray(className) ? className : [className];
     let right = this.pretreatRight();
     const colorStyle = opacity ? { background: 'none' } : {};
     const colorText = color ? { color: color } : {};
@@ -222,7 +229,10 @@ class NavBar extends React.PureComponent {
 
     return (
       <div>
-        <div className={style.navBox} style={colorStyle}>
+        <div
+          className={classnames(style.navBox, ...classes)}
+          style={colorStyle}
+        >
           <div style={{ height: statusBar }} className={style.statusBar}></div>
           <div className={style.bottomHeight} style={colorText}>
             <div className={style.leftBox} onClick={this.clickLeft}>

@@ -23,6 +23,15 @@
 }
 
 // 添加成功
+.page {
+  height: 100%;
+  box-sizing: border-box;
+  > div:first-child {
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+}
 .success {
   background: @white;
   height: 100%;
@@ -35,6 +44,9 @@
   .text {
     .px2px(font-size,28px);
     color: @black-3;
+  }
+  .clear::after {
+    clear: both;
   }
 }
 // components hook css
