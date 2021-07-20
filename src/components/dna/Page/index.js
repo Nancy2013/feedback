@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:34
- * @LastEditTime: 2021-07-19 18:07:24
+ * @LastEditTime: 2021-07-20 15:28:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\components\dna\Page\index.js
@@ -46,6 +46,7 @@ export default class extends React.PureComponent {
 
   render() {
     const { saveTop, saveBottom, className, children } = this.props;
+    const classes = Array.isArray(className) ? className : [className];
 
     const bottomCss = saveBottom
       ? isIphoneX
@@ -55,7 +56,7 @@ export default class extends React.PureComponent {
 
     return (
       <div
-        className={className}
+        className={classNames(style.page, ...classes)}
         style={{ paddingTop: this.state.statusBarHeight + 'px' }}
       >
         <div

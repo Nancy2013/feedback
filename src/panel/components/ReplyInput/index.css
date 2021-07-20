@@ -41,14 +41,14 @@
 }
 .replyBoxInput {
   display: flex;
-  padding: 0.266667rem 0;
+  padding: 0.4267rem 0;
   background: #fff;
 }
 .replyBoxInput .left {
   flex: 1;
   margin-left: 0.4rem;
   margin-right: 0.4rem;
-  border: 1px solid rgba(225, 225, 225, 1);
+  border: 1px solid #e1e1e1;
   border-radius: 2px;
   overflow: hidden;
 }
@@ -64,7 +64,6 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  top: 0;
   left: 0;
   z-index: 2004;
   background: #fff;

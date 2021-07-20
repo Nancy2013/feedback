@@ -4,6 +4,7 @@ import moment from 'moment';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import NavBar from 'componentsPath/dna/NavBar';
+import Page from 'componentsPath/dna/Page';
 import Toast from '../../components/Toast';
 import Dialog from '../../components/Dialog';
 import PageStatus from '../../components/PageStatus';
@@ -479,182 +480,186 @@ class PostDetail extends React.Component {
       text: '',
     };
     return (
-      <div
-        className={classNames('postDetailPage', {
-          isPC: Device.isPC,
-          isIphoneX: Device.isIphoneX,
-        })}
-        ref={(el) => (this.el = el)}
-      >
-        <NavBar
-          title={intl.formatMessage({ id: 'detail' })}
-          opacity
-          color={'#000'}
-        />
-        {pageStatus === 'success' && postDetail ? (
-          <Scroller
-            className="cont"
-            onScrollToEnd={this.handleScrollEnd.bind(this)}
-            onScrollEnd={() => {
-              this.scrolling = false;
-            }}
-            onScroll={() => {
-              this.scrolling = true;
-            }}
-            onRef={this.onScrollRef}
-          >
-            <div className="postContent">
-              <UserInfo
-                icon={
-                  postDetail.usericon
-                    ? postDetail.usericon.indexOf('http://') > -1 ||
-                      postDetail.usericon.indexOf('https://') > -1
-                      ? postDetail.usericon
-                      : `${urlPrefix}${postDetail.usericon}`
-                    : ''
-                }
-                name={postDetail.username}
-                time={time}
-                formatTime={false}
-              />
-              <div className="messageWrap">
-                <div
-                  className="postMessage"
-                  dangerouslySetInnerHTML={{
-                    __html: postDetail.message.replace(/\n/g, '<br/>'),
-                  }}
-                ></div>
-                <ImagesList list={postDetail.files || []} />
-              </div>
-              <div className="btnBox">
-                <div className="msgTagWrap">
-                  {formatTag(postDetail) && (
-                    <span className={classNames('tag', formatTag(postDetail))}>
-                      {intl.formatMessage({ id: formatTag(postDetail) })}
-                    </span>
-                  )}
-                  <span className="comment">{`${intl.formatMessage({
-                    id: 'reply',
-                  })}   ${postDetail.replies || 0}`}</span>
-                  {postDetail.mine && postDetail.mine === 1 ? (
-                    <span className="threadId">{`ID: ${postDetail.threadid}`}</span>
-                  ) : null}
-                </div>
-                <div className="btnWrap">
-                  {
-                    // 问题已解决按钮
-                    postDetail.mine === 1 && postDetail.resolved !== 1 ? (
-                      <div
-                        className="resolved btn"
-                        onClick={this.handleSureResolved.bind(this)}
-                      >
-                        {intl.formatMessage({ id: 'problemSolved' })}
-                      </div>
-                    ) : null
-                  }
-                  {
-                    // 我也有此问题按钮
-                    postDetail.mine !== 1 ? (
-                      <div
-                        className={classNames('meToo btn', {
-                          follow: postDetail.follow,
-                        })}
-                        onClick={this.handleFollow.bind(this)}
-                      >
-                        {intl.formatMessage({ id: 'meToo' })}
-                      </div>
-                    ) : null
-                  }
-                </div>
-              </div>
-            </div>
-            <div className="replyWrap">
-              {posts &&
-                posts.length > 0 &&
-                posts.map((reply, _i) => {
-                  return (
-                    <ReplyItem
-                      isDelete={
-                        showDelete &&
-                        this.deleteReply &&
-                        this.deleteReply.postid === reply.postid
-                      }
-                      reply={reply}
-                      key={_i}
-                      postMap={this.postMap}
-                      index={_i}
-                      urlPrefix={urlPrefix}
-                      showDelete={this.showDelete.bind(this)}
-                      onClickReply={this.handleClickReplayItem.bind(
-                        this,
-                        reply
-                      )}
-                    />
-                  );
-                })}
-            </div>
-            {showEnd && (
-              <div className="noDataTipBox">
-                <span>{intl.formatMessage({ id: 'inTheEnd' })}</span>
-              </div>
-            )}
-          </Scroller>
-        ) : null}
-        {pageStatus === 'loading' ? <LoadingPage /> : null}
-        {pageStatus === 'null' ? (
-          <PageStatus
-            status={'null'}
-            text={intl.formatMessage({ id: 'nullData' })}
+      <Page>
+        <div
+          className={classNames('postDetailPage', {
+            isPC: Device.isPC,
+            isIphoneX: Device.isIphoneX,
+          })}
+          ref={(el) => (this.el = el)}
+        >
+          <NavBar
+            title={intl.formatMessage({ id: 'detail' })}
+            opacity
+            color={'#000'}
           />
-        ) : null}
-        {pageStatus === 'delete' ? (
-          <PageStatus
-            status={'null'}
-            text={intl.formatMessage({ id: 'postHasBeenDeleted' })}
-          />
-        ) : null}
-        {
-          //  加载失败
-          pageStatus === 'error' ? (
+          {pageStatus === 'success' && postDetail ? (
+            <Scroller
+              className="cont"
+              onScrollToEnd={this.handleScrollEnd.bind(this)}
+              onScrollEnd={() => {
+                this.scrolling = false;
+              }}
+              onScroll={() => {
+                this.scrolling = true;
+              }}
+              onRef={this.onScrollRef}
+            >
+              <div className="postContent">
+                <UserInfo
+                  icon={
+                    postDetail.usericon
+                      ? postDetail.usericon.indexOf('http://') > -1 ||
+                        postDetail.usericon.indexOf('https://') > -1
+                        ? postDetail.usericon
+                        : `${urlPrefix}${postDetail.usericon}`
+                      : ''
+                  }
+                  name={postDetail.username}
+                  time={time}
+                  formatTime={false}
+                />
+                <div className="messageWrap">
+                  <div
+                    className="postMessage"
+                    dangerouslySetInnerHTML={{
+                      __html: postDetail.message.replace(/\n/g, '<br/>'),
+                    }}
+                  ></div>
+                  <ImagesList list={postDetail.files || []} />
+                </div>
+                <div className="btnBox">
+                  <div className="msgTagWrap">
+                    {formatTag(postDetail) && (
+                      <span
+                        className={classNames('tag', formatTag(postDetail))}
+                      >
+                        {intl.formatMessage({ id: formatTag(postDetail) })}
+                      </span>
+                    )}
+                    <span className="comment">{`${intl.formatMessage({
+                      id: 'reply',
+                    })}   ${postDetail.replies || 0}`}</span>
+                    {postDetail.mine && postDetail.mine === 1 ? (
+                      <span className="threadId">{`ID: ${postDetail.threadid}`}</span>
+                    ) : null}
+                  </div>
+                  <div className="btnWrap">
+                    {
+                      // 问题已解决按钮
+                      postDetail.mine === 1 && postDetail.resolved !== 1 ? (
+                        <div
+                          className="resolved btn"
+                          onClick={this.handleSureResolved.bind(this)}
+                        >
+                          {intl.formatMessage({ id: 'problemSolved' })}
+                        </div>
+                      ) : null
+                    }
+                    {
+                      // 我也有此问题按钮
+                      postDetail.mine !== 1 ? (
+                        <div
+                          className={classNames('meToo btn', {
+                            follow: postDetail.follow,
+                          })}
+                          onClick={this.handleFollow.bind(this)}
+                        >
+                          {intl.formatMessage({ id: 'meToo' })}
+                        </div>
+                      ) : null
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className="replyWrap">
+                {posts &&
+                  posts.length > 0 &&
+                  posts.map((reply, _i) => {
+                    return (
+                      <ReplyItem
+                        isDelete={
+                          showDelete &&
+                          this.deleteReply &&
+                          this.deleteReply.postid === reply.postid
+                        }
+                        reply={reply}
+                        key={_i}
+                        postMap={this.postMap}
+                        index={_i}
+                        urlPrefix={urlPrefix}
+                        showDelete={this.showDelete.bind(this)}
+                        onClickReply={this.handleClickReplayItem.bind(
+                          this,
+                          reply
+                        )}
+                      />
+                    );
+                  })}
+              </div>
+              {showEnd && (
+                <div className="noDataTipBox">
+                  <span>{intl.formatMessage({ id: 'inTheEnd' })}</span>
+                </div>
+              )}
+            </Scroller>
+          ) : null}
+          {pageStatus === 'loading' ? <LoadingPage /> : null}
+          {pageStatus === 'null' ? (
             <PageStatus
-              status={'error'}
-              text={intl.formatMessage({ id: 'loadError' })}
-              onRefresh={this.handleOnload.bind(this)}
+              status={'null'}
+              text={intl.formatMessage({ id: 'nullData' })}
             />
-          ) : null
-        }
-        {
-          //handleReply 手动造回复数据
-          // <div className="handleReplay" onClick={this.handleReply.bind(this)}>{"手动造一条回复的数据呀呀呀呀呀呀"}</div>
-        }
-        {pageStatus === 'success' ? (
-          <div className={classNames('replyBox')} onClick={this.reply}>
-            <div className="tomit placeBox">
-              {intl.formatMessage({ id: 'postYourQuestion' })}
+          ) : null}
+          {pageStatus === 'delete' ? (
+            <PageStatus
+              status={'null'}
+              text={intl.formatMessage({ id: 'postHasBeenDeleted' })}
+            />
+          ) : null}
+          {
+            //  加载失败
+            pageStatus === 'error' ? (
+              <PageStatus
+                status={'error'}
+                text={intl.formatMessage({ id: 'loadError' })}
+                onRefresh={this.handleOnload.bind(this)}
+              />
+            ) : null
+          }
+          {
+            //handleReply 手动造回复数据
+            // <div className="handleReplay" onClick={this.handleReply.bind(this)}>{"手动造一条回复的数据呀呀呀呀呀呀"}</div>
+          }
+          {pageStatus === 'success' ? (
+            <div className={classNames('replyBox')} onClick={this.reply}>
+              <div className="tomit placeBox">
+                {intl.formatMessage({ id: 'postYourQuestion' })}
+              </div>
             </div>
-          </div>
-        ) : null}
-        <PopupBtn
-          visible={showDelete}
-          cancelText={intl.formatMessage({ id: 'cancel' })}
-          clickMask={this.handleHideDelete.bind(this)}
-          clickCancel={this.handleHideDelete.bind(this)}
-          btnList={[
-            {
-              text: intl.formatMessage({ id: 'delete' }),
-              handler: this.handleDeleteReplyDialog.bind(this),
-            },
-          ]}
-        />
-        <Dialog
-          visible={deleteTipDailog}
-          text={intl.formatMessage({ id: 'deletePostTip' })}
-          confirmText={intl.formatMessage({ id: 'delete' })}
-          cancelText={intl.formatMessage({ id: 'cancel' })}
-          onConfirm={this.handleSureDeletePost.bind(this)}
-          onCancel={this.handleCancelDelet.bind(this)}
-        />
-      </div>
+          ) : null}
+          <PopupBtn
+            visible={showDelete}
+            cancelText={intl.formatMessage({ id: 'cancel' })}
+            clickMask={this.handleHideDelete.bind(this)}
+            clickCancel={this.handleHideDelete.bind(this)}
+            btnList={[
+              {
+                text: intl.formatMessage({ id: 'delete' }),
+                handler: this.handleDeleteReplyDialog.bind(this),
+              },
+            ]}
+          />
+          <Dialog
+            visible={deleteTipDailog}
+            text={intl.formatMessage({ id: 'deletePostTip' })}
+            confirmText={intl.formatMessage({ id: 'delete' })}
+            cancelText={intl.formatMessage({ id: 'cancel' })}
+            onConfirm={this.handleSureDeletePost.bind(this)}
+            onCancel={this.handleCancelDelet.bind(this)}
+          />
+        </div>
+      </Page>
     );
   }
 }

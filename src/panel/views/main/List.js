@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-19 17:52:30
+ * @LastEditTime: 2021-07-20 15:32:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -384,48 +384,49 @@ class List extends React.Component {
       history,
     } = this.props;
     const { pageStatus, postsList, deleteTipDailog, showDelete } = this.state;
-    // TODO Scroller滚动
     return (
-      <div className={classNames('messagePage')}>
-        <NavBar
-          title={formatMessage({ id: 'feedBack' })}
-          exit
-          opacity
-          color={'#000'}
-          right={{
-            icon: add,
-            handler: () => {
-              history.push('/add');
-            },
-          }}
-        />
-        <div className={'myPostsIndex'}>
-          <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>
-            {
-              //  数据为空
-              pageStatus === 'null' ? <EmptyPage /> : null
-            }
-            {pageStatus === 'success' ? this.renderList() : null}
-            {pageStatus === 'loading' ? <LoadingPage /> : null}
-            {
-              //  加载失败
-              pageStatus === 'error' ? <EmptyPage /> : null
-            }
+      <Page>
+        <div className={classNames('messagePage')}>
+          <NavBar
+            title={formatMessage({ id: 'feedBack' })}
+            exit
+            opacity
+            color={'#000'}
+            right={{
+              icon: add,
+              handler: () => {
+                history.push('/add');
+              },
+            }}
+          />
+          <div className={'myPostsIndex'}>
+            <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>
+              {
+                //  数据为空
+                pageStatus === 'null' ? <EmptyPage /> : null
+              }
+              {pageStatus === 'success' ? this.renderList() : null}
+              {pageStatus === 'loading' ? <LoadingPage /> : null}
+              {
+                //  加载失败
+                pageStatus === 'error' ? <EmptyPage /> : null
+              }
+            </div>
           </div>
+          <PopupBtn
+            visible={showDelete}
+            cancelText={formatMessage({ id: 'cancel' })}
+            clickMask={this.handleHideDelete.bind(this)}
+            clickCancel={this.handleHideDelete.bind(this)}
+            btnList={[
+              {
+                text: formatMessage({ id: 'delete' }),
+                handler: this.handleDeletePostDialog.bind(this),
+              },
+            ]}
+          />
         </div>
-        <PopupBtn
-          visible={showDelete}
-          cancelText={formatMessage({ id: 'cancel' })}
-          clickMask={this.handleHideDelete.bind(this)}
-          clickCancel={this.handleHideDelete.bind(this)}
-          btnList={[
-            {
-              text: formatMessage({ id: 'delete' }),
-              handler: this.handleDeletePostDialog.bind(this),
-            },
-          ]}
-        />
-      </div>
+      </Page>
     );
   }
 }

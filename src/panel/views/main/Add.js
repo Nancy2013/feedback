@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-19 14:30:01
+ * @LastEditTime: 2021-07-20 15:33:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -13,6 +13,7 @@ import { injectIntl } from 'react-intl';
 import Toast from '@/panel/components/Toast';
 import NavBar from 'componentsPath/dna/NavBar';
 import Button from 'componentsPath/dna/Button';
+import Page from 'componentsPath/dna/Page';
 import Device from 'componentsPath/device';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import { selectPicture, uploadFileByApp } from '@/sdk';
@@ -446,123 +447,127 @@ class ReplyInput extends React.PureComponent {
       }
     });
     let message2 = message.replace(/^(?:[\n\r\s]*)|(?:[\n\r\s]*)$/g, '');
+    const { threadid } = this.props.match.params;
     return (
-      <div
-        className={classNames('replyBoxInputWrap', {
-          isIphoneX: Device.isIphoneX,
-          disbled: !(message2.length > 0 || showLen > 0),
-        })}
-      >
-        <NavBar
-          title={intl.formatMessage({ id: 'reply' })}
-          opacity
-          color={'#000'}
-          right={{
-            text: intl.formatMessage({ id: 'send' }),
-            handler: this.handleSendBtn.bind(this),
-          }}
-          disbled={!(message2.length > 0 || showLen > 0)}
-        />
+      <Page>
         <div
-          className="replyBoxInput"
-          ref={(ref) => {
-            this.inputDom = ref;
-          }}
+          className={classNames('replyBoxInputWrap', {
+            isIphoneX: Device.isIphoneX,
+            disbled: !(message2.length > 0 || showLen > 0),
+          })}
         >
-          <div className="left">
-            <textarea
-              ref={(input) => {
-                this.rePlyText = input;
-              }}
-              onChange={this.handleChangeDesc.bind(this)}
-              placeholder={
-                replyName
-                  ? intl.formatMessage(
-                      { id: 'replyToName' },
-                      { name: replyName }
-                    )
-                  : intl.formatMessage({ id: 'postYourQuestion' })
-              }
-              className="problemDes"
-              autoFocus="autofocus"
-              value={message}
-              rows="4"
-            ></textarea>
-            <ul className="imgList">
-              {files.length > 0
-                ? files.map((item, _i) => {
-                    return item.status !== 'delete' ? (
-                      <li key={_i} className="imgItem bgImgItem">
-                        {item.status === 'success' ? (
-                          <div
-                            className="uploadImgWrap"
-                            style={{ backgroundImage: `url(${item.src}` }}
-                            onClick={this.handleViewImage.bind(this, _i)}
-                          ></div>
-                        ) : null}
-                        {item.status === 'error' ? (
-                          <div
-                            className="uploadImgWrap error"
-                            onClick={this.handleViewImage.bind(this, _i)}
-                          >
-                            <div
-                              className="del"
-                              onClick={(e) => {
-                                this.handleDeleteImg(e, _i);
-                              }}
-                            ></div>
-                          </div>
-                        ) : null}
-                        {item.status === 'loading' ? (
-                          <div className="uploadImgWrap uploadLoading">
-                            <LoadingPage className="uploadImgLoading" />
-                            <div
-                              className="del"
-                              onClick={(e) => {
-                                this.handleDeleteImg(e, _i);
-                              }}
-                            ></div>
-                          </div>
-                        ) : null}
-                        <div
-                          className="del"
-                          onClick={(e) => {
-                            this.handleDeleteImg(e, _i);
-                          }}
-                        ></div>
-                      </li>
-                    ) : null;
-                  })
-                : null}
-              {showLen < 6 ? (
-                <li
-                  className="imgItem addImg"
-                  onClick={this.handleCamera.bind(this)}
-                ></li>
-              ) : null}
-            </ul>
-          </div>
-        </div>
-        {
-          <WxImageViewer
-            isOpen={isOpenView}
-            speed={0}
-            zIndex={isOpenView ? 3000 : -1}
-            maxZoomNum={2}
-            onClose={this.onClose.bind(this)}
-            urls={viewFiles}
-            index={viewIndex}
-            pointer={
-              <div
-                className={classNames('viewPointer', {
-                  isIphoneX: Device.isIphoneX,
-                })}
-              >{`${viewIndex + 1}/${viewFiles.length}`}</div>
-            }
-            changeIndex={this.changeIndex.bind(this)}
+          <NavBar
+            title={intl.formatMessage({
+              id: threadid === undefined ? 'add' : 'reply',
+            })}
+            opacity
+            color={'#000'}
+            right={{
+              text: intl.formatMessage({
+                id: threadid === undefined ? 'submit' : 'send',
+              }),
+              handler: this.handleSendBtn.bind(this),
+            }}
+            disbled={!(message2.length > 0 || showLen > 0)}
           />
-        }
-      </div>
+          <div
+            className="replyBoxInput"
+            ref={(ref) => {
+              this.inputDom = ref;
+            }}
+          >
+            <div className="left">
+              <textarea
+                ref={(input) => {
+                  this.rePlyText = input;
+                }}
+                onChange={this.handleChangeDesc.bind(this)}
+                placeholder={
+                  threadid === undefined
+                    ? intl.formatMessage({ id: 'addFeedback' })
+                    : intl.formatMessage({ id: 'replyText' })
+                }
+                className="problemDes"
+                autoFocus="autofocus"
+                value={message}
+                rows="6"
+              ></textarea>
+              <ul className="imgList">
+                {files.length > 0
+                  ? files.map((item, _i) => {
+                      return item.status !== 'delete' ? (
+                        <li key={_i} className="imgItem bgImgItem">
+                          {item.status === 'success' ? (
+                            <div
+                              className="uploadImgWrap"
+                              style={{ backgroundImage: `url(${item.src}` }}
+                              onClick={this.handleViewImage.bind(this, _i)}
+                            ></div>
+                          ) : null}
+                          {item.status === 'error' ? (
+                            <div
+                              className="uploadImgWrap error"
+                              onClick={this.handleViewImage.bind(this, _i)}
+                            >
+                              <div
+                                className="del"
+                                onClick={(e) => {
+                                  this.handleDeleteImg(e, _i);
+                                }}
+                              ></div>
+                            </div>
+                          ) : null}
+                          {item.status === 'loading' ? (
+                            <div className="uploadImgWrap uploadLoading">
+                              <LoadingPage className="uploadImgLoading" />
+                              <div
+                                className="del"
+                                onClick={(e) => {
+                                  this.handleDeleteImg(e, _i);
+                                }}
+                              ></div>
+                            </div>
+                          ) : null}
+                          <div
+                            className="del"
+                            onClick={(e) => {
+                              this.handleDeleteImg(e, _i);
+                            }}
+                          ></div>
+                        </li>
+                      ) : null;
+                    })
+                  : null}
+                {showLen < 6 ? (
+                  <li
+                    className="imgItem addImg"
+                    onClick={this.handleCamera.bind(this)}
+                  ></li>
+                ) : null}
+              </ul>
+            </div>
+          </div>
+          {
+            <WxImageViewer
+              isOpen={isOpenView}
+              speed={0}
+              zIndex={isOpenView ? 3000 : -1}
+              maxZoomNum={2}
+              onClose={this.onClose.bind(this)}
+              urls={viewFiles}
+              index={viewIndex}
+              pointer={
+                <div
+                  className={classNames('viewPointer', {
+                    isIphoneX: Device.isIphoneX,
+                  })}
+                >{`${viewIndex + 1}/${viewFiles.length}`}</div>
+              }
+              changeIndex={this.changeIndex.bind(this)}
+            />
+          }
+        </div>
+      </Page>
     );
   }
 }

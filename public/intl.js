@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-19 17:59:23
+ * @LastEditTime: 2021-07-20 14:30:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -10,7 +10,7 @@ var __APP_STRINGS__ = {
   zh: {
     loading: '加载中',
     feedBack: '反馈',
-    title: '添加反馈',
+    add: '添加反馈',
     done: '完成',
     success: '提交成功!',
     successText: '您的反馈将被发送到我们的服务人员，我们将尽快为您解决问题。',
@@ -29,9 +29,12 @@ var __APP_STRINGS__ = {
     postHasBeenDeleted: '反馈已被删除',
     comment: '发评论',
     send: '发送',
+    submit: '提交',
     inTheEnd: '到底了',
     systemReply: 'TCL',
     deleteSuccess: '删除成功',
+    replyText: '写下回复...',
+    addFeedback: '请尽可能详细地描述您的问题',
 
     //Modal
     'internal.Modal.confirm': '确定',
@@ -46,7 +49,7 @@ var __APP_STRINGS__ = {
     loading: 'loading',
     done: 'done',
     feedBack: 'Feedback',
-    title: 'Add Feedback',
+    add: 'Add Feedback',
     success: 'Submitted Successful!',
     successText:
       'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
@@ -60,14 +63,16 @@ var __APP_STRINGS__ = {
     replied: 'Replied officially',
     cancel: 'Cancel',
     delete: 'Delete',
-    postYourQuestion: 'Write a reply',
     detail: 'Feedback details',
     postHasBeenDeleted: 'Feedback has been deleted.',
     comment: 'Comment',
     send: 'Send',
+    submit: 'Submit',
     inTheEnd: 'No more',
     systemReply: 'TCL',
     deleteSuccess: 'Deleted',
+    replyText: 'Write a reply…',
+    addFeedback: 'please desvribe your problem as detailed as possible',
 
     //Modal
     'internal.Modal.confirm': 'confirm',
