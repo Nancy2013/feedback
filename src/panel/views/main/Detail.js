@@ -540,9 +540,6 @@ class PostDetail extends React.Component {
                     <span className="comment">{`${intl.formatMessage({
                       id: 'reply',
                     })}   ${postDetail.replies || 0}`}</span>
-                    {postDetail.mine && postDetail.mine === 1 ? (
-                      <span className="threadId">{`ID: ${postDetail.threadid}`}</span>
-                    ) : null}
                   </div>
                   <div className="btnWrap">
                     {
