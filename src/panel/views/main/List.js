@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-20 15:32:26
+ * @LastEditTime: 2021-07-20 17:09:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -30,7 +30,7 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageStatus: 'loading',
+      pageStatus: 'loading', // loading | null |success | error
       postsList: [],
       deleteTipDailog: true,
       haveData: true,
@@ -44,16 +44,9 @@ class List extends React.Component {
     };
   }
   componentDidMount() {
-    const { userId, lid, show, intl } = this.props;
-    const { pageStatus } = this.state;
     this.getData(true);
-    // this.props.onRef(this);
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.show && !this.props.show) {
-      // this.scrollerChild && this.scrollerChild.onRefresh(true);
-    }
-  }
+  componentWillReceiveProps(nextProps) {}
   componentWillUnmount() {
     this.setState = (state, callback) => {
       return;
@@ -384,6 +377,12 @@ class List extends React.Component {
       history,
     } = this.props;
     const { pageStatus, postsList, deleteTipDailog, showDelete } = this.state;
+    const pageConfig = {
+      status: pageStatus,
+      onRefresh: () => {
+        this.getData(true);
+      },
+    };
     return (
       <Page>
         <div className={classNames('messagePage')}>
@@ -401,16 +400,11 @@ class List extends React.Component {
           />
           <div className={'myPostsIndex'}>
             <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>
-              {
-                //  数据为空
-                pageStatus === 'null' ? <EmptyPage /> : null
-              }
-              {pageStatus === 'success' ? this.renderList() : null}
-              {pageStatus === 'loading' ? <LoadingPage /> : null}
-              {
-                //  加载失败
-                pageStatus === 'error' ? <EmptyPage /> : null
-              }
+              {pageStatus === 'success' && this.renderList()}
+              {(pageStatus === 'null' || pageStatus === 'error') && (
+                <EmptyPage {...pageConfig} />
+              )}
+              {pageStatus === 'loading' && <LoadingPage />}
             </div>
           </div>
           <PopupBtn

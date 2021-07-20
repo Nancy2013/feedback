@@ -155,6 +155,7 @@ class NavBar extends React.PureComponent {
     const colorStyle = opacity ? { background: 'none' } : {};
     const colorText = color ? { color: color } : {};
     let rightList, rightButton;
+    const { clickRight } = this;
     const listIcon = (
       <svg
         t="1513131881851"
@@ -200,8 +201,16 @@ class NavBar extends React.PureComponent {
 
           return (
             <>
-              {text && <p>{text}</p>}
-              {icon && <img src={icon} alt="" />}
+              <span
+                onClick={() => {
+                  if (!disbled) {
+                    clickRight();
+                  }
+                }}
+              >
+                {text && <span>{text}</span>}
+                {icon && <img src={icon} alt="" />}
+              </span>
             </>
           );
         }
@@ -248,11 +257,6 @@ class NavBar extends React.PureComponent {
               className={classnames(style.rightBox, {
                 [style.disbled]: disbled,
               })}
-              onClick={() => {
-                if (!disbled) {
-                  this.clickRight();
-                }
-              }}
             >
               {rightButton}
             </div>

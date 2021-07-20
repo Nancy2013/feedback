@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-20 14:30:34
+ * @LastEditTime: 2021-07-20 15:46:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -15,7 +15,8 @@ var __APP_STRINGS__ = {
     success: '提交成功!',
     successText: '您的反馈将被发送到我们的服务人员，我们将尽快为您解决问题。',
     refresh: '重新加载',
-    loadText: '加载失败，请检查网络状态',
+    null: '没有反馈意见',
+    error: '加载失败，请检查网络状态',
     today: '今日',
     yesterday: '昨日',
     resolved: '已解决',
@@ -54,7 +55,8 @@ var __APP_STRINGS__ = {
     successText:
       'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
     refresh: 'refresh',
-    loadText: 'Loading failed, please check network status',
+    null: 'No feedback',
+    error: 'Loading failed, please check network status',
     today: 'Today',
     yesterday: 'Yesterday',
     resolved: 'Solved',
