@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-21 16:40:21
+ * @LastEditTime: 2021-07-21 17:53:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -17,6 +17,7 @@ import EmptyPage from './EmptyPage';
 import Page from 'componentsPath/dna/Page';
 import Modal from 'componentsPath/Modal';
 import PopupBtn from './../../components/PopupBtn';
+import Loading from './../../components/Loading';
 import { getMyPosts, setResolved, removeThread } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
 import add from '@/panel/images/add.svg';
@@ -364,7 +365,7 @@ class List extends React.Component {
         {haveData && !loadError ? (
           <div className={style.loadingTipBox}>
             <div className={style.loadingBox}>
-              <LoadingPage />
+              <Loading />
             </div>
             <span>{intl.formatMessage({ id: 'loading' })}</span>
           </div>
