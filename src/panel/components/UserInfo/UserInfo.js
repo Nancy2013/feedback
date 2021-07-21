@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-15 16:49:31
- * @LastEditTime: 2021-07-20 17:54:38
+ * @LastEditTime: 2021-07-21 14:12:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\panel\components\UserInfo\UserInfo.js
@@ -52,7 +52,13 @@ class UserInfo extends React.Component {
           {icon ? <img src={icon} /> : <img src={DefaultIcon} />}
           {official ? <div className="officialIcon"></div> : null}
         </div> */}
-        <div className={classNames(style.userName, style.tomit)}>{name}</div>
+        <div
+          className={classNames(style.userName, {
+            [style.official]: official,
+          })}
+        >
+          {name}
+        </div>
         <div className={style.time}>
           {formatTime ? moment(time * 1000).format('YYYY.MM.DD HH:mm') : time}
         </div>

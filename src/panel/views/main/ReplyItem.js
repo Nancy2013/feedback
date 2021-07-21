@@ -1,19 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
-import NavBar from 'componentsPath/dna/NavBar';
-import Toast from './../../components/Toast';
-import Dialog from './../../components/Dialog';
-import PageStatus from './../../components/PageStatus';
 import { injectIntl } from 'react-intl';
-import { removePost } from 'servicesPath';
-import Device from 'componentsPath/device.js';
 import ImagesList from './../../components/ImagesList';
 import UserInfo from './../../components/UserInfo';
 import officialIcon from './../../images/icon.png';
 import { formatTime } from 'utilsPath';
-import 'stylesPath//detail.css';
+import style from 'stylesPath/index.less';
 
 let canClick = true;
 
@@ -100,7 +93,7 @@ class ReplyItem extends React.Component {
       : '';
     return (
       <div
-        className={classNames('replyItem', { isDelete: isDelete })}
+        className={classNames(style.replyItem, { [style.isDelete]: isDelete })}
         key={index}
         onTouchStart={this.touchStart}
         onTouchMove={this.touchMove}
@@ -117,12 +110,12 @@ class ReplyItem extends React.Component {
           }
           time={time}
         />
-        <div className="messageWrap">
-          <div className="replyMessage">
+        <div className={style.messageWrap}>
+          <div className={style.replyMessage}>
             {reply.replypostid ? (
-              <span className="replyTo">
+              <span className={style.replyTo}>
                 {intl.formatMessage({ id: 'reply' })}
-                <span className="replyToName">
+                <span className={style.replyToName}>
                   {`@${
                     postMap[reply.replypostid] &&
                     postMap[reply.replypostid].official

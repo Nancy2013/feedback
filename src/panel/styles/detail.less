@@ -35,10 +35,10 @@
 .btnBox .btn {
   position: relative;
   right: 0px;
-  padding: 0.106667rem 0.213333rem;
+  padding: 0.1067rem 0.3467rem;
   border: 1px solid rgba(102, 102, 102, 1);
   border-radius: 2px;
-  font-size: 0.266667rem;
+  .px2px(font-size,24px);
   font-weight: 400;
   color: rgba(102, 102, 102, 1);
   line-height: 0.293333rem;
@@ -95,7 +95,7 @@
 }
 .replyItem .replyMessage {
   padding: 0 0.4rem;
-  font-size: 0.426667rem;
+  .px2px(font-size,32px);
   font-weight: 400;
   color: rgba(17, 17, 17, 1);
   line-height: 0.586667rem;
@@ -136,4 +136,34 @@
 }
 .postDetailPage .replyItem.isDelete {
   background: rgba(229, 229, 229, 1);
+}
+
+.msgTagWrap {
+  height: 0.906rem;
+  line-height: 0.906rem;
+  padding: 0 0.4rem 0.106rem 0;
+  font-size: 0.32rem;
+  color: #999;
+  border-bottom: 1px solid #e1e1e1;
+}
+.msgTagWrap .tag {
+  margin-right: 0.533333rem;
+  padding-right: 0.426667rem;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 0.32rem auto;
+}
+.msgTagWrap .tag.replied {
+  color: #007fff;
+  background-image: url('./../images/replied.png');
+}
+.msgTagWrap .tag.resolved {
+  color: #00d1a4;
+  background-image: url('./../images/resolved.png');
+}
+.messagePage .myPosts .postsList {
+  background: #fff !important;
+}
+.community .communityList .communityItem:last-child .msgTagWrap {
+  border: none;
 }
