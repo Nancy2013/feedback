@@ -5,17 +5,16 @@
   top: 0;
   width: 100%;
   z-index: @navBar-z-index;
-  background: #fff;
+  // background: #fff;
 }
 .statusBar {
-  background: #fff;
+  // background: #fff;
 }
 .bottomHeight {
   position: relative;
   height: 88rem / @font-size-six;
   text-align: center;
   color: #fff;
-  background: #fff;
 }
 .leftBox,
 .rightBox {
@@ -37,12 +36,16 @@
   width: 40%;
   right: 30rem / @font-size-six;
   text-align: right;
-  p {
+  &.disbled {
+    opacity: 0.5;
+  }
+  span {
     .px2px(font-size,32px);
-    color: #fff;
+    color: @theme-color;
     line-height: 44rem / @font-size-six;
   }
-  svg {
+  svg,
+  img {
     width: 42rem / @font-size-six;
   }
 }

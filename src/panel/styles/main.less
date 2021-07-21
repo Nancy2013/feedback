@@ -1,18 +1,61 @@
 @import './base.less';
 
-// main page
-.bgColor {
-  &.bgColorOff {
-  }
-}
+// main
 .main {
-  text-align: center;
   // 华为虚拟键盘
-  padding-bottom: 1.8rem;
+  // padding-bottom: 1.8rem;
 }
 
 .content {
-  text-align: center;
+  padding: 0.4rem;
 }
 
+// 成功界面
+.success {
+  background: @white;
+  height: 100%;
+  .title {
+    .px2px(font-size,40px);
+    color: @black-1;
+    font-weight: @font-weight-base;
+    padding-bottom: 0.4267rem;
+  }
+  .text {
+    .px2px(font-size,28px);
+    color: @black-3;
+  }
+  .clear::after {
+    clear: both;
+  }
+}
 // components hook css
+.fixedBtn {
+  width: 100%;
+  padding: 0.3733rem;
+  background: @theme-color;
+  color: @white;
+  text-align: center;
+  .px2px(font-size,32px);
+}
+
+.empty {
+  padding-top: 2.4533rem;
+  text-align: center;
+  img {
+    width: 3.2rem;
+    height: 2.7467rem;
+  }
+  .text {
+    padding: 0.56rem 0;
+    .px2px(font-size,30px);
+    color: @gray-4;
+  }
+  .refresh {
+    display: inline-block;
+    background: @theme-color;
+    color: @white;
+    .px2px(font-size,28px);
+    padding: 0.2667rem 0.5333rem;
+    border-radius: @border-radius-base;
+  }
+}

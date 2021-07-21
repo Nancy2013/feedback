@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Combined Shape@2x</title>
+    <g id="feedback" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-feedback-空" transform="translate(-342.000000, -32.000000)" fill="#343434">
+            <g id="头部">
+                <path d="M351,32 C351.552285,32 352,32.57136 352,33.2761682 L352,40 L358.723832,40 C359.42864,40 360,40.4477153 360,41 C360,41.5522847 359.42864,42 358.723832,42 L352,42 L352,48.7238318 C352,49.42864 351.552285,50 351,50 C350.447715,50 350,49.42864 350,48.7238318 L350,42 L343.276168,42 C342.57136,42 342,41.5522847 342,41 C342,40.4477153 342.57136,40 343.276168,40 L350,40 L350,33.2761682 C350,32.57136 350.447715,32 351,32 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

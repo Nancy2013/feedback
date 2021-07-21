@@ -1,0 +1,558 @@
+.feedback {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  overflow-y: auto;
+}
+.feedbackTypeItem {
+  display: flex;
+  height: 2.4rem;
+  margin: 0 0.4rem;
+  border: 1px solid rgba(225, 225, 225, 1);
+  margin-bottom: 0.4rem;
+}
+.feedbackTypeItem .bgIcon {
+  width: 1.483333rem;
+  background-repeat: no-repeat;
+  background-size: 1.066667rem auto;
+  background-position: right center;
+}
+.feedbackTypeItem .text {
+  flex: 1;
+  font-size: 0.426667rem;
+  color: rgba(51, 51, 51, 1);
+  line-height: 2.4rem;
+  padding-left: 0.266667rem;
+}
+.feedbackTypeItem .arrow {
+  width: 1.226667rem;
+}
+.editProblem {
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.editProblem .moduleTitle {
+  margin-bottom: 0.266667rem;
+}
+.editProblem .editProblemContent {
+  margin: 0 0.4rem 0.773333rem 0.4rem;
+  border: 1px solid rgba(225, 225, 225, 1);
+  position: relative;
+}
+.editProblem .imgList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.editProblem .imgList .imgItem {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.4rem;
+  margin-top: 0.2666667rem;
+  position: relative;
+  padding: 0;
+}
+.editProblem .imgList .imgItem .del {
+  position: absolute;
+  width: 0.426667rem;
+  height: 0.426667rem;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+  background-repeat: none;
+  background-size: 100%;
+  background-image: url(./../images/del.png);
+}
+.editProblemContent {
+  padding: 0.266667rem 0.4rem 0.4rem 0.4rem;
+}
+.editProblem .imgItem img {
+  height: 100%;
+  width: 100%;
+}
+.imgList .addImg {
+  background-repeat: no-repeat;
+  background-size: 0.8rem;
+  background-position: center;
+  background-image: url(./../images/addImage.png);
+  border: 1px solid rgba(225, 225, 225, 1);
+}
+.editProblem .imgCont .count {
+  font-size: 0.32rem;
+  color: rgba(153, 153, 153, 1);
+  line-height: 0.453333rem;
+}
+.problemDes {
+  width: 100%;
+  font-size: 0.426667rem;
+  font-weight: 400;
+  color: rgba(17, 17, 17, 1);
+  line-height: 0.586667rem;
+}
+.editProblem .btnWrap {
+  position: fixed;
+  width: 100%;
+  bottom: 0.746667rem;
+}
+.editProblem .btnWrap .button {
+  display: block;
+  margin: 0 0.4rem;
+}
+
+.editSuccess {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+.editSuccess .tips {
+  font-size: 0.373333rem;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 0.64rem;
+  padding: 0 0.4rem;
+}
+.editSuccess .btn .button {
+  display: block;
+  margin: 0 0.4rem;
+}
+.editSuccess .btn {
+  position: fixed;
+  width: 100%;
+  bottom: 0.746667rem;
+}
+.choiceBox {
+  display: flex;
+  height: 1.28rem;
+  margin: 0 0.4rem;
+  border: 1px solid rgba(225, 225, 225, 1);
+  border-radius: 2px;
+}
+.choiceBox .text {
+  flex: 1;
+  line-height: 1.28rem;
+  font-size: 0.426667rem;
+  color: rgba(51, 51, 51, 1);
+  padding-left: 0.4rem;
+}
+.choiceBox.noText .text {
+  color: rgba(153, 153, 153, 1);
+}
+.choiceBox .arrow {
+  width: 1.2rem;
+}
+
+.questionType {
+  height: 100%;
+  width: 100%;
+}
+
+.questionList {
+  background: #fff;
+  padding-left: 0.4rem;
+}
+.questionList .questionItem {
+  padding: 0.346667rem 0;
+  font-size: 0.426667rem;
+  font-weight: 400;
+  color: rgba(17, 17, 17, 1);
+  line-height: 0.586667rem;
+  border-bottom: 1px solid rgba(225, 225, 225, 1);
+  display: flex;
+}
+.questionList .questionItem.active {
+  color: #007fff;
+}
+.questionList .questionItem:last-child {
+  border-bottom: none;
+}
+.questionList .questionItem .questionText {
+  flex: 1;
+}
+.questionList .questionItem .questionText.subText {
+  color: #333;
+}
+.questionList .questionItem.active .questionText.subText {
+  color: #007fff;
+}
+.questionList .questionItem .arrow {
+  width: 0.8rem;
+  background-position: left center;
+}
+
+/* ChooseDevice */
+.chooseDeviceCont {
+  padding: 0.533rem 0.4rem;
+  background: #fff;
+}
+.chooseDeviceCont .title {
+  margin-bottom: 0.32rem;
+  font-size: 0.533rem;
+  color: #111;
+}
+.chooseDeviceCont .guidance {
+  margin-bottom: 0.213rem;
+  line-height: 0.533333rem;
+}
+.chooseDeviceCont .guidance .info {
+  font-size: 0.373rem;
+  color: #333;
+}
+.chooseDeviceCont .guidance .change {
+  display: inline-block;
+  padding-right: 0.34rem;
+  font-size: 0.373rem;
+  color: #007fff;
+  /* background: url('./images/icon_enter.png') no-repeat right center; */
+  background-size: 0.32rem;
+}
+.chooseDeviceCont .deviceWrap {
+  margin: 0 -0.2rem;
+}
+.chooseDeviceCont .deviceWrap .device {
+  display: inline-block;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin: 0 0.2rem 0.4rem;
+  padding-top: 0.267rem;
+  text-align: center;
+  vertical-align: top;
+}
+.chooseDeviceCont .deviceWrap .device .iconImage {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 0 auto;
+}
+.chooseDeviceCont .deviceWrap .device .iconImage > img {
+  height: 100%;
+  width: auto;
+}
+.chooseDeviceCont .deviceWrap .device .name {
+  padding-top: 0.213rem;
+  font-size: 0.32rem;
+  color: #666;
+  line-height: 0.453rem;
+}
+.chooseDeviceCont .noDevice {
+  width: 100%;
+  height: 1.263rem;
+  padding: 0 0.4rem;
+  line-height: 1.263rem;
+  background-color: #f7f7f7;
+  border-radius: 0.053rem;
+  box-sizing: border-box;
+}
+.chooseDeviceCont .noDevice .text {
+  display: inline-block;
+  width: 100%;
+  font-size: 0.426rem;
+  color: #333;
+  /* background: url('./images/icon_enter_grey.png') no-repeat right center; */
+  background-size: 0.24rem 0.373rem;
+  padding-right: 0.506rem;
+  box-sizing: border-box;
+}
+.feedback .familyWrap {
+  margin: 0.533rem -0.21rem;
+}
+.feedback .familyWrap .family {
+  display: inline-block;
+  width: 2.667rem;
+  margin: 0 0.4rem;
+  text-align: center;
+  vertical-align: top;
+}
+.feedback .familyWrap .family .icon {
+  position: relative;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 0 auto;
+  /* background: url('./images/photo_home.png') no-repeat center; */
+  background-size: 100% auto;
+  border-radius: 50%;
+}
+.feedback .familyWrap .family .icon.active::after {
+  position: absolute;
+  top: 0;
+  right: -0.293rem;
+  content: '';
+  display: inline-block;
+  width: 0.586rem;
+  height: 0.586rem;
+  background: url('./../images/icon_check.png') no-repeat center;
+  background-size: 100% auto;
+}
+.feedback .familyWrap .family .icon > div {
+  width: 100%;
+  height: 100%;
+}
+.feedback .familyWrap .family .icon > div > img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.feedback .familyWrap .family .name {
+  padding-top: 0.213rem;
+  margin-bottom: 0.64rem;
+  font-size: 0.426rem;
+  color: #111;
+  line-height: 0.453rem;
+}
+.chooseDeviceCont .noDeviceBg {
+  padding: 0.8rem 1.066rem;
+  text-align: center;
+}
+.chooseDeviceCont .noDeviceBg .pic {
+  height: 5.333rem;
+  padding-top: 4.9rem;
+  font-size: 0.373rem;
+  color: #999;
+  /* background: url('./images/pic_nodevice.png') no-repeat center; */
+  background-size: 4.8rem auto;
+  box-sizing: border-box;
+}
+
+/* ChooseDevice */
+.chooseTypeCont {
+  padding: 0.533rem 0.4rem 0;
+}
+.chooseTypeCont .title {
+  margin-bottom: 0.533rem;
+  font-size: 0.533rem;
+  color: #111;
+}
+.deviceTypeWrap {
+  margin: 0 -0.2rem;
+}
+.deviceTypeWrap .deviceType {
+  display: inline-block;
+  width: 2.8rem;
+  height: 2.8rem;
+  padding-top: 0.533rem;
+  margin: 0 0.2rem 0.4rem;
+  border: 1px solid #e1e1e1;
+  box-sizing: border-box;
+  border-radius: 0.053rem;
+  vertical-align: top;
+}
+.deviceTypeWrap .deviceType > p {
+  padding: 1.28rem 0.266rem 0;
+  font-size: 0.32rem;
+  color: #666;
+  text-align: center;
+  /* background: url('./images/icon_1000.png') no-repeat center top; */
+  background-size: 1.066rem auto;
+  box-sizing: border-box;
+}
+.failedPage {
+  position: absolute;
+  top: 1.86666667rem;
+  bottom: 0;
+  width: 100%;
+  padding-top: 3.12rem;
+  text-align: center;
+  background-color: #fff;
+}
+.iphoneXTop {
+  top: 2.34666667rem;
+}
+.failedPage .failedPic {
+  height: 5.86rem;
+  padding-top: 5.33rem;
+  font-size: 0.373rem;
+  color: #999;
+  background: url('./../images/pic_default_error.png') no-repeat center top;
+  background-size: 4.8rem auto;
+  box-sizing: border-box;
+}
+.failedPage .failedLoad {
+  width: 3.86rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  margin: 1.066rem auto 0;
+  font-size: 0.426rem;
+  color: #fff;
+  background-color: #007fff;
+  border-radius: 0.053rem;
+}
+
+/* ChooseModel */
+.deviceModelWrap {
+}
+.deviceModelWrap .deviceModel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.92rem;
+  padding: 0 0.4rem 0 0.133rem;
+  margin-bottom: 0.4rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 0.053rem;
+}
+.deviceModelWrap .deviceModel > i {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.066rem;
+  /* background: url('./images/icon_1000.png') no-repeat center; */
+  background-size: 100% auto;
+}
+.deviceModelWrap .deviceModel > p {
+  flex: 1;
+  padding-right: 0.506rem;
+  font-size: 0.426rem;
+  color: #333;
+  /* background: url('./images/icon_enter_grey.png') no-repeat right center; */
+  background-size: 0.24rem 0.373rem;
+}
+.uploadImage {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+.feedback .contactUs {
+  position: fixed;
+  bottom: 0.746667rem;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.426667rem;
+  font-weight: 400;
+  color: rgba(0, 127, 255, 1);
+  line-height: 0.586667rem;
+}
+.feedback.isIphoneX .contactUs {
+  bottom: 1.65rem;
+}
+.editSuccess .tips li span {
+  color: #007fff;
+  display: inline-block;
+}
+.editProblem.isIphoneX .btnWrap {
+  bottom: 1.7rem;
+}
+.editProblem .bgImgItem .uploadImgWrap {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.uploadLoading {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.bgImgItem .uploadImgWrap.error {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url('./../images/refresh.png');
+  background-size: 0.58667rem auto !important;
+}
+.uploadImgLoading {
+  position: absolute !important;
+}
+.personalBox {
+  height: 1.28rem;
+  line-height: 1.28rem;
+  border: 1px solid rgba(225, 225, 225, 1);
+  margin: 0 0.4rem 0;
+  padding: 0 0.4rem;
+  /* background: url('./images/icon_enter_grey.png') no-repeat; */
+  background-position: right center;
+  background-size: 0.24rem 0.373rem;
+  border-radius: 2px;
+}
+.personalBox.personal_undefined {
+  font-size: 0.426667rem;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+}
+.editProblem .personalList {
+  height: 7.2rem;
+}
+.personalList li {
+  display: flex;
+  padding: 0.32rem 0.4rem;
+  border-bottom: 1px solid rgba(225, 225, 225, 1);
+}
+.personalList li div:first-child {
+  flex: 1;
+}
+.personalList .personalTitle {
+  font-size: 0.426667rem;
+  padding-left: 0.64rem;
+  color: rgba(51, 51, 51, 1);
+  line-height: 0.586667rem;
+  margin-bottom: 0.213333rem;
+  background-repeat: no-repeat;
+  background-size: 0.426667rem auto;
+  background-position: left center;
+}
+.personalList .personalDesc {
+  font-size: 0.32rem;
+  color: rgba(153, 153, 153, 1);
+  line-height: 0.453333rem;
+}
+.personalList .personal_type_0 .personalTitle {
+  /* background-image: url('./images/public.png'); */
+}
+.personalList .personal_type_1 .personalTitle {
+  /* background-image: url('./../images/private.png'); */
+}
+.personalList .personalActive {
+  width: 0.853333rem;
+  background-repeat: no-repeat;
+  background-size: 0.64rem auto;
+  background-position: right center;
+}
+.editProblem .scroller {
+  min-height: 150% !important;
+}
+.personalList .personalActive.active {
+  background-image: url('./../images/sel.png');
+}
+.editProblem.edit_suggest .scroller {
+  min-height: 100% !important;
+}
+textarea::-webkit-input-placeholder {
+  color: #999;
+}
+.editProblem .editProblemContent .qustionDescPlace {
+  position: absolute;
+  top: 0.266666rem;
+  left: 0.4rem;
+  font-size: 0.426667rem;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 0.586667rem;
+}
+.editProblem .editProblemContent .qustionDescPlace.none {
+  display: none;
+}
+.chooseModel {
+  overflow: auto;
+}
+.feedbackId {
+  padding-left: 0.4rem;
+  font-size: 0.426667rem;
+  color: rgba(51, 51, 51, 1);
+  line-height: 0.586667rem;
+  margin-bottom: 0.64rem;
+}
+.contactUs {
+  font-size: 0.373333rem;
+  text-align: center;
+  color: rgba(0, 127, 255, 1);
+  line-height: 0.53333rem;
+  margin-top: 0.58667rem;
+}
+textarea {
+  outline: none;
+  border: none;
+}
+textarea,
+textarea::-webkit-input-placeholder {
+  font-family: PingFangSC-Regular;
+}

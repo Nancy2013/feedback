@@ -1,10 +1,15 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-12 16:00:45
+ * @LastEditTime: 2021-07-19 17:38:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \tcl\src\components\Root.js
+ */
 import React, { PureComponent } from 'react';
 import * as logic from './logic';
-// import Toast from './Toast';
 import Modal from './Modal';
 import Loading from './ActivityIndicator';
-// import initReactFastclick from 'react-fastclick';
-import JdOfflineMask from './jd/OffLineMask';
 import { notifyError } from './utils';
 
 function autoCloseModal(Component) {
@@ -58,54 +63,17 @@ function autoCloseModal(Component) {
 
 class Root extends PureComponent {
   componentDidMount() {
-    const { loading, ready, settings } = this.props;
-    const defaultLogicProp = {
-      // updateStrategy:'immediate',
-      loading,
-      onFail: (e) => {
-        notifyError(e);
-        // return true
-      },
-      // retry:{
-      //     errorCode:1,
-      //     retryCount:3,
-      //     timeout:500
-      // }
-    };
-
-    logic.ready(this.update).catch((e) => {
-      // Modal.alert(e.message||e.msg);
-      notifyError(e);
-      ready();
-    });
-    logic.updateDefaultControlOpts({ ...defaultLogicProp, ...settings });
-    // initReactFastclick();
+    const { ready } = this.props;
   }
 
-  update = (stauts, isFirstTime) => {
-    const { updateStatus } = this.props;
-    const state = logic.getState();
-    updateStatus(state);
-  };
-
   render() {
-    const {
-      isReady,
-      isLoading,
-      children,
-      history,
-      location,
-      match,
-      isStatusReady,
-      isOnline,
-    } = this.props;
+    const { children } = this.props;
     return (
       <React.Fragment>
         {React.Children.map(children, (child) =>
-          React.cloneElement(child, { history, location, match })
+          React.cloneElement(child, { ...this.props })
         )}
-        {(!isReady || isLoading || !isStatusReady) && <Loading />}
-        {!isOnline && <JdOfflineMask />}
+        {/* {(!isReady || isLoading || !isStatusReady) && <Loading />} */}
       </React.Fragment>
     );
   }

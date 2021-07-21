@@ -1,16 +1,15 @@
-'use strict';
-
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const paths = require('./paths');
 const fs = require('fs');
+const path = require('path');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
-module.exports = function(proxy, allowedHost) {
+module.exports = function (proxy, allowedHost) {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -75,13 +74,59 @@ module.exports = function(proxy, allowedHost) {
     https: protocol === 'https',
     host,
     overlay: false,
-    historyApiFallback: {
-      // Paths with dots should still use the history fallback.
-      // See https://github.com/facebook/create-react-app/issues/387.
-      disableDotRule: true,
-    },
+    // historyApiFallback: {
+    //   // Paths with dots should still use the history fallback.
+    //   // See https://github.com/facebook/create-react-app/issues/387.
+    //   disableDotRule: true,
+    // },
     public: allowedHost,
-    proxy,
+    historyApiFallback: {
+      rewrites: [{ from: /^\/$/, to: '/' + 'index.html' }],
+    },
+    port: 3000,
+    proxy: {
+      '/appsync': {
+        target: `https://1401476e0c0ab68eca2277527d87efa0appservice.ibroadlink.com`,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/appsync': '/appsync',
+        },
+      },
+      '/data': {
+        target: `https://1401476e0c0ab68eca2277527d87efa0appservice.ibroadlink.com`,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/data': '/data',
+        },
+      },
+      '/farm': {
+        target: `https://1401476e0c0ab68eca2277527d87efa0appservice.ibroadlink.com`,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/farm': '/farm',
+        },
+      },
+      '/userfeedback': {
+        // target: 'https://app-service-chn-0335e1f2.ibroadlink.com',
+        // target: 'http://rap2api.taobao.org',
+        target: 'https://101.124.4.2',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          // '^/userfeedback/v2/help': '/app/mock/165657'
+          '^/userfeedback': '/userfeedback',
+        },
+      },
+      '/v2': {
+        target: 'http://api.douban.com',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/v2': '/v2',
+        },
+      },
+    },
+    // proxy,
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons

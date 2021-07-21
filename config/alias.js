@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:27:12
- * @LastEditTime: 2021-02-23 10:36:41
+ * @LastEditTime: 2021-07-14 14:41:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\config\alias.js
@@ -17,4 +17,5 @@ module.exports = () => ({
   stylesPath: '@/panel/styles',
   utilsPath: '@/panel/utils',
   configPath: '@/panel/config',
+  servicesPath: '@/services',
 });

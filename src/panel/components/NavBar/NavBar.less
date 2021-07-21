@@ -1,0 +1,209 @@
+@import '../../../components/common.less';
+
+.topHeight {
+  height: 52rem / @font-size-six;
+}
+.navHeight {
+  height: 140rem / @font-size-six;
+}
+.navBox {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+  background: #fff;
+}
+.bottomHeight {
+  position: relative;
+  height: 88rem / @font-size-six;
+  text-align: center;
+  color: rgba(34, 34, 34, 1);
+  display: flex;
+}
+.leftBox {
+  width: 0.8rem;
+  img {
+    float: left;
+    top: 26rem / @font-size-six;
+    position: relative;
+    height: 40rem / @font-size-six;
+    vertical-align: middle;
+  }
+}
+.textLeftBox {
+  .px2px(font-size,32px);
+  width: auto;
+  line-height: 1.17333333rem !important;
+}
+.rightBox {
+  width: 0.933333rem;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 0.533333rem;
+  img {
+    float: right;
+    top: 22rem / @font-size-six;
+    position: relative;
+    height: 40rem / @font-size-six;
+    vertical-align: middle;
+  }
+  line-height: normal;
+}
+.leftBox {
+  margin-left: 0.4rem;
+  text-align: left;
+  background-position: left center !important;
+  p {
+    .px2px(font-size,32px);
+    line-height: 88rem / @font-size-six;
+    color: rgba(34, 34, 34, 1);
+  }
+}
+.rightBox {
+  margin-right: 30rem / @font-size-six;
+  text-align: right;
+  p {
+    .px2px(font-size,32px);
+    line-height: 88rem / @font-size-six;
+    color: rgba(34, 34, 34, 1);
+  }
+}
+.titleBoxHaveSubtitle {
+  margin-top: 0.16rem;
+}
+.titleBox {
+  flex: 1;
+  overflow: hidden;
+  .titleBoxTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    -webkit-line-clamp: 1;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    .px2px(font-size,36px);
+    .px2px(line-height,42px);
+    text-align: center;
+    white-space: nowrap;
+  }
+  span {
+    .px2px(font-size,20px);
+    .px2px(line-height,40px);
+  }
+}
+.lineHeight {
+  line-height: 88rem / @font-size-six !important;
+}
+.navClickBox {
+  .maskLayer {
+    .maskLayer();
+    opacity: 0;
+    z-index: 2001;
+  }
+  .navClick {
+    box-shadow: -3rem / @font-size-six 10rem / @font-size-six 45rem /
+      @font-size-six 0rem / @font-size-six rgba(170, 170, 170, 0.5);
+    min-width: 250rem / @font-size-six;
+    padding-left: 30rem / @font-size-six;
+    position: fixed;
+    top: 148rem / @font-size-six;
+    right: 20rem / @font-size-six;
+    background: #fff;
+    z-index: 2001;
+    div {
+      padding-right: 80rem / @font-size-six;
+      height: 116rem / @font-size-six;
+      line-height: 116rem / @font-size-six;
+      color: #222;
+      .px2px(font-size,30px);
+      position: relative;
+    }
+    div:after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 1px;
+      left: 0;
+      top: 0;
+      border-bottom: 1px solid rgb(225, 225, 225);
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scale(0.5, 0.5);
+      transform: scale(0.5, 0.5);
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    div:after:last-child {
+      border-bottom: none;
+      height: 0;
+    }
+  }
+}
+.rightSunheadBtn {
+  position: relative;
+  width: 0.8rem;
+  img {
+    height: 40rem / @font-size-six;
+    top: 0.34rem;
+    position: relative;
+  }
+  p {
+    .px2px(font-size,32px);
+    color: rgba(34, 34, 34, 1);
+    line-height: 88rem / @font-size-six;
+  }
+}
+.rightSunheadBtnNone {
+  opacity: 0;
+  z-index: 2;
+  height: 44rem / @font-size-six;
+  right: 30rem / @font-size-six;
+  text-align: center;
+  img {
+    height: 40rem / @font-size-six;
+  }
+  p {
+    .px2px(font-size,32px);
+    color: rgba(34, 34, 34, 1);
+    line-height: 88rem / @font-size-six;
+  }
+}
+.bgIcon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0.533333rem;
+}
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .topHeight {
+    height: 88rem / @font-size-six;
+  }
+  .navHeight {
+    height: 176rem / @font-size-six;
+  }
+}
+
+.circle {
+  position: absolute;
+  width: 0.16rem;
+  height: 0.16rem;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  top: 0.22rem;
+  right: 0.1rem;
+}
+
+.rightBox.textLeftBox {
+  width: auto;
+  opacity: 0;
+}
+.textRightBox {
+  .px2px(font-size,32px);
+  width: auto;
+  line-height: 1.17333333rem !important;
+}
+.textNavBar .btnBox {
+  min-width: 1.4rem;
+}

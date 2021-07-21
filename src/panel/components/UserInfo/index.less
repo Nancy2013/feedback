@@ -1,0 +1,40 @@
+@import '~componentsPath/common';
+.userInfo {
+  padding: 0.4rem;
+  display: flex;
+}
+.userInfo .userIcon img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+}
+.userInfo .userIcon {
+  height: 0.64rem;
+  width: 0.64rem;
+  border-radius: 100%;
+  background: rgba(216, 216, 216, 1);
+  position: relative;
+}
+.userInfo .userIcon .officialIcon {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  height: 0.266667rem;
+  width: 0.266667rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  // background-image: url(./images/official.svg);
+}
+.userInfo .userName {
+  flex: 1;
+  line-height: 0.64rem;
+  .px2px(font-size,32px);
+  color: rgba(51, 51, 51, 1);
+  font-weight: 600;
+  // padding-left: 0.213333rem;
+}
+.userInfo .time {
+  line-height: 0.64rem;
+  .px2px(font-size,28px);
+  color: rgba(153, 153, 153, 1);
+}
