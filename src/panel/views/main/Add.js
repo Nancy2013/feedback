@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-20 15:33:36
+ * @LastEditTime: 2021-07-21 11:20:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -201,6 +201,9 @@ class ReplyInput extends React.PureComponent {
     let params = {
       forumtag,
       ...msg,
+      userid: userInfo.userId, // 用户ID
+      username: userInfo.nickName, // 用户昵称
+      usericon: userInfo.userIcon, // 用户头像地址
     };
     if (threadid === undefined) {
       params = {
@@ -213,9 +216,6 @@ class ReplyInput extends React.PureComponent {
       params = {
         ...params,
         threadid: parseInt(threadid),
-        userid: userInfo.userId, // 用户ID
-        username: userInfo.nickName, // 用户昵称
-        usericon: userInfo.userIcon, // 用户头像地址
         replypostid: parseInt(postid) || 0, // 回复另外一个回帖; 0-表示回复主题
       };
     }
@@ -261,6 +261,7 @@ class ReplyInput extends React.PureComponent {
     const { history, intl } = this.props;
     postFeedback(userId, lid, params).then((_e) => {
       if (_e && _e.status === 0) {
+        requestLock = false;
         Toast.hide();
         history.push({
           pathname: '/success',
@@ -270,6 +271,7 @@ class ReplyInput extends React.PureComponent {
         });
       } else {
         let status = _e.status || '';
+        requestLock = false;
         Toast.show({
           content: status
             ? intl.formatMessage({

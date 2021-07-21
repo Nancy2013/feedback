@@ -114,7 +114,7 @@
   height: 0.426667rem;
   top: 0px;
   right: 0px;
-  background-image: url('./images/del.png');
+  /* background-image: url('./images/del.png'); */
   background-repeat: no-repeat;
   background-size: 100%;
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-20 15:46:52
+ * @LastEditTime: 2021-07-21 11:21:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -14,7 +14,7 @@ var __APP_STRINGS__ = {
     done: '完成',
     success: '提交成功!',
     successText: '您的反馈将被发送到我们的服务人员，我们将尽快为您解决问题。',
-    refresh: '重新加载',
+    reload: '重新加载',
     null: '没有反馈意见',
     error: '加载失败，请检查网络状态',
     today: '今日',
@@ -25,7 +25,6 @@ var __APP_STRINGS__ = {
     replied: '官方已回复',
     cancel: '取消',
     delete: '删除',
-    postYourQuestion: '回复',
     detail: '反馈详情',
     postHasBeenDeleted: '反馈已被删除',
     comment: '发评论',
@@ -54,7 +53,7 @@ var __APP_STRINGS__ = {
     success: 'Submitted Successful!',
     successText:
       'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
-    refresh: 'refresh',
+    reload: 'refresh',
     null: 'No feedback',
     error: 'Loading failed, please check network status',
     today: 'Today',

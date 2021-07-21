@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-20 14:04:39
+ * @LastEditTime: 2021-07-21 10:51:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -26,7 +26,7 @@ const Component = (props) => {
   return (
     <Page className={style.page}>
       <NavBar
-        title={formatMessage({ id: 'title' })}
+        title={formatMessage({ id: 'add' })}
         color={'#000'}
         opacity
         leftHandle={goList}

@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 import NavBar from 'componentsPath/dna/NavBar';
 import Page from 'componentsPath/dna/Page';
 import Toast from '../../components/Toast';
@@ -23,7 +20,6 @@ import Device from 'componentsPath/device.js';
 import UserInfo from '../../components/UserInfo';
 import Scroller from '../../components/Scroller';
 import ReplyItem from './ReplyItem.js';
-import ReplyInput from '../../components/ReplyInput';
 import ImagesList from '../../components/ImagesList';
 import PopupBtn from '../../components/PopupBtn';
 import { formatTag, formatTime } from 'utilsPath';
@@ -631,7 +627,7 @@ class PostDetail extends React.Component {
           {pageStatus === 'success' ? (
             <div className={classNames('replyBox')} onClick={this.reply}>
               <div className="tomit placeBox">
-                {intl.formatMessage({ id: 'postYourQuestion' })}
+                {intl.formatMessage({ id: 'replyText' })}
               </div>
             </div>
           ) : null}
