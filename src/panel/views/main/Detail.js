@@ -486,16 +486,9 @@ class PostDetail extends React.Component {
         this.getData();
       },
     };
-    // TODO isIphoneX属性
     return (
-      <Page>
-        <div
-          className={classNames(style.postDetailPage, {
-            isPC: Device.isPC,
-            isIphoneX: Device.isIphoneX,
-          })}
-          ref={(el) => (this.el = el)}
-        >
+      <Page className={classNames({ [style.paddingX]: Device.isIphoneX })}>
+        <div className={style.postDetailPage} ref={(el) => (this.el = el)}>
           <NavBar
             title={intl.formatMessage({ id: 'detail' })}
             opacity

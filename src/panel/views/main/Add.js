@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 10:12:06
+ * @LastEditTime: 2021-07-22 15:03:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -445,7 +445,6 @@ class ReplyInput extends React.PureComponent {
       <Page>
         <div
           className={classNames(style.replyBoxInputWrap, {
-            isIphoneX: Device.isIphoneX,
             disbled: !(message2.length > 0 || showLen > 0),
           })}
         >

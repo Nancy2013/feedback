@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-22 10:51:33
+ * @LastEditTime: 2021-07-22 14:49:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -33,7 +33,7 @@ var __APP_STRINGS__ = {
     replyText: '写下回复...',
     addFeedback: '请尽可能详细地描述您的问题',
     pageText:
-      '{status,select,null {没有反馈意见} error {加载失败，请检查网络状态} delete {反馈已被删除} }',
+      '{status,select,null {没有反馈意见} error {哎呀。有一个小故障。} delete {反馈已被删除} }',
 
     //Modal
     'internal.Modal.confirm': '确定',
@@ -52,7 +52,7 @@ var __APP_STRINGS__ = {
     success: 'Submitted Successful!',
     successText:
       'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
-    reload: 'reload',
+    reload: 'Load again',
     today: 'Today',
     yesterday: 'Yesterday',
     resolved: 'Solved',
@@ -71,7 +71,7 @@ var __APP_STRINGS__ = {
     replyText: 'Write a reply…',
     addFeedback: 'please desvribe your problem as detailed as possible',
     pageText:
-      '{status,select,null {No feedback} error {Loading failed, please check network status} delete {Feedback has been deleted} }',
+      '{status,select,null {No feedback} error {Oops. There is a glitch.} delete {Feedback has been deleted} }',
 
     //Modal
     'internal.Modal.confirm': 'confirm',
