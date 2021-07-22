@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-21 11:21:21
+ * @LastEditTime: 2021-07-21 16:25:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -53,7 +53,7 @@ var __APP_STRINGS__ = {
     success: 'Submitted Successful!',
     successText:
       'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
-    reload: 'refresh',
+    reload: 'reload',
     null: 'No feedback',
     error: 'Loading failed, please check network status',
     today: 'Today',

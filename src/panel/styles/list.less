@@ -179,6 +179,59 @@
   position: relative;
 }
 
+.communityItem {
+  padding: 0.4rem 0 0 0.4rem;
+}
+.communityItem.isTop {
+  background: rgba(247, 247, 247, 1);
+}
+.communityItem .infoWrap {
+  padding-right: 0.4rem;
+  margin-bottom: 0.106rem;
+}
+.communityItem .infoWrap .tag {
+  display: inline-block;
+  height: 0.48rem;
+  padding: 0 0.213rem;
+  line-height: 0.48rem;
+  font-size: 0.266rem;
+  color: #fff;
+  background-color: #ffaa00;
+  border-radius: 0.106rem;
+  vertical-align: middle;
+}
+.communityItem .infoWrap .tag.top {
+  background-color: #ffaa00;
+}
+.communityItem .infoWrap .tag.replied {
+  background-color: #007fff;
+}
+.communityItem .infoWrap .tag.resolved {
+  background-color: #00d1a4;
+}
+.communityItem .infoWrap .info {
+  font-size: 0.426rem;
+  line-height: 0.586rem;
+  color: #111;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+.communityItem .msgWrap {
+  height: 0.906rem;
+  line-height: 0.906rem;
+  padding: 0 0.4rem 0.106rem 0;
+  font-size: 0.32rem;
+  color: #999;
+  border-bottom: 1px solid #e1e1e1;
+}
+.communityItem:last-child .msgWrap {
+  border: none;
+}
+.communityPage .bottomBtnWrap {
+  width: 100%;
+  background-color: #fff;
+}
+
 /* 超出省略 */
 .tomit2 {
   display: block;

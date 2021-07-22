@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-20 17:09:21
+ * @LastEditTime: 2021-07-22 09:49:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -20,8 +20,7 @@ import PopupBtn from './../../components/PopupBtn';
 import { getMyPosts, setResolved, removeThread } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
 import add from '@/panel/images/add.svg';
-import 'stylesPath/community.css';
-import 'stylesPath/list.css';
+import style from 'stylesPath/index.less';
 
 let requestLock = false;
 let canClick = true;
@@ -303,7 +302,7 @@ class List extends React.Component {
     const { postsList, haveData, deletePost, loadError } = this.state;
     return (
       <MyScroll
-        className="postsList"
+        className={style.postsList}
         onScrollToEnd={this.handleScrollEnd.bind(this)}
         onScrollEnd={() => {
           this.scrolling = false;
@@ -323,7 +322,7 @@ class List extends React.Component {
           return (
             <li
               className={classNames(
-                'communityItem',
+                style.communityItem,
                 { isPublic: supportPersonal && !post.personal },
                 {
                   isDelete:
@@ -343,27 +342,29 @@ class List extends React.Component {
                 this.touchEnd(e, post);
               }}
             >
-              <div className="infoWrap tomit2">
-                <span className="info">{post.message}</span>
+              <div className={classNames(style.infoWrap, style.tomit2)}>
+                <span className={style.info}>{post.message}</span>
               </div>
-              <div className="msgTagWrap">
+              <div className={style.msgTagWrap}>
                 {formatTag(post) && (
-                  <span className={classNames('tag', formatTag(post))}>
+                  <span
+                    className={classNames(style.tag, style[formatTag(post)])}
+                  >
                     {intl.formatMessage({ id: formatTag(post) })}
                   </span>
                 )}
-                <span className="comment">{`${intl.formatMessage({
+                <span className={style.comment}>{`${intl.formatMessage({
                   id: 'reply',
                 })}   ${post.replies || 0}`}</span>
-                <span className="time">{time}</span>
+                <span className={style.time}>{time}</span>
               </div>
             </li>
           );
         })}
         {haveData && !loadError ? (
-          <div className="loadingTipBox">
-            <div className="loadingBox">
-              <LoadingPage />
+          <div className={style.loadingTipBox}>
+            <div className={style.loadingBox}>
+              <LoadingPage className={style.loadingPageIcon} />
             </div>
             <span>{intl.formatMessage({ id: 'loading' })}</span>
           </div>
@@ -385,7 +386,7 @@ class List extends React.Component {
     };
     return (
       <Page>
-        <div className={classNames('messagePage')}>
+        <div className={classNames(style.messagePage)}>
           <NavBar
             title={formatMessage({ id: 'feedBack' })}
             exit
@@ -398,8 +399,11 @@ class List extends React.Component {
               },
             }}
           />
-          <div className={'myPostsIndex'}>
-            <div className={classNames('myPosts')} ref={(el) => (this.el = el)}>
+          <div className={style.myPostsIndex}>
+            <div
+              className={classNames(style.myPosts)}
+              ref={(el) => (this.el = el)}
+            >
               {pageStatus === 'success' && this.renderList()}
               {(pageStatus === 'null' || pageStatus === 'error') && (
                 <EmptyPage {...pageConfig} />

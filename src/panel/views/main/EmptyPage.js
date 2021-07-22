@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-14 10:33:22
- * @LastEditTime: 2021-07-20 16:52:46
+ * @LastEditTime: 2021-07-21 16:21:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\panel\views\main\EmptyPage.js
@@ -38,7 +38,7 @@ const Component = (props) => {
             onRefresh && onRefresh();
           }}
         >
-          {formatMessage({ id: 'refresh' })}
+          {formatMessage({ id: 'reload' })}
         </div>
       )}
     </div>

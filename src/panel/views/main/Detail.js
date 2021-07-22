@@ -23,8 +23,8 @@ import ReplyItem from './ReplyItem.js';
 import ImagesList from '../../components/ImagesList';
 import PopupBtn from '../../components/PopupBtn';
 import { formatTag, formatTime } from 'utilsPath';
-import 'stylesPath/detail.css';
-import 'stylesPath/add.css';
+import style from 'stylesPath/index.less';
+import edit from '@/panel/images/editor.svg';
 
 const step = 20;
 let requestLock = false;
@@ -475,10 +475,11 @@ class PostDetail extends React.Component {
     const right = {
       text: '',
     };
+    // TODO isIphoneX属性
     return (
       <Page>
         <div
-          className={classNames('postDetailPage', {
+          className={classNames(style.postDetailPage, {
             isPC: Device.isPC,
             isIphoneX: Device.isIphoneX,
           })}
@@ -491,7 +492,7 @@ class PostDetail extends React.Component {
           />
           {pageStatus === 'success' && postDetail ? (
             <Scroller
-              className="cont"
+              className={style.cont}
               onScrollToEnd={this.handleScrollEnd.bind(this)}
               onScrollEnd={() => {
                 this.scrolling = false;
@@ -501,7 +502,7 @@ class PostDetail extends React.Component {
               }}
               onRef={this.onScrollRef}
             >
-              <div className="postContent">
+              <div className={style.postContent}>
                 <UserInfo
                   icon={
                     postDetail.usericon
@@ -515,57 +516,47 @@ class PostDetail extends React.Component {
                   time={time}
                   formatTime={false}
                 />
-                <div className="messageWrap">
+                <div className={style.messageWrap}>
                   <div
-                    className="postMessage"
+                    className={style.postMessage}
                     dangerouslySetInnerHTML={{
                       __html: postDetail.message.replace(/\n/g, '<br/>'),
                     }}
                   ></div>
                   <ImagesList list={postDetail.files || []} />
                 </div>
-                <div className="btnBox">
-                  <div className="msgTagWrap">
+                <div className={style.btnBox}>
+                  <div className={style.msgTagWrap}>
                     {formatTag(postDetail) && (
                       <span
-                        className={classNames('tag', formatTag(postDetail))}
+                        className={classNames(
+                          style.tag,
+                          style[formatTag(postDetail)]
+                        )}
                       >
                         {intl.formatMessage({ id: formatTag(postDetail) })}
                       </span>
                     )}
-                    <span className="comment">{`${intl.formatMessage({
+                    <span className={style.comment}>{`${intl.formatMessage({
                       id: 'reply',
                     })}   ${postDetail.replies || 0}`}</span>
                   </div>
-                  <div className="btnWrap">
+                  <div className={style.btnWrap}>
                     {
                       // 问题已解决按钮
                       postDetail.mine === 1 && postDetail.resolved !== 1 ? (
                         <div
-                          className="resolved btn"
+                          className={classNames(style.resolved, style.btn)}
                           onClick={this.handleSureResolved.bind(this)}
                         >
-                          {intl.formatMessage({ id: 'problemSolved' })}
-                        </div>
-                      ) : null
-                    }
-                    {
-                      // 我也有此问题按钮
-                      postDetail.mine !== 1 ? (
-                        <div
-                          className={classNames('meToo btn', {
-                            follow: postDetail.follow,
-                          })}
-                          onClick={this.handleFollow.bind(this)}
-                        >
-                          {intl.formatMessage({ id: 'meToo' })}
+                          {intl.formatMessage({ id: 'resolved' })}
                         </div>
                       ) : null
                     }
                   </div>
                 </div>
               </div>
-              <div className="replyWrap">
+              <div className={style.replyWrap}>
                 {posts &&
                   posts.length > 0 &&
                   posts.map((reply, _i) => {
@@ -591,7 +582,7 @@ class PostDetail extends React.Component {
                   })}
               </div>
               {showEnd && (
-                <div className="noDataTipBox">
+                <div className={style.noDataTipBox}>
                   <span>{intl.formatMessage({ id: 'inTheEnd' })}</span>
                 </div>
               )}
@@ -620,13 +611,10 @@ class PostDetail extends React.Component {
               />
             ) : null
           }
-          {
-            //handleReply 手动造回复数据
-            // <div className="handleReplay" onClick={this.handleReply.bind(this)}>{"手动造一条回复的数据呀呀呀呀呀呀"}</div>
-          }
           {pageStatus === 'success' ? (
-            <div className={classNames('replyBox')} onClick={this.reply}>
-              <div className="tomit placeBox">
+            <div className={style.replyBox} onClick={this.reply}>
+              <div className={style.placeBox}>
+                <img src={edit} alt="" className={style.mr15} />
                 {intl.formatMessage({ id: 'replyText' })}
               </div>
             </div>

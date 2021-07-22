@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-21 11:20:11
+ * @LastEditTime: 2021-07-22 10:02:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -12,30 +12,20 @@ import classNames from 'classnames';
 import { injectIntl } from 'react-intl';
 import Toast from '@/panel/components/Toast';
 import NavBar from 'componentsPath/dna/NavBar';
-import Button from 'componentsPath/dna/Button';
 import Page from 'componentsPath/dna/Page';
 import Device from 'componentsPath/device';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import { selectPicture, uploadFileByApp } from '@/sdk';
-import {
-  getPostDetail,
-  removeThread,
-  setResolved,
-  removePost,
-  rePly,
-  followPost,
-  unFollowPost,
-  postFeedback,
-} from 'servicesPath';
+import { rePly, postFeedback } from 'servicesPath';
 import WxImageViewer from '@/panel/components/ImageView/WxImageViewer';
-import 'stylesPath/add.css';
 import config from 'configPath';
+import style from 'stylesPath/index.less';
 
 let requestLock = false;
 
 class ReplyInput extends React.PureComponent {
   static defaultProps = {
-    focus: false,
+    focus: true,
     replyName: '',
     showReply: true,
   };
@@ -47,7 +37,7 @@ class ReplyInput extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      focus: props.focus,
+      focus: true,
       message: '',
       replyName: '',
       replyFlag: props.replyFlag,
@@ -61,6 +51,7 @@ class ReplyInput extends React.PureComponent {
   }
   componentDidMount() {
     this.props.onRef && this.props.onRef(this);
+    this.rePlyText.focus();
   }
   componentWillReceiveProps(nextProps) {
     const { replyFlag, message, files } = this.state;
@@ -107,15 +98,15 @@ class ReplyInput extends React.PureComponent {
       files: [],
     });
   }
-  handleClickFocus() {
-    if (this.props.handleFocusThread) {
-      this.props.handleFocusThread();
-    } else {
-      this.setState({
-        focus: true,
-      });
-    }
-  }
+  // handleClickFocus() {
+  //   if (this.props.handleFocusThread) {
+  //     this.props.handleFocusThread();
+  //   } else {
+  //     this.setState({
+  //       focus: true,
+  //     });
+  //   }
+  // }
   handleChangeDesc(e) {
     const v = e.target.value;
     let len1 = v.match(/[\u4E00-\u9FA5]/g)
@@ -453,7 +444,7 @@ class ReplyInput extends React.PureComponent {
     return (
       <Page>
         <div
-          className={classNames('replyBoxInputWrap', {
+          className={classNames(style.replyBoxInputWrap, {
             isIphoneX: Device.isIphoneX,
             disbled: !(message2.length > 0 || showLen > 0),
           })}
@@ -473,12 +464,12 @@ class ReplyInput extends React.PureComponent {
             disbled={!(message2.length > 0 || showLen > 0)}
           />
           <div
-            className="replyBoxInput"
+            className={style.replyBoxInput}
             ref={(ref) => {
               this.inputDom = ref;
             }}
           >
-            <div className="left">
+            <div className={style.left}>
               <textarea
                 ref={(input) => {
                   this.rePlyText = input;
@@ -489,30 +480,36 @@ class ReplyInput extends React.PureComponent {
                     ? intl.formatMessage({ id: 'addFeedback' })
                     : intl.formatMessage({ id: 'replyText' })
                 }
-                className="problemDes"
+                className={style.problemDes}
                 autoFocus="autofocus"
                 value={message}
                 rows="6"
               ></textarea>
-              <ul className="imgList">
+              <ul className={style.imgList}>
                 {files.length > 0
                   ? files.map((item, _i) => {
                       return item.status !== 'delete' ? (
-                        <li key={_i} className="imgItem bgImgItem">
+                        <li
+                          key={_i}
+                          className={classNames(style.imgItem, style.bgImgItem)}
+                        >
                           {item.status === 'success' ? (
                             <div
-                              className="uploadImgWrap"
+                              className={style.uploadImgWrap}
                               style={{ backgroundImage: `url(${item.src}` }}
                               onClick={this.handleViewImage.bind(this, _i)}
                             ></div>
                           ) : null}
                           {item.status === 'error' ? (
                             <div
-                              className="uploadImgWrap error"
+                              className={classNames(
+                                style.uploadImgWrap,
+                                style.error
+                              )}
                               onClick={this.handleViewImage.bind(this, _i)}
                             >
                               <div
-                                className="del"
+                                className={style.del}
                                 onClick={(e) => {
                                   this.handleDeleteImg(e, _i);
                                 }}
@@ -520,10 +517,15 @@ class ReplyInput extends React.PureComponent {
                             </div>
                           ) : null}
                           {item.status === 'loading' ? (
-                            <div className="uploadImgWrap uploadLoading">
-                              <LoadingPage className="uploadImgLoading" />
+                            <div
+                              className={classNames(
+                                style.uploadImgWrap,
+                                style.uploadLoading
+                              )}
+                            >
+                              <LoadingPage className={style.uploadImgLoading} />
                               <div
-                                className="del"
+                                className={style.del}
                                 onClick={(e) => {
                                   this.handleDeleteImg(e, _i);
                                 }}
@@ -531,7 +533,7 @@ class ReplyInput extends React.PureComponent {
                             </div>
                           ) : null}
                           <div
-                            className="del"
+                            className={style.del}
                             onClick={(e) => {
                               this.handleDeleteImg(e, _i);
                             }}
@@ -542,7 +544,7 @@ class ReplyInput extends React.PureComponent {
                   : null}
                 {showLen < 6 ? (
                   <li
-                    className="imgItem addImg"
+                    className={classNames(style.imgItem, style.addImg)}
                     onClick={this.handleCamera.bind(this)}
                   ></li>
                 ) : null}
@@ -560,7 +562,7 @@ class ReplyInput extends React.PureComponent {
               index={viewIndex}
               pointer={
                 <div
-                  className={classNames('viewPointer', {
+                  className={classNames(style.viewPointer, {
                     isIphoneX: Device.isIphoneX,
                   })}
                 >{`${viewIndex + 1}/${viewFiles.length}`}</div>
