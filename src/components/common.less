@@ -78,11 +78,15 @@
   top: 0;
   left: 0;
   background-color: #000000;
-  opacity: 0.3;
+  opacity: 0.4;
+  z-index: @maskLayer-z-index;
 }
 .none() {
   display: none;
 }
 .clear() {
   clear: both;
+}
+.maskLayer {
+  .maskLayer();
 }

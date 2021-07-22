@@ -14,6 +14,29 @@
   padding-bottom: 0.90666667rem;
 }
 
+.popBottom {
+  z-index: @maskLayer-z-index !important;
+}
+
+.bottomBtn {
+  text-align: center;
+  // background: @white;
+  color: @black;
+  .px2px(font-size,36px);
+
+  div {
+    padding: 30px;
+    background: @white;
+    &:first-child {
+      border-radius: 32px 32px 4px 4px;
+    }
+
+    &:last-child {
+      border-top: 0.16rem @border-style-base rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
 // 成功界面
 .success {
   background: @white;
@@ -27,9 +50,6 @@
   .text {
     .px2px(font-size,28px);
     color: @black-3;
-  }
-  .clear::after {
-    clear: both;
   }
 }
 // components hook css
