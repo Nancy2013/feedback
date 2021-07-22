@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 14:56:36
+ * @LastEditTime: 2021-07-22 15:40:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
  */
 import React from 'react';
 import classNames from 'classnames';
+import Device from 'componentsPath/device.js';
 import Toast from './../../components/Toast';
 import MyScroll from '@/panel/components/Scroller';
 import { injectIntl } from 'react-intl';
@@ -384,13 +385,16 @@ class List extends React.Component {
       },
     };
     return (
-      <Page>
+      <Page
+        className={classNames({ [style.paddingBottomX]: Device.isIphoneX })}
+      >
         <div className={classNames(style.messagePage)}>
           <NavBar
             title={formatMessage({ id: 'feedBack' })}
             exit
             opacity
             color={'#000'}
+            className={style.navbarHook}
             right={{
               icon: add,
               handler: () => {

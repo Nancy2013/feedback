@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 15:03:55
+ * @LastEditTime: 2021-07-22 15:39:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -454,6 +454,7 @@ class ReplyInput extends React.PureComponent {
             })}
             opacity
             color={'#000'}
+            className={style.navbarHook}
             right={{
               text: intl.formatMessage({
                 id: threadid === undefined ? 'submit' : 'send',

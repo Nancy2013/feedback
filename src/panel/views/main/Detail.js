@@ -487,12 +487,15 @@ class PostDetail extends React.Component {
       },
     };
     return (
-      <Page className={classNames({ [style.paddingX]: Device.isIphoneX })}>
+      <Page
+        className={classNames({ [style.paddingBottomX]: Device.isIphoneX })}
+      >
         <div className={style.postDetailPage} ref={(el) => (this.el = el)}>
           <NavBar
             title={intl.formatMessage({ id: 'detail' })}
             opacity
             color={'#000'}
+            className={style.navbarHook}
           />
           {pageStatus === 'success' && postDetail ? (
             <Scroller
