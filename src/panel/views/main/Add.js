@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 10:02:50
+ * @LastEditTime: 2021-07-22 10:12:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -55,18 +55,18 @@ class ReplyInput extends React.PureComponent {
   }
   componentWillReceiveProps(nextProps) {
     const { replyFlag, message, files } = this.state;
-    if (nextProps.foucus !== this.state.focus) {
-      this.setState(
-        {
-          focus: nextProps.focus,
-        },
-        () => {
-          if (nextProps.focus) {
-            this.rePlyText.focus();
-          }
-        }
-      );
-    }
+    // if (nextProps.foucus !== this.state.focus) {
+    //   this.setState(
+    //     {
+    //       focus: nextProps.focus,
+    //     },
+    //     () => {
+    //       if (nextProps.focus) {
+    //         this.rePlyText.focus();
+    //       }
+    //     }
+    //   );
+    // }
     if (nextProps.replyFlag !== replyFlag) {
       let oldFiles = [];
       files.forEach((_e) => {

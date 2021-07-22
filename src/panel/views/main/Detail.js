@@ -4,7 +4,7 @@ import NavBar from 'componentsPath/dna/NavBar';
 import Page from 'componentsPath/dna/Page';
 import Toast from '../../components/Toast';
 import Dialog from '../../components/Dialog';
-import PageStatus from '../../components/PageStatus';
+import PageStatus from './PageStatus';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import {
@@ -55,6 +55,11 @@ class PostDetail extends React.Component {
   }
   componentDidMount() {
     this.getData();
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.userId !== prevProps.userId) {
+      this.getData();
+    }
   }
   getData() {
     let { userId, lid, match } = this.props;
@@ -475,6 +480,12 @@ class PostDetail extends React.Component {
     const right = {
       text: '',
     };
+    const pageConfig = {
+      status: pageStatus,
+      onRefresh: () => {
+        this.getData();
+      },
+    };
     // TODO isIphoneX属性
     return (
       <Page>
@@ -589,28 +600,9 @@ class PostDetail extends React.Component {
             </Scroller>
           ) : null}
           {pageStatus === 'loading' ? <LoadingPage /> : null}
-          {pageStatus === 'null' ? (
-            <PageStatus
-              status={'null'}
-              text={intl.formatMessage({ id: 'nullData' })}
-            />
-          ) : null}
-          {pageStatus === 'delete' ? (
-            <PageStatus
-              status={'null'}
-              text={intl.formatMessage({ id: 'postHasBeenDeleted' })}
-            />
-          ) : null}
-          {
-            //  加载失败
-            pageStatus === 'error' ? (
-              <PageStatus
-                status={'error'}
-                text={intl.formatMessage({ id: 'loadError' })}
-                onRefresh={this.handleOnload.bind(this)}
-              />
-            ) : null
-          }
+          {(pageStatus === 'null' ||
+            pageStatus === 'error' ||
+            pageStatus === 'delete') && <PageStatus {...pageConfig} />}
           {pageStatus === 'success' ? (
             <div className={style.replyBox} onClick={this.reply}>
               <div className={style.placeBox}>

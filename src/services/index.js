@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 17:16:42
- * @LastEditTime: 2021-07-15 11:17:16
+ * @LastEditTime: 2021-07-22 11:05:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\services\appAsk.js
@@ -321,6 +321,7 @@ export const getMyMessage = (userid = '', lid, params) => {
  */
 
 export const getMyPosts = (userid = '', lid, params) => {
+  console.log('【getMyPosts】', 'userid: ', userid, ' lid: ', lid);
   return axios
     .post(`${BASE_URL}/userfeedback/v2/feedback/my`, params, {
       headers: {
@@ -382,6 +383,7 @@ export const setResolved = (userid = '', lid, params) => {
  * @method getPostDetail
  */
 export const getPostDetail = (userid, lid, params) => {
+  console.log('【getPostDetail】', 'userid: ', userid, ' lid: ', lid);
   return axios
     .post('/userfeedback/v2/feedback/thread', params, {
       headers: {
