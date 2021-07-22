@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-21 15:41:29
+ * @LastEditTime: 2021-07-22 10:02:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -25,7 +25,7 @@ let requestLock = false;
 
 class ReplyInput extends React.PureComponent {
   static defaultProps = {
-    focus: false,
+    focus: true,
     replyName: '',
     showReply: true,
   };
@@ -37,7 +37,7 @@ class ReplyInput extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      focus: props.focus,
+      focus: true,
       message: '',
       replyName: '',
       replyFlag: props.replyFlag,
@@ -51,6 +51,7 @@ class ReplyInput extends React.PureComponent {
   }
   componentDidMount() {
     this.props.onRef && this.props.onRef(this);
+    this.rePlyText.focus();
   }
   componentWillReceiveProps(nextProps) {
     const { replyFlag, message, files } = this.state;
@@ -97,15 +98,15 @@ class ReplyInput extends React.PureComponent {
       files: [],
     });
   }
-  handleClickFocus() {
-    if (this.props.handleFocusThread) {
-      this.props.handleFocusThread();
-    } else {
-      this.setState({
-        focus: true,
-      });
-    }
-  }
+  // handleClickFocus() {
+  //   if (this.props.handleFocusThread) {
+  //     this.props.handleFocusThread();
+  //   } else {
+  //     this.setState({
+  //       focus: true,
+  //     });
+  //   }
+  // }
   handleChangeDesc(e) {
     const v = e.target.value;
     let len1 = v.match(/[\u4E00-\u9FA5]/g)
