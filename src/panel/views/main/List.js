@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 17:19:22
+ * @LastEditTime: 2021-07-23 15:56:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -9,10 +9,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import Device from 'componentsPath/device.js';
-import Toast from './../../components/Toast';
+import Toast from 'componentsPath/Toast';
 import MyScroll from '@/panel/components/Scroller';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
+import Loading from 'componentsPath/ActivityIndicator';
 import NavBar from 'componentsPath/dna/NavBar';
 import PageStatus from './PageStatus';
 import Page from 'componentsPath/dna/Page';
@@ -37,6 +38,7 @@ class List extends React.Component {
       deletePost: {},
       loadError: false,
       showDelete: false,
+      loading: false,
     };
     this.postParams = {
       page: 1, // 第几页
@@ -52,7 +54,11 @@ class List extends React.Component {
     };
   }
   getData = (init) => {
-    let { userId, lid, intl } = this.props;
+    let {
+      userId,
+      lid,
+      intl: { formatMessage },
+    } = this.props;
     const { postsList } = this.state;
     requestLock = true;
     if (init) {
@@ -81,8 +87,6 @@ class List extends React.Component {
               postsList: [...newPostsList],
             },
             () => {
-              // TODO Toast
-              Toast.hide();
               requestLock = false;
               if (init) {
                 this.scrollerChild.onRefresh(true);
@@ -98,13 +102,11 @@ class List extends React.Component {
               },
               () => {
                 requestLock = false;
-                Toast.hide();
               }
             );
           } else {
             requestLock = false;
             this.postParams.page -= 1;
-            Toast.hide();
           }
         }
       } else {
@@ -118,16 +120,11 @@ class List extends React.Component {
             }
           );
         } else {
-          let errorMsg = intl.formatMessage({ id: 'loadError' });
+          let errorMsg = formatMessage({ id: 'pageText' }, { status: 'error' });
           if (res && res.status) {
-            errorMsg = intl.formatMessage({
-              id: res.status,
-              defaultMessage: errorMsg,
-            });
+            errorMsg = res.status;
           }
-          Toast.show({
-            content: errorMsg,
-          });
+          Toast.info(errorMsg);
           this.setState(
             {
               loadError: true,
@@ -265,34 +262,36 @@ class List extends React.Component {
     });
   }
   handleDelete() {
-    let { userId, lid, intl } = this.props;
+    let {
+      userId,
+      lid,
+      intl: { formatMessage },
+    } = this.props;
     const { deletePost } = this.state;
-    Toast.show({
-      type: 'loading',
-      autoHide: false,
-      content: intl.formatMessage({ id: 'loading' }),
-    });
     this.setState(
       {
         deleteTipDailog: false,
+        loading: true,
       },
       () => {
         removeThread(userId, lid, {
           threadid: deletePost.threadid,
         }).then((res) => {
-          if (res.status === 0) {
-            Toast.show({
-              type: 'success',
-              content: intl.formatMessage({ id: 'deleteSuccess' }),
-              onDidHide: () => {
+          this.setState(
+            {
+              loading: false,
+            },
+            () => {
+              if (res.status === 0) {
+                Toast.success('deleteSuccess');
                 this.getData(true);
-              },
-            });
-          } else {
-            Toast.show({
-              content: intl.formatMessage({ id: 'loadError' }),
-            });
-          }
+              } else {
+                Toast.info(
+                  `${formatMessage({ id: 'operateError' })} ${res.status}`
+                );
+              }
+            }
+          );
         });
       }
     );
@@ -377,7 +376,7 @@ class List extends React.Component {
       intl: { formatMessage },
       history,
     } = this.props;
-    const { pageStatus, postsList, deleteTipDailog, showDelete } = this.state;
+    const { pageStatus, showDelete, loading } = this.state;
     const pageConfig = {
       status: pageStatus,
       onRefresh: () => {
@@ -434,6 +433,7 @@ class List extends React.Component {
             </div>
           )}
         </div>
+        {loading && <Loading />}
       </Page>
     );
   }

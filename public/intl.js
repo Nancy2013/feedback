@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-22 17:21:36
+ * @LastEditTime: 2021-07-23 14:51:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -35,10 +35,17 @@ var __APP_STRINGS__ = {
     pageText:
       '{status,select,null {没有反馈意见} error {哎呀。有一个小故障。} delete {反馈已被删除} }',
     delFeedback: '删除',
+    errorText: '{status,select,0 {添加} 1 {删除}}失败',
+    uploadingImage: '图片还在上传，请稍后',
+    operateSuccess: '操作成功',
+    operateError: '操作失败',
 
     //Modal
     'internal.Modal.confirm': '确定',
     'internal.Modal.cancel': '取消',
+
+    //ActivityIndicator
+    'internal.ActivityIndicator.loading': '加载中',
 
     // 无效
     community_theme_1006: '功能建议',
@@ -74,10 +81,16 @@ var __APP_STRINGS__ = {
     pageText:
       '{status,select,null {No feedback} error {Oops. There is a glitch.} delete {Feedback has been deleted} }',
     delFeedback: 'Delete feedback',
+    uploadingImage: 'Uploading image, please wait',
+    operateSuccess: 'operate success',
+    operateError: 'operate error',
 
     //Modal
     'internal.Modal.confirm': 'YES',
     'internal.Modal.cancel': 'Cancel',
+
+    //ActivityIndicator
+    'internal.ActivityIndicator.loading': 'Loading',
 
     // 无效
     community_theme_1006: 'Suggestions',

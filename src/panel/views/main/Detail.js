@@ -2,19 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import NavBar from 'componentsPath/dna/NavBar';
 import Page from 'componentsPath/dna/Page';
-import Toast from '../../components/Toast';
+import Toast from 'componentsPath/Toast';
+import Loading from 'componentsPath/ActivityIndicator';
 import PageStatus from './PageStatus';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
-import {
-  getPostDetail,
-  removeThread,
-  setResolved,
-  removePost,
-  rePly,
-  followPost,
-  unFollowPost,
-} from 'servicesPath';
+import { getPostDetail, setResolved, removePost } from 'servicesPath';
 import Device from 'componentsPath/device.js';
 import UserInfo from '../../components/UserInfo';
 import Scroller from '../../components/Scroller';
@@ -46,6 +39,7 @@ class PostDetail extends React.Component {
       replyObj: {}, // 回复的对象
       showDelete: false,
       showEnd: false,
+      loading: false,
     };
     this.postMap = {};
     this.scrollY = 0;
@@ -66,7 +60,6 @@ class PostDetail extends React.Component {
       getPostDetail(userId, lid, {
         threadid: Number(match.params.threadid),
       }).then((res) => {
-        Toast.hide();
         if (res.status === 0 && res.result) {
           this.allPosts = [...res.result.thread.posts];
           this.allPosts.forEach((_e, _i) => {
@@ -134,62 +127,18 @@ class PostDetail extends React.Component {
       });
     }
   }
-  handleBackHome() {
-    const { history } = this.props;
-    history.push({
-      pathname: '/',
-    });
-  }
-  // 确认删除帖子
-  handleSureDeletePost() {
-    const { postDetail } = this.state;
-    let { userId, lid, intl, history } = this.props;
-    Toast.show({
-      type: 'loading',
-      autoHide: false,
-      content: intl.formatMessage({ id: 'loading' }),
-    });
-    removeThread(userId, lid, {
-      threadid: postDetail.threadid,
-    }).then((res) => {
-      if (res.status === 0) {
-        Toast.show({
-          type: 'success',
-          content: intl.formatMessage({ id: 'deleteSuccess' }),
-          onDidHide: () => {
-            history.goBack();
-          },
-        });
-      } else {
-        Toast.show({
-          content: intl.formatMessage({
-            id: res.status,
-            defaultMessage: intl.formatMessage(
-              { id: 'unknowError' },
-              { code: res.status }
-            ),
-          }),
-        });
-      }
-    });
-  }
-  handleCancelDelet() {
-    this.setState({
-      showDelete: false,
-    });
-  }
+
   // 问题已解决
   handleSureResolved() {
     const { postDetail } = this.state;
-    const { userId, lid, intl } = this.props;
+    const {
+      userId,
+      lid,
+      intl: { formatMessage },
+    } = this.props;
     if (requestLock) {
       return;
     }
-    Toast.show({
-      type: 'loading',
-      autoHide: false,
-      content: intl.formatMessage({ id: 'loading' }),
-    });
     requestLock = true;
     setResolved(userId, lid, {
       threadid: postDetail.threadid,
@@ -199,68 +148,48 @@ class PostDetail extends React.Component {
       if (res.status === 0) {
         let newPostDetail = { ...postDetail };
         newPostDetail.resolved = 1;
-        this.setState(
-          {
-            postDetail: { ...newPostDetail },
-          },
-          () => {
-            Toast.hide();
-          }
-        );
-      } else {
-        Toast.show({
-          content: intl.formatMessage({
-            id: res.status,
-            defaultMessage: intl.formatMessage(
-              { id: 'unknowError' },
-              { code: res.status }
-            ),
-          }),
+        this.setState({
+          postDetail: { ...newPostDetail },
         });
+        Toast.success('operateSuccess');
+      } else {
+        Toast.info(`${formatMessage({ id: 'operateError' })} ${res.status}`);
       }
     });
   }
   // 删除评论
   handleDeleteReply() {
     const reply = this.deleteReply;
-    const { userId, lid, intl } = this.props;
-    Toast.show({
-      type: 'loading',
-      autoHide: false,
-      content: intl.formatMessage({ id: 'loading' }),
-    });
-    this.scrollY = this.scrollerChild.jroll.y || 0;
-    removePost(userId, lid, {
-      postid: reply.postid,
-    }).then((res) => {
-      if (res.status === 0) {
-        Toast.show({
-          type: 'success',
-          content: intl.formatMessage({ id: 'deleteSuccess' }),
-          onDidHide: () => {
-            this.getData();
-          },
-        });
-      } else {
-        Toast.show({
-          content: intl.formatMessage({
-            id: res.status,
-            defaultMessage: intl.formatMessage(
-              { id: 'unknowError' },
-              { code: res.status }
-            ),
-          }),
-        });
-      }
-    });
-  }
-  handleOnload() {
+    const {
+      userId,
+      lid,
+      intl: { formatMessage },
+    } = this.props;
     this.setState(
       {
-        pageStatus: 'loading',
+        loading: true,
       },
       () => {
-        this.getData();
+        this.scrollY = this.scrollerChild.jroll.y || 0;
+        removePost(userId, lid, {
+          postid: reply.postid,
+        }).then((res) => {
+          this.setState(
+            {
+              loading: false,
+            },
+            () => {
+              if (res.status === 0) {
+                Toast.success('deleteSuccess');
+                this.getData();
+              } else {
+                Toast.info(
+                  `${formatMessage({ id: 'operateError' })} ${res.status}`
+                );
+              }
+            }
+          );
+        });
       }
     );
   }
@@ -298,101 +227,7 @@ class PostDetail extends React.Component {
   onScrollRef = (ref) => {
     this.scrollerChild = ref;
   };
-  /** 发送回复
-   * @method onSendReply
-   */
-  onSendReply(msg, cb) {
-    const { userInfo, userId, lid, intl } = this.props;
-    const { postDetail, replyObj } = this.state;
-    const params = {
-      threadid: postDetail.threadid,
-      forumtag: postDetail.forumtag,
-      userid: userInfo.userId, // 用户ID
-      username: userInfo.nickName, // 用户昵称
-      usericon: userInfo.userIcon, // 用户头像地址
-      replypostid: replyObj.postid || 0, // 回复另外一个回帖; 0-表示回复主题
-      ...msg,
-    };
-    Toast.show({
-      type: 'loading',
-      content: intl.formatMessage({ id: 'loading' }),
-      autoHide: false,
-    });
-    this.scrollY =
-      (this.scrollerChild.jroll && this.scrollerChild.jroll.y) || 0;
-    rePly(userId, lid, params).then((res) => {
-      if (res.status === 0) {
-        this.getData();
-        this.setState(
-          {
-            focus: false,
-          },
-          cb && cb(res)
-        );
-      } else {
-        Toast.show({
-          content: intl.formatMessage({
-            id: res.status,
-            defaultMessage: intl.formatMessage(
-              { id: 'unknowError' },
-              { code: res.status }
-            ),
-          }),
-        });
-        cb && cb(res);
-      }
-    });
-  }
-  /** 订阅问题
-   * @method handleFollow
-   */
-  handleFollow() {
-    const { userId, lid, intl } = this.props;
-    const { postDetail } = this.state;
-    if (postDetail.follow) {
-      unFollowPost(userId, lid, { threadid: postDetail.threadid }).then(
-        (res) => {
-          if (res.status === 0) {
-            const newPostDetail = { ...postDetail };
-            newPostDetail.follow = 0;
-            this.setState({
-              postDetail: { ...newPostDetail },
-            });
-          } else {
-            Toast.show({
-              content: intl.formatMessage({
-                id: res.status,
-                defaultMessage: intl.formatMessage(
-                  { id: 'unknowError' },
-                  { code: res.status }
-                ),
-              }),
-            });
-          }
-        }
-      );
-    } else {
-      followPost(userId, lid, { threadid: postDetail.threadid }).then((res) => {
-        if (res.status === 0) {
-          const newPostDetail = { ...postDetail };
-          newPostDetail.follow = 1;
-          this.setState({
-            postDetail: { ...newPostDetail },
-          });
-        } else {
-          Toast.show({
-            content: intl.formatMessage({
-              id: res.status,
-              defaultMessage: intl.formatMessage(
-                { id: 'unknowError' },
-                { code: res.status }
-              ),
-            }),
-          });
-        }
-      });
-    }
-  }
+  // 唤起回复
   handleClickReplayItem(reply) {
     this.setState(
       {
@@ -403,17 +238,14 @@ class PostDetail extends React.Component {
       }
     );
   }
+  // 回复
+  reply = () => {
+    const { postDetail, replyObj } = this.state;
+    const { history } = this.props;
+    history.push(`/add/${postDetail.threadid}/${replyObj.postid}`);
+  };
   onRef(ref) {
     this.replyInput = ref;
-  }
-  // 点击回复的按钮唤起回复帖子
-  handleClickReplyPost() {
-    const { postDetail } = this.state;
-    this.setState({
-      replyFlag: `${postDetail.threadid}_0`,
-      focus: true,
-      replyObj: {},
-    });
   }
   handleHideDelete() {
     this.setState({
@@ -436,15 +268,11 @@ class PostDetail extends React.Component {
       }
     );
   }
-  // 回复
-  reply = () => {
-    const { postDetail, replyObj } = this.state;
-    const { history } = this.props;
-    history.push(`/add/${postDetail.threadid}/${replyObj.postid}`);
-  };
+
   render() {
     const { intl, urlPrefix } = this.props;
-    const { pageStatus, postDetail, posts, showDelete, showEnd } = this.state;
+    const { pageStatus, postDetail, posts, showDelete, showEnd, loading } =
+      this.state;
     let time = formatTime(postDetail.ctime);
     time =
       time === 'yesterday' || time === 'today'
@@ -597,6 +425,7 @@ class PostDetail extends React.Component {
             </div>
           )}
         </div>
+        {loading && <Loading />}
       </Page>
     );
   }
