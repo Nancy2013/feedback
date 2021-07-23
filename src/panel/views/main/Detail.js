@@ -9,6 +9,7 @@ import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import { getPostDetail, setResolved, removePost } from 'servicesPath';
 import Device from 'componentsPath/device.js';
+import Modal from 'componentsPath/Modal';
 import UserInfo from '../../components/UserInfo';
 import Scroller from '../../components/Scroller';
 import ReplyItem from './ReplyItem.js';
@@ -259,14 +260,16 @@ class PostDetail extends React.Component {
     });
   }
   handleDeleteReplyDialog() {
-    this.setState(
-      {
-        showDelete: false,
-      },
-      () => {
-        this.handleDeleteReply();
-      }
-    );
+    const {
+      intl: { formatMessage },
+    } = this.props;
+    this.setState({
+      showDelete: false,
+    });
+    Modal.confirm(formatMessage({ id: 'deleteTip' }, { status: 1 }), () => {
+      this.handleDeleteReply();
+      return true;
+    });
   }
 
   render() {

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-23 15:54:13
+ * @LastEditTime: 2021-07-23 17:08:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -14,6 +14,7 @@ import Toast from 'componentsPath/Toast';
 import Loading from 'componentsPath/ActivityIndicator';
 import NavBar from 'componentsPath/dna/NavBar';
 import Page from 'componentsPath/dna/Page';
+import Modal from 'componentsPath/Modal';
 import Device from 'componentsPath/device';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import { selectPicture, uploadFileByApp } from '@/sdk';
@@ -57,18 +58,6 @@ class ReplyInput extends React.PureComponent {
   }
   componentWillReceiveProps(nextProps) {
     const { replyFlag, message, files } = this.state;
-    // if (nextProps.foucus !== this.state.focus) {
-    //   this.setState(
-    //     {
-    //       focus: nextProps.focus,
-    //     },
-    //     () => {
-    //       if (nextProps.focus) {
-    //         this.rePlyText.focus();
-    //       }
-    //     }
-    //   );
-    // }
     if (nextProps.replyFlag !== replyFlag) {
       let oldFiles = [];
       files.forEach((_e) => {
@@ -94,21 +83,6 @@ class ReplyInput extends React.PureComponent {
       });
     }
   }
-  clearInput() {
-    this.setState({
-      message: '',
-      files: [],
-    });
-  }
-  // handleClickFocus() {
-  //   if (this.props.handleFocusThread) {
-  //     this.props.handleFocusThread();
-  //   } else {
-  //     this.setState({
-  //       focus: true,
-  //     });
-  //   }
-  // }
   handleChangeDesc(e) {
     const v = e.target.value;
     let len1 = v.match(/[\u4E00-\u9FA5]/g)
@@ -306,27 +280,26 @@ class ReplyInput extends React.PureComponent {
     message = message.replace(/^(?:[\n\r\s]*)|(?:[\n\r\s]*)$/g, '');
     if (message || (filesList && filesList.length > 0)) {
       requestLock = true;
-      this.onSend &&
-        this.onSend(
-          {
-            files: filesList,
-            message: message,
-          },
-          (res) => {
-            requestLock = false;
-            this.msgHistory[replyFlag] = {
+      this.onSend(
+        {
+          files: filesList,
+          message: message,
+        },
+        (res) => {
+          requestLock = false;
+          this.msgHistory[replyFlag] = {
+            message: '',
+            files: [],
+          };
+          if (res.status === 0) {
+            this.setState({
+              focus: false,
               message: '',
               files: [],
-            };
-            if (res.status === 0) {
-              this.setState({
-                focus: false,
-                message: '',
-                files: [],
-              });
-            }
+            });
           }
-        );
+        }
+      );
     }
   }
 
@@ -416,6 +389,20 @@ class ReplyInput extends React.PureComponent {
       isOpenView: false,
     });
   }
+  leftHandle = (msg, len) => {
+    const {
+      history,
+      intl: { formatMessage },
+    } = this.props;
+    if (msg || len) {
+      Modal.confirm(formatMessage({ id: 'exitTip' }), () => {
+        history.goBack();
+        return true;
+      });
+    } else {
+      history.goBack();
+    }
+  };
   render() {
     const { intl } = this.props;
     const { message, files, isOpenView, viewIndex, viewFiles, loading } =
@@ -449,6 +436,7 @@ class ReplyInput extends React.PureComponent {
               handler: this.handleSendBtn.bind(this),
             }}
             disbled={!(message2.length > 0 || showLen > 0)}
+            leftHandle={() => this.leftHandle(message2, showLen)}
           />
           <div
             className={style.replyBoxInput}

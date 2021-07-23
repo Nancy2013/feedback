@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-23 14:51:39
+ * @LastEditTime: 2021-07-23 16:27:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -39,6 +39,8 @@ var __APP_STRINGS__ = {
     uploadingImage: '图片还在上传，请稍后',
     operateSuccess: '操作成功',
     operateError: '操作失败',
+    deleteTip: '确定要删除当前{status,select,0 {反馈} 1 {回复}}？',
+    exitTip: '退出后，内容将被删除，确认退出？',
 
     //Modal
     'internal.Modal.confirm': '确定',
@@ -49,7 +51,7 @@ var __APP_STRINGS__ = {
 
     // 无效
     community_theme_1006: '功能建议',
-    deletePostTip: '确定要删除当前反馈？',
+
     replyToName: '回复{name}',
   },
   en: {
@@ -84,6 +86,7 @@ var __APP_STRINGS__ = {
     uploadingImage: 'Uploading image, please wait',
     operateSuccess: 'operate success',
     operateError: 'operate error',
+    exitTip: 'After exit, the content will be deleted, confirm exit?',
 
     //Modal
     'internal.Modal.confirm': 'YES',

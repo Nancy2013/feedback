@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-23 15:58:18
+ * @LastEditTime: 2021-07-23 16:59:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -251,7 +251,7 @@ class List extends React.Component {
     this.setState({
       showDelete: false,
     });
-    Modal.confirm(formatMessage({ id: 'deletePostTip' }), () => {
+    Modal.confirm(formatMessage({ id: 'deleteTip' }, { status: 0 }), () => {
       this.handleDelete();
       return true;
     });
