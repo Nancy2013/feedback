@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-23 15:56:01
+ * @LastEditTime: 2021-07-23 15:58:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -286,9 +286,8 @@ class List extends React.Component {
                 Toast.success('deleteSuccess');
                 this.getData(true);
               } else {
-                Toast.info(
-                  `${formatMessage({ id: 'operateError' })} ${res.status}`
-                );
+                const error = res ? res.msg || res.status : '';
+                Toast.info(`${formatMessage({ id: 'operateError' })}${error}`);
               }
             }
           );

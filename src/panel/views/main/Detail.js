@@ -153,7 +153,8 @@ class PostDetail extends React.Component {
         });
         Toast.success('operateSuccess');
       } else {
-        Toast.info(`${formatMessage({ id: 'operateError' })} ${res.status}`);
+        const error = res ? res.msg || res.status : '';
+        Toast.info(`${formatMessage({ id: 'operateError' })}${error}`);
       }
     });
   }
@@ -183,9 +184,8 @@ class PostDetail extends React.Component {
                 Toast.success('deleteSuccess');
                 this.getData();
               } else {
-                Toast.info(
-                  `${formatMessage({ id: 'operateError' })} ${res.status}`
-                );
+                const error = res ? res.msg || res.status : '';
+                Toast.info(`${formatMessage({ id: 'operateError' })}${error}`);
               }
             }
           );
