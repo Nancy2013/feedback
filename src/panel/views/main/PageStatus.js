@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-14 10:33:22
- * @LastEditTime: 2021-07-21 16:21:08
+ * @LastEditTime: 2021-07-22 10:48:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\panel\views\main\EmptyPage.js
@@ -23,14 +23,18 @@ const Component = (props) => {
   } = props;
   return (
     <div
-      className={classNames(style.empty, style.topBox, {
+      className={classNames(style.pageStatus, style.topBox, {
         [style.topBoxX]: Device.isIphoneX,
       })}
     >
       <div className={style.img}>
         <img src={imgs[status]} alt="" />
       </div>
-      <div className={style.text}> {formatMessage({ id: status })}</div>
+
+      <div className={style.text}>
+        {formatMessage({ id: 'pageText' }, { status })}
+      </div>
+
       {status === 'error' && (
         <div
           className={style.refresh}

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-21 16:25:08
+ * @LastEditTime: 2021-07-22 17:21:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -15,8 +15,6 @@ var __APP_STRINGS__ = {
     success: '提交成功!',
     successText: '您的反馈将被发送到我们的服务人员，我们将尽快为您解决问题。',
     reload: '重新加载',
-    null: '没有反馈意见',
-    error: '加载失败，请检查网络状态',
     today: '今日',
     yesterday: '昨日',
     resolved: '已解决',
@@ -26,7 +24,6 @@ var __APP_STRINGS__ = {
     cancel: '取消',
     delete: '删除',
     detail: '反馈详情',
-    postHasBeenDeleted: '反馈已被删除',
     comment: '发评论',
     send: '发送',
     submit: '提交',
@@ -35,6 +32,9 @@ var __APP_STRINGS__ = {
     deleteSuccess: '删除成功',
     replyText: '写下回复...',
     addFeedback: '请尽可能详细地描述您的问题',
+    pageText:
+      '{status,select,null {没有反馈意见} error {哎呀。有一个小故障。} delete {反馈已被删除} }',
+    delFeedback: '删除',
 
     //Modal
     'internal.Modal.confirm': '确定',
@@ -53,9 +53,7 @@ var __APP_STRINGS__ = {
     success: 'Submitted Successful!',
     successText:
       'Your feedback will be sent to our service staff, we will solve the problem for you as soon as possible',
-    reload: 'reload',
-    null: 'No feedback',
-    error: 'Loading failed, please check network status',
+    reload: 'Load again',
     today: 'Today',
     yesterday: 'Yesterday',
     resolved: 'Solved',
@@ -65,7 +63,6 @@ var __APP_STRINGS__ = {
     cancel: 'Cancel',
     delete: 'Delete',
     detail: 'Feedback details',
-    postHasBeenDeleted: 'Feedback has been deleted.',
     comment: 'Comment',
     send: 'Send',
     submit: 'Submit',
@@ -74,10 +71,13 @@ var __APP_STRINGS__ = {
     deleteSuccess: 'Deleted',
     replyText: 'Write a reply…',
     addFeedback: 'please desvribe your problem as detailed as possible',
+    pageText:
+      '{status,select,null {No feedback} error {Oops. There is a glitch.} delete {Feedback has been deleted} }',
+    delFeedback: 'Delete feedback',
 
     //Modal
-    'internal.Modal.confirm': 'confirm',
-    'internal.Modal.cancel': 'cancel',
+    'internal.Modal.confirm': 'YES',
+    'internal.Modal.cancel': 'Cancel',
 
     // 无效
     community_theme_1006: 'Suggestions',

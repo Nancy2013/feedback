@@ -1,22 +1,23 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 09:49:11
+ * @LastEditTime: 2021-07-22 17:19:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
  */
 import React from 'react';
 import classNames from 'classnames';
+import Device from 'componentsPath/device.js';
 import Toast from './../../components/Toast';
 import MyScroll from '@/panel/components/Scroller';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import NavBar from 'componentsPath/dna/NavBar';
-import EmptyPage from './EmptyPage';
+import PageStatus from './PageStatus';
 import Page from 'componentsPath/dna/Page';
+import FixBottom from 'componentsPath/dna/FixBottom';
 import Modal from 'componentsPath/Modal';
-import PopupBtn from './../../components/PopupBtn';
 import { getMyPosts, setResolved, removeThread } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
 import add from '@/panel/images/add.svg';
@@ -45,7 +46,6 @@ class List extends React.Component {
   componentDidMount() {
     this.getData(true);
   }
-  componentWillReceiveProps(nextProps) {}
   componentWillUnmount() {
     this.setState = (state, callback) => {
       return;
@@ -385,13 +385,16 @@ class List extends React.Component {
       },
     };
     return (
-      <Page>
+      <Page
+        className={classNames({ [style.paddingBottomX]: Device.isIphoneX })}
+      >
         <div className={classNames(style.messagePage)}>
           <NavBar
             title={formatMessage({ id: 'feedBack' })}
             exit
             opacity
             color={'#000'}
+            className={style.navbarHook}
             right={{
               icon: add,
               handler: () => {
@@ -406,23 +409,30 @@ class List extends React.Component {
             >
               {pageStatus === 'success' && this.renderList()}
               {(pageStatus === 'null' || pageStatus === 'error') && (
-                <EmptyPage {...pageConfig} />
+                <PageStatus {...pageConfig} />
               )}
               {pageStatus === 'loading' && <LoadingPage />}
             </div>
           </div>
-          <PopupBtn
-            visible={showDelete}
-            cancelText={formatMessage({ id: 'cancel' })}
-            clickMask={this.handleHideDelete.bind(this)}
-            clickCancel={this.handleHideDelete.bind(this)}
-            btnList={[
-              {
-                text: formatMessage({ id: 'delete' }),
-                handler: this.handleDeletePostDialog.bind(this),
-              },
-            ]}
-          />
+          {showDelete && (
+            <div>
+              <div
+                ref="element"
+                className={style.maskLayer}
+                onClick={this.handleHideDelete.bind(this)}
+              ></div>
+              <FixBottom adaptToX="padding" className={style.popBottom}>
+                <div className={style.bottomBtn}>
+                  <div onClick={this.handleDeletePostDialog.bind(this)}>
+                    {formatMessage({ id: 'delFeedback' })}
+                  </div>
+                  <div onClick={this.handleHideDelete.bind(this)}>
+                    {formatMessage({ id: 'cancel' })}
+                  </div>
+                </div>
+              </FixBottom>
+            </div>
+          )}
         </div>
       </Page>
     );

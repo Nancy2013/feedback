@@ -10,6 +10,33 @@
   padding: 0.4rem;
 }
 
+.paddingBottomX {
+  padding-bottom: 0.90666667rem;
+}
+
+.popBottom {
+  z-index: @maskLayer-z-index !important;
+}
+
+.bottomBtn {
+  text-align: center;
+  // background: @white;
+  color: @black;
+  .px2px(font-size,36px);
+
+  div {
+    padding: 30px;
+    background: @white;
+    &:first-child {
+      border-radius: 32px 32px 4px 4px;
+    }
+
+    &:last-child {
+      border-top: 0.16rem @border-style-base rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
 // 成功界面
 .success {
   background: @white;
@@ -24,11 +51,14 @@
     .px2px(font-size,28px);
     color: @black-3;
   }
-  .clear::after {
-    clear: both;
-  }
 }
 // components hook css
+.navbarHook {
+  border-bottom: @border-width-min solid @gray-5;
+}
+.navbarHook > div {
+  background: @gray-2;
+}
 .fixedBtn {
   width: 100%;
   padding: 0.3733rem;
@@ -38,7 +68,7 @@
   .px2px(font-size,32px);
 }
 
-.empty {
+.pageStatus {
   padding-top: 2.4533rem;
   text-align: center;
   img {
@@ -46,7 +76,7 @@
     height: 2.7467rem;
   }
   .text {
-    padding: 0.56rem 0;
+    padding: 0.56rem 0 1.3867rem 0;
     .px2px(font-size,30px);
     color: @gray-4;
   }
@@ -54,8 +84,8 @@
     display: inline-block;
     background: @theme-color;
     color: @white;
-    .px2px(font-size,28px);
-    padding: 0.2667rem 0.5333rem;
+    .px2px(font-size,32px);
+    padding: 0.2933rem 0.8267rem;
     border-radius: @border-radius-base;
   }
 }

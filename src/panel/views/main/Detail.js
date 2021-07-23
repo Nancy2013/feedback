@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import NavBar from 'componentsPath/dna/NavBar';
 import Page from 'componentsPath/dna/Page';
 import Toast from '../../components/Toast';
-import Dialog from '../../components/Dialog';
-import PageStatus from '../../components/PageStatus';
+import PageStatus from './PageStatus';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import {
@@ -21,7 +20,7 @@ import UserInfo from '../../components/UserInfo';
 import Scroller from '../../components/Scroller';
 import ReplyItem from './ReplyItem.js';
 import ImagesList from '../../components/ImagesList';
-import PopupBtn from '../../components/PopupBtn';
+import FixBottom from 'componentsPath/dna/FixBottom';
 import { formatTag, formatTime } from 'utilsPath';
 import style from 'stylesPath/index.less';
 import edit from '@/panel/images/editor.svg';
@@ -35,7 +34,6 @@ class PostDetail extends React.Component {
     this.state = {
       pageStatus: 'loading',
       postDetail: {},
-      deleteTipDailog: false,
       forumtag:
         (props.location &&
           props.location.state &&
@@ -55,6 +53,11 @@ class PostDetail extends React.Component {
   }
   componentDidMount() {
     this.getData();
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.userId !== prevProps.userId) {
+      this.getData();
+    }
   }
   getData() {
     let { userId, lid, match } = this.props;
@@ -137,12 +140,6 @@ class PostDetail extends React.Component {
       pathname: '/',
     });
   }
-  // 删除帖子 TODO无效
-  handleDeletePost() {
-    this.setState({
-      deleteTipDailog: true,
-    });
-  }
   // 确认删除帖子
   handleSureDeletePost() {
     const { postDetail } = this.state;
@@ -152,40 +149,32 @@ class PostDetail extends React.Component {
       autoHide: false,
       content: intl.formatMessage({ id: 'loading' }),
     });
-    this.setState(
-      {
-        deleteTipDailog: false,
-      },
-      () => {
-        removeThread(userId, lid, {
-          threadid: postDetail.threadid,
-        }).then((res) => {
-          if (res.status === 0) {
-            Toast.show({
-              type: 'success',
-              content: intl.formatMessage({ id: 'deleteSuccess' }),
-              onDidHide: () => {
-                history.goBack();
-              },
-            });
-          } else {
-            Toast.show({
-              content: intl.formatMessage({
-                id: res.status,
-                defaultMessage: intl.formatMessage(
-                  { id: 'unknowError' },
-                  { code: res.status }
-                ),
-              }),
-            });
-          }
+    removeThread(userId, lid, {
+      threadid: postDetail.threadid,
+    }).then((res) => {
+      if (res.status === 0) {
+        Toast.show({
+          type: 'success',
+          content: intl.formatMessage({ id: 'deleteSuccess' }),
+          onDidHide: () => {
+            history.goBack();
+          },
+        });
+      } else {
+        Toast.show({
+          content: intl.formatMessage({
+            id: res.status,
+            defaultMessage: intl.formatMessage(
+              { id: 'unknowError' },
+              { code: res.status }
+            ),
+          }),
         });
       }
-    );
+    });
   }
   handleCancelDelet() {
     this.setState({
-      deleteTipDailog: false,
       showDelete: false,
     });
   }
@@ -454,41 +443,29 @@ class PostDetail extends React.Component {
     history.push(`/add/${postDetail.threadid}/${replyObj.postid}`);
   };
   render() {
-    const { intl, userId, lid, urlPrefix, urlParams } = this.props;
-    const {
-      pageStatus,
-      postDetail,
-      forumtag,
-      deleteTipDailog,
-      posts,
-      focus,
-      replyFlag,
-      replyObj,
-      showDelete,
-      showEnd,
-    } = this.state;
+    const { intl, urlPrefix } = this.props;
+    const { pageStatus, postDetail, posts, showDelete, showEnd } = this.state;
     let time = formatTime(postDetail.ctime);
     time =
       time === 'yesterday' || time === 'today'
         ? intl.formatMessage({ id: time })
         : time;
-    const right = {
-      text: '',
+    const pageConfig = {
+      status: pageStatus,
+      onRefresh: () => {
+        this.getData();
+      },
     };
-    // TODO isIphoneX属性
     return (
-      <Page>
-        <div
-          className={classNames(style.postDetailPage, {
-            isPC: Device.isPC,
-            isIphoneX: Device.isIphoneX,
-          })}
-          ref={(el) => (this.el = el)}
-        >
+      <Page
+        className={classNames({ [style.paddingBottomX]: Device.isIphoneX })}
+      >
+        <div className={style.postDetailPage} ref={(el) => (this.el = el)}>
           <NavBar
             title={intl.formatMessage({ id: 'detail' })}
             opacity
             color={'#000'}
+            className={style.navbarHook}
           />
           {pageStatus === 'success' && postDetail ? (
             <Scroller
@@ -589,28 +566,9 @@ class PostDetail extends React.Component {
             </Scroller>
           ) : null}
           {pageStatus === 'loading' ? <LoadingPage /> : null}
-          {pageStatus === 'null' ? (
-            <PageStatus
-              status={'null'}
-              text={intl.formatMessage({ id: 'nullData' })}
-            />
-          ) : null}
-          {pageStatus === 'delete' ? (
-            <PageStatus
-              status={'null'}
-              text={intl.formatMessage({ id: 'postHasBeenDeleted' })}
-            />
-          ) : null}
-          {
-            //  加载失败
-            pageStatus === 'error' ? (
-              <PageStatus
-                status={'error'}
-                text={intl.formatMessage({ id: 'loadError' })}
-                onRefresh={this.handleOnload.bind(this)}
-              />
-            ) : null
-          }
+          {(pageStatus === 'null' ||
+            pageStatus === 'error' ||
+            pageStatus === 'delete') && <PageStatus {...pageConfig} />}
           {pageStatus === 'success' ? (
             <div className={style.replyBox} onClick={this.reply}>
               <div className={style.placeBox}>
@@ -619,26 +577,25 @@ class PostDetail extends React.Component {
               </div>
             </div>
           ) : null}
-          <PopupBtn
-            visible={showDelete}
-            cancelText={intl.formatMessage({ id: 'cancel' })}
-            clickMask={this.handleHideDelete.bind(this)}
-            clickCancel={this.handleHideDelete.bind(this)}
-            btnList={[
-              {
-                text: intl.formatMessage({ id: 'delete' }),
-                handler: this.handleDeleteReplyDialog.bind(this),
-              },
-            ]}
-          />
-          <Dialog
-            visible={deleteTipDailog}
-            text={intl.formatMessage({ id: 'deletePostTip' })}
-            confirmText={intl.formatMessage({ id: 'delete' })}
-            cancelText={intl.formatMessage({ id: 'cancel' })}
-            onConfirm={this.handleSureDeletePost.bind(this)}
-            onCancel={this.handleCancelDelet.bind(this)}
-          />
+          {showDelete && (
+            <div>
+              <div
+                ref="element"
+                className={style.maskLayer}
+                onClick={this.handleHideDelete.bind(this)}
+              ></div>
+              <FixBottom adaptToX="padding" className={style.popBottom}>
+                <div className={style.bottomBtn}>
+                  <div onClick={this.handleDeleteReplyDialog.bind(this)}>
+                    {intl.formatMessage({ id: 'delFeedback' })}
+                  </div>
+                  <div onClick={this.handleHideDelete.bind(this)}>
+                    {intl.formatMessage({ id: 'cancel' })}
+                  </div>
+                </div>
+              </FixBottom>
+            </div>
+          )}
         </div>
       </Page>
     );

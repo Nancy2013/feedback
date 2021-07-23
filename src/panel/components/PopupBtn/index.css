@@ -1,43 +1,44 @@
-.popupBtn{
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: 20000;
-    top: 0;
-    left: 0;
+.popupBtn {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 20000;
+  top: 0;
+  left: 0;
 }
-.popupBtn.isIphoneX .popupBtnWrap{
-    padding-bottom: 1.2rem;
+.popupBtn.isIphoneX .popupBtnWrap {
+  padding-bottom: 1.2rem;
 }
-.popupBtn .mask{
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: 2005;
-    background:rgba(0,0,0,0.4);
+.popupBtn .mask {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 2005;
+  background: rgba(0, 0, 0, 0.4);
 }
-.popupBtn .popupBtnWrap{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 2006;
-    padding: 0 0.266667rem 0.266667rem;
-    box-sizing: border-box;
+.popupBtn .popupBtnWrap {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 2006;
+  padding: 0 0.266667rem 0.266667rem;
+  box-sizing: border-box;
 }
-.popupBtn .btnList{
-    background: #fff;
-    border-radius: 0.346667rem;
+.popupBtn .btnList {
+  background: #fff;
+  border-radius: 0.346667rem;
 }
-.popupBtn .cancelBtn, .popupBtn .btnItem{
-    font-size: 0.533333rem;
-    font-weight:400;
-    color:rgba(0,122,255,1);
-    height: 1.52rem;
-    line-height: 1.52rem;
-    text-align: center;
+.popupBtn .cancelBtn,
+.popupBtn .btnItem {
+  font-size: 0.533333rem;
+  font-weight: 400;
+  color: rgba(0, 122, 255, 1);
+  height: 1.52rem;
+  line-height: 1.52rem;
+  text-align: center;
 }
-.popupBtn .cancelBtn{
-    background: #fff;
-    margin-top: 0.266667rem;
-    border-radius: 0.346667rem;
+.popupBtn .cancelBtn {
+  background: #fff;
+  margin-top: 0.266667rem;
+  border-radius: 0.346667rem;
 }

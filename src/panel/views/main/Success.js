@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-21 10:51:32
+ * @LastEditTime: 2021-07-22 16:13:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -24,18 +24,19 @@ const Component = (props) => {
     history.push('/');
   };
   return (
-    <Page className={style.page}>
+    <Page>
       <NavBar
         title={formatMessage({ id: 'add' })}
         color={'#000'}
         opacity
+        className={style.navbarHook}
         leftHandle={goList}
       />
       <div className={classNames(style.content, style.success)}>
         <div className={style.title}>{formatMessage({ id: 'success' })}</div>
         <div className={style.text}>{formatMessage({ id: 'successText' })}</div>
       </div>
-      <FixBottom adaptToX="padding" className={style.clear}>
+      <FixBottom adaptToX="padding">
         <div className={style.fixedBtn} onClick={goList}>
           {formatMessage({ id: 'done' })}
         </div>
