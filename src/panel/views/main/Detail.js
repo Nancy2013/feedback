@@ -396,18 +396,18 @@ class PostDetail extends React.Component {
               )}
             </Scroller>
           ) : null}
-          {pageStatus === 'loading' ? <LoadingPage /> : null}
+          {pageStatus === 'loading' && <LoadingPage />}
           {(pageStatus === 'null' ||
             pageStatus === 'error' ||
             pageStatus === 'delete') && <PageStatus {...pageConfig} />}
-          {pageStatus === 'success' ? (
+          {pageStatus === 'success' && (
             <div className={style.replyBox} onClick={this.reply}>
               <div className={style.placeBox}>
                 <img src={edit} alt="" className={style.mr15} />
                 {intl.formatMessage({ id: 'replyText' })}
               </div>
             </div>
-          ) : null}
+          )}
           {showDelete && (
             <div>
               <div

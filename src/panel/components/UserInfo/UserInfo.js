@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-15 16:49:31
- * @LastEditTime: 2021-07-21 14:12:49
+ * @LastEditTime: 2021-07-26 10:26:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\panel\components\UserInfo\UserInfo.js
@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import classNames from 'classnames';
 import style from './index.less';
-import DefaultIcon from './images/defaultIcon.png';
 
 class UserInfo extends React.Component {
   static defaultProps = {
@@ -44,7 +43,7 @@ class UserInfo extends React.Component {
     }
   }
   render() {
-    const { icon, name, time, formatTime } = this.props;
+    const { name, time, formatTime } = this.props;
     const { official } = this.state;
     return (
       <div className={classNames(style.userInfo)} ref={(el) => (this.el = el)}>

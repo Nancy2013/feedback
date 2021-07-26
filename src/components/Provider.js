@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-12 16:10:44
- * @LastEditors: your name
+ * @LastEditTime: 2021-07-26 10:30:10
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\components\Provider.js
  */
@@ -10,7 +10,7 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import LocaleProvider from './LocaleProvider';
-import reducer, { getStatus, getReady, getOnline } from './reducers/index';
+import reducer, { getReady } from './reducers/index';
 import Root from './Root';
 import * as actions from './actions/index';
 
@@ -28,7 +28,7 @@ if (process.env.IOT_PLATFORM === 'dna') {
 }
 
 const AutoUpdateRoot = connect((state, props) => {
-  const status = getStatus(state);
+  // const status = getStatus(state);
   return {
     isReady: getReady(state),
     isLoading: state.loading,
