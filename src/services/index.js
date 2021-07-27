@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 17:16:42
- * @LastEditTime: 2021-07-26 11:14:42
+ * @LastEditTime: 2021-07-26 14:53:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\services\appAsk.js
@@ -53,7 +53,7 @@ axios.interceptors.response.use(
 export const postFeedback = (userid = '', lid, params) => {
   console.log('params', params);
   return axios
-    .post('/userfeedback/v2/feedback/post', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/post`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -98,7 +98,7 @@ export const getMyPosts = (userid = '', lid, params) => {
  */
 export const removeThread = (userid = '', lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/removethread', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/removethread`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -119,7 +119,7 @@ export const removeThread = (userid = '', lid, params) => {
  */
 export const setResolved = (userid = '', lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/resolved', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/resolved`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -141,7 +141,7 @@ export const setResolved = (userid = '', lid, params) => {
 export const getPostDetail = (userid, lid, params) => {
   console.log('【getPostDetail】', 'userid: ', userid, ' lid: ', lid);
   return axios
-    .post('/userfeedback/v2/feedback/thread', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/thread`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -172,7 +172,7 @@ export const getFamilyList = (obj) => {
     licenseid: obj.lid.toString(),
     messageId: timestamp.toString(),
   };
-  return axios.post('/appsync/group/member/getfamilylist', params, {
+  return axios.post(`${BASE_URL}/appsync/group/member/getfamilylist`, params, {
     headers: head,
   });
 };
@@ -182,7 +182,7 @@ export const getFamilyList = (obj) => {
  */
 export const removePost = (userid, lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/removepost', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/removepost`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -203,7 +203,7 @@ export const removePost = (userid, lid, params) => {
  */
 export const rePly = (userid, lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/reply', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/reply`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -224,7 +224,7 @@ export const rePly = (userid, lid, params) => {
  */
 export const uploadFile = (userid, lid, file) => {
   return axios
-    .post('/userfeedback/v2/staticfilesys/feebback/upload', file, {
+    .post(`${BASE_URL}/userfeedback/v2/staticfilesys/feebback/upload`, file, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -243,7 +243,7 @@ export const uploadFile = (userid, lid, file) => {
 // 订阅问题 我也有此问题
 export const followPost = (userid, lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/follow', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/follow`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
@@ -264,7 +264,7 @@ export const followPost = (userid, lid, params) => {
  */
 export const unFollowPost = (userid, lid, params) => {
   return axios
-    .post('/userfeedback/v2/feedback/unfollow', params, {
+    .post(`${BASE_URL}/userfeedback/v2/feedback/unfollow`, params, {
       headers: {
         ...commonHeader,
         userid: userid,
