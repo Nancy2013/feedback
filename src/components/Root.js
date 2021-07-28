@@ -1,16 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 16:00:45
- * @LastEditTime: 2021-07-19 17:38:43
+ * @LastEditTime: 2021-07-26 10:31:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\components\Root.js
  */
 import React, { PureComponent } from 'react';
-import * as logic from './logic';
+// import * as logic from './logic';
 import Modal from './Modal';
-import Loading from './ActivityIndicator';
-import { notifyError } from './utils';
+// import Loading from './ActivityIndicator';
 
 function autoCloseModal(Component) {
   const modalsMap = {};
@@ -62,9 +61,7 @@ function autoCloseModal(Component) {
 }
 
 class Root extends PureComponent {
-  componentDidMount() {
-    const { ready } = this.props;
-  }
+  componentDidMount() {}
 
   render() {
     const { children } = this.props;
@@ -73,7 +70,6 @@ class Root extends PureComponent {
         {React.Children.map(children, (child) =>
           React.cloneElement(child, { ...this.props })
         )}
-        {/* {(!isReady || isLoading || !isStatusReady) && <Loading />} */}
       </React.Fragment>
     );
   }

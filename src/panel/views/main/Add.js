@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-23 17:08:56
+ * @LastEditTime: 2021-07-26 10:16:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -109,7 +109,6 @@ class ReplyInput extends React.PureComponent {
   // 点击相机图标上传图片
   handleCamera() {
     const { files } = this.state;
-    const { intl } = this.props;
     selectPicture()
       .then((res) => {
         if (res.status === 0 && res.path) {
@@ -160,7 +159,7 @@ class ReplyInput extends React.PureComponent {
    * @method onSendReply
    */
   onSend = (msg, cb) => {
-    const { userInfo, userId, lid, intl, history } = this.props;
+    const { userInfo, userId, lid } = this.props;
     const { threadid, postid = 0 } = this.props.match.params;
     const { forumtag, personal, category, type } = config;
 
@@ -256,8 +255,6 @@ class ReplyInput extends React.PureComponent {
 
   // 点击发送反馈的信息
   handleSendBtn() {
-    console.log('[requestLock]', requestLock);
-    const { intl } = this.props;
     let { files, message, replyFlag } = this.state;
     if (requestLock) {
       return;
@@ -304,7 +301,6 @@ class ReplyInput extends React.PureComponent {
   }
 
   handlePageBack() {
-    const { intl } = this.props;
     const { files } = this.state;
     let uploading = false;
     files.forEach((_e) => {

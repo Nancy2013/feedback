@@ -148,8 +148,7 @@ class NavBar extends React.PureComponent {
   };
 
   render() {
-    const { title, subtitle, exit, opacity, color, disbled, className } =
-      this.props;
+    const { title, subtitle, opacity, color, disbled, className } = this.props;
     const classes = Array.isArray(className) ? className : [className];
     let right = this.pretreatRight();
     const colorStyle = opacity ? { background: 'none' } : {};

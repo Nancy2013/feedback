@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-23 16:59:46
+ * @LastEditTime: 2021-07-26 10:14:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -64,6 +64,9 @@ class List extends React.Component {
     if (init) {
       this.postParams.page = 1;
     }
+    this.setState({
+      pageStatus: 'loading',
+    });
     getMyPosts(userId, lid, this.postParams).then((res) => {
       if (res.status === 0) {
         if (res.result && res.result.threads && res.result.threads.length > 0) {
@@ -200,7 +203,6 @@ class List extends React.Component {
   }
   //监听长按事件，长按唤出弹窗时间为1s
   touchStart = (e, post) => {
-    const { reply } = this.props;
     canClick = true;
     this.delPost && clearTimeout(this.delPost);
     this.delPost = setTimeout(() => {
