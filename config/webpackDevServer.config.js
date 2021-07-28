@@ -107,9 +107,13 @@ module.exports = function (proxy, allowedHost) {
         },
       },
       '/userfeedback': {
-        // target: 'https://app-service-chn-0335e1f2.ibroadlink.com',
-        // target: 'http://rap2api.taobao.org',
-        target: 'https://101.124.4.2',
+        // target:
+        //   'https://cf7a67e78338c7401deaeb96488f46fbappservice.ibroadlink.com/', // 北美集群
+        // target:
+        //   'https://5eda600025ae5057181daaa2124f79b7appservice.ibroadlink.com', // 欧洲集群
+        target:
+          'https://3079592a830389510fadef125fa3cd71appservice.ibroadlink.com', // 中国集群
+        // target: 'https://101.124.4.2', // 测试环境
         changeOrigin: true,
         secure: false,
         pathRewrite: {
