@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -42,12 +40,15 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
-const JD = 'jd',DNA = 'dna',GOME='gome',ANDLINK='andlink';
-const PLATFORMS = [DNA,JD,GOME,ANDLINK];
+const JD = 'jd',
+  DNA = 'dna',
+  GOME = 'gome',
+  ANDLINK = 'andlink';
+const PLATFORMS = [DNA, JD, GOME, ANDLINK];
 //是否支持自定义场景界面
-const supportCustomScene=appPackage.supportCustomScene;
+const supportCustomScene = appPackage.supportCustomScene;
 //是否支持ios的siri语音功能
-const supportSiri=appPackage.supportSiri;
+const supportSiri = appPackage.supportSiri;
 //使用的哪种平台协议（参数）开发
 const iotProtocol = appPackage.iotProtocol;
 
@@ -56,26 +57,22 @@ const getAlias = require('./alias');
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
-module.exports = function(webpackEnv,webServer,platform) {
-  console.error('webpackEnv',webpackEnv);
+module.exports = function (webpackEnv, webServer, platform) {
+  console.error('webpackEnv', webpackEnv);
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
   //是否在浏览器中运行
   const isRunOnDevServer = !!webServer;
   //当前的平台
-  const iotPlatform = platform||appPackage.iotPlatform||DNA;
+  const iotPlatform = platform || appPackage.iotPlatform || DNA;
 
   const privateSourceMaps = iotPlatform === DNA && isEnvProduction;
 
-  if (!(PLATFORMS.indexOf(iotPlatform)>=0)) {
-      throw new Error(
-          '不支持的平台.'
-      );
+  if (!(PLATFORMS.indexOf(iotPlatform) >= 0)) {
+    throw new Error('不支持的平台.');
   }
-  if (!(PLATFORMS.indexOf(iotProtocol)>=0)) {
-      throw new Error(
-          '不支持的协议.'
-      );
+  if (!(PLATFORMS.indexOf(iotProtocol) >= 0)) {
+    throw new Error('不支持的协议.');
   }
 
   // Webpack uses `publicPath` to determine where the app is being served from.
@@ -136,108 +133,114 @@ module.exports = function(webpackEnv,webServer,platform) {
         loader: require.resolve(preProcessor),
         options: {
           sourceMap: isEnvProduction && shouldUseSourceMap,
-          modifyVars: appPackage.theme
+          modifyVars: appPackage.theme,
         },
       });
     }
     return loaders;
   };
 
-  const newHtmlWebpackPlugin = function (filename,chunk) {
+  const newHtmlWebpackPlugin = function (filename, chunk) {
     return new HtmlWebpackPlugin(
-        Object.assign(
-            {},
-            {
-                //只有在dna平台打包时候，输出的html名为app.html
-                filename : filename,
-                platform:iotPlatform,
-                inject: true,
-                template: paths.appHtml,
-                chunks: [chunk],
-            },
-            isEnvProduction
-                ? {
-                    minify: {
-                        removeComments: true,
-                        collapseWhitespace: true,
-                        removeRedundantAttributes: true,
-                        useShortDoctype: true,
-                        removeEmptyAttributes: true,
-                        removeStyleLinkTypeAttributes: true,
-                        keepClosingSlash: true,
-                        minifyJS: true,
-                        minifyCSS: true,
-                        minifyURLs: true,
-                    },
-                }
-                : undefined
-        )
-    )
+      Object.assign(
+        {},
+        {
+          //只有在dna平台打包时候，输出的html名为app.html
+          filename: filename,
+          platform: iotPlatform,
+          inject: true,
+          template: paths.appHtml,
+          chunks: [chunk],
+        },
+        isEnvProduction
+          ? {
+              minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              },
+            }
+          : undefined
+      )
+    );
   };
-  
+
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
     devtool: isEnvProduction
-      ? (shouldUseSourceMap && !privateSourceMaps ? 'source-map' : false)
-      : (isRunOnDevServer ? 'cheap-module-source-map':'eval') /*'cheap-module-source-map'*/,
+      ? shouldUseSourceMap && !privateSourceMaps
+        ? 'source-map'
+        : false
+      : isRunOnDevServer
+      ? 'cheap-module-source-map'
+      : 'eval' /*'cheap-module-source-map'*/,
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: Object.assign(
-        {},
-        {
-          main:[
-                paths.polyfills,
-                // Include an alternative client for WebpackDevServer. A client's job is to
-                // connect to WebpackDevServer by a socket and get notified about changes.
-                // When you save a file, the client will either apply hot updates (in case
-                // of CSS changes), or refresh the page (in case of JS changes). When you
-                // make a syntax error, this client will display a syntax error overlay.
-                // Note: instead of the default WebpackDevServer client, we use a custom one
-                // to bring better experience for Create React App users. You can replace
-                // the line below with these two lines if you prefer the stock client:
-                // require.resolve('webpack-dev-server/client') + '?/',
-                // require.resolve('webpack/hot/dev-server'),
-                isRunOnDevServer &&
-                require.resolve('webpack-dev-server/client') + '?/',
-                isRunOnDevServer &&
-                require.resolve('webpack/hot/dev-server'),
-                // isRunOnDevServer &&
-                // require.resolve('react-dev-utils/webpackHotDevClient'),
-                // Finally, this is your app's code:
-                paths.appIndexJs,
-                // We include the app code last so that if there is a runtime error during
-                // initialization, it doesn't blow up the WebpackDevServer client, and
-                // changing JS code would still trigger a refresh.
-            ].filter(Boolean)
-        },
-        supportCustomScene && iotPlatform === DNA ?
-            {
-                scene:[
-                    paths.polyfills,
-                    isRunOnDevServer &&
-                    require.resolve('react-dev-utils/webpackHotDevClient'),
-                    paths.customSceneIndexJs,
-                ].filter(Boolean)
-            }:
-            undefined,
-        supportSiri && iotPlatform === DNA ?
-            {
-                siri:[
-                    paths.polyfills,
-                    isRunOnDevServer &&
-                    require.resolve('react-dev-utils/webpackHotDevClient'),
-                    paths.siriIndexJs,
-                ].filter(Boolean)
-            }:
-            undefined
+      {},
+      {
+        main: [
+          paths.polyfills,
+          // Include an alternative client for WebpackDevServer. A client's job is to
+          // connect to WebpackDevServer by a socket and get notified about changes.
+          // When you save a file, the client will either apply hot updates (in case
+          // of CSS changes), or refresh the page (in case of JS changes). When you
+          // make a syntax error, this client will display a syntax error overlay.
+          // Note: instead of the default WebpackDevServer client, we use a custom one
+          // to bring better experience for Create React App users. You can replace
+          // the line below with these two lines if you prefer the stock client:
+          // require.resolve('webpack-dev-server/client') + '?/',
+          // require.resolve('webpack/hot/dev-server'),
+          isRunOnDevServer &&
+            require.resolve('webpack-dev-server/client') + '?/',
+          isRunOnDevServer && require.resolve('webpack/hot/dev-server'),
+          // isRunOnDevServer &&
+          // require.resolve('react-dev-utils/webpackHotDevClient'),
+          // Finally, this is your app's code:
+          paths.appIndexJs,
+          // We include the app code last so that if there is a runtime error during
+          // initialization, it doesn't blow up the WebpackDevServer client, and
+          // changing JS code would still trigger a refresh.
+        ].filter(Boolean),
+      },
+      supportCustomScene && iotPlatform === DNA
+        ? {
+            scene: [
+              paths.polyfills,
+              isRunOnDevServer &&
+                require.resolve('react-dev-utils/webpackHotDevClient'),
+              paths.customSceneIndexJs,
+            ].filter(Boolean),
+          }
+        : undefined,
+      supportSiri && iotPlatform === DNA
+        ? {
+            siri: [
+              paths.polyfills,
+              isRunOnDevServer &&
+                require.resolve('react-dev-utils/webpackHotDevClient'),
+              paths.siriIndexJs,
+            ].filter(Boolean),
+          }
+        : undefined
     ),
     output: {
       // The build folder.
-      path: isRunOnDevServer ? undefined:
-          //DNA平台的编译输出目录有'zh-cn'
-          (iotPlatform=== DNA ? path.resolve(paths.appBuild, 'zh-cn') : paths.appBuild),
+      path: isRunOnDevServer
+        ? undefined
+        : //DNA平台的编译输出目录有'zh-cn'
+        iotPlatform === DNA
+        ? path.resolve(paths.appBuild, 'zh-cn')
+        : paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
@@ -251,15 +254,16 @@ module.exports = function(webpackEnv,webServer,platform) {
         : isEnvDevelopment && 'static/js/[name].chunk.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
-      publicPath:publicPath,
+      publicPath: publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
-        ? info =>
+        ? (info) =>
             path
               .relative(paths.appSrc, info.absoluteResourcePath)
               .replace(/\\/g, '/')
         : isEnvDevelopment &&
-          (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+          ((info) =>
+            path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
     },
     optimization: {
       minimize: isEnvProduction,
@@ -351,17 +355,17 @@ module.exports = function(webpackEnv,webServer,platform) {
       // `web` extension prefixes have been added for better support
       // for React Native Web.
       extensions: paths.moduleFileExtensions
-        .map(ext => `.${ext}`)
-        .filter(ext => useTypeScript || !ext.includes('ts')),
+        .map((ext) => `.${ext}`)
+        .filter((ext) => useTypeScript || !ext.includes('ts')),
       alias: {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
-          adapter:isRunOnDevServer?
-              path.resolve(paths.appSrc,'.mock',iotPlatform):
-          path.resolve(require.resolve('broadlink-jssdk'), '../', iotPlatform),
-          // 别名
-          ...getAlias(),
+        adapter: isRunOnDevServer
+          ? path.resolve(paths.appSrc, '.mock', iotPlatform)
+          : path.resolve(paths.appSrc, 'broadlink-jssdk', iotPlatform),
+        // 别名
+        ...getAlias(),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -380,7 +384,7 @@ module.exports = function(webpackEnv,webServer,platform) {
         // Also related to Plug'n'Play, but this time it tells Webpack to load its loaders
         // from the current package.
         PnpWebpackPlugin.moduleLoader(module),
-      ]
+      ],
     },
     module: {
       strictExportPresence: true,
@@ -402,9 +406,9 @@ module.exports = function(webpackEnv,webServer,platform) {
               loader: require.resolve('eslint-loader'),
             },
           ],
-            //components/libs中都为各种库文件，无需eslint检测
-            exclude: path.resolve(paths.appSrc,'components','libs'),
-            include: paths.appSrc,
+          //components/libs中都为各种库文件，无需eslint检测
+          exclude: path.resolve(paths.appSrc, 'components', 'libs'),
+          include: paths.appSrc,
         },
         {
           // "oneOf" will traverse all following loaders until one will
@@ -432,7 +436,7 @@ module.exports = function(webpackEnv,webServer,platform) {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-                
+
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -469,11 +473,11 @@ module.exports = function(webpackEnv,webServer,platform) {
                     { helpers: true },
                   ],
                 ],
-                  //jssdk中使用了该语法
-                plugins: [ "@babel/plugin-proposal-class-properties"],
+                //jssdk中使用了该语法
+                plugins: ['@babel/plugin-proposal-class-properties'],
                 cacheDirectory: true,
                 cacheCompression: isEnvProduction,
-                
+
                 // If an error happens in a package, it's possible to be
                 // because it was compiled. Thus, we don't want the browser
                 // debugger to show the original code. Instead, the code
@@ -546,17 +550,17 @@ module.exports = function(webpackEnv,webServer,platform) {
               ),
             },
             {
-               //todo 现在所有less文档都按照modules，后续通过文件名作为区分
-                test: lessRegex,
-                use: getStyleLoaders(
-                    {
-                        importLoaders: 2,
-                        sourceMap: isEnvProduction && shouldUseSourceMap,
-                        modules: true,
-                        getLocalIdent: getCSSModuleLocalIdent,
-                    },
-                    'less-loader'
-                ),
+              //todo 现在所有less文档都按照modules，后续通过文件名作为区分
+              test: lessRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: true,
+                  getLocalIdent: getCSSModuleLocalIdent,
+                },
+                'less-loader'
+              ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
@@ -581,21 +585,25 @@ module.exports = function(webpackEnv,webServer,platform) {
       ],
     },
     plugins: [
-      privateSourceMaps && new webpack.SourceMapDevToolPlugin({
+      privateSourceMaps &&
+        new webpack.SourceMapDevToolPlugin({
           // this is the url of our local sourcemap server
           publicPath: 'http://localhost:8888/',
           filename: '[file].map',
-      }),
+        }),
       // Generates an `index.html` file with the <script> injected.
-      newHtmlWebpackPlugin(iotPlatform === 'dna'&& !isRunOnDevServer ?'app.html':'index.html','main'),
+      newHtmlWebpackPlugin(
+        iotPlatform === 'dna' && !isRunOnDevServer ? 'app.html' : 'index.html',
+        'main'
+      ),
 
-        //如果需要指出自定义场景界面（只限于dna平台）
+      //如果需要指出自定义场景界面（只限于dna平台）
       supportCustomScene &&
         iotPlatform === DNA &&
-        newHtmlWebpackPlugin('custom.html','scene'),
+        newHtmlWebpackPlugin('custom.html', 'scene'),
       supportSiri &&
         iotPlatform === DNA &&
-        newHtmlWebpackPlugin('voiceui.html','siri'),
+        newHtmlWebpackPlugin('voiceui.html', 'siri'),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction &&
@@ -688,10 +696,10 @@ module.exports = function(webpackEnv,webServer,platform) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        })
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+      }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
