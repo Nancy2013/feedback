@@ -57,7 +57,7 @@ class NavBar extends React.PureComponent {
   componentDidMount() {
     //隐藏APP导航栏
     if (sdk.platform === 'dna') {
-      sdk.platformSDK.navbar.hide();
+      // sdk.platformSDK.navbar.hide();
       sdk.platformSDK.callNative('getSystemSettings').then((setting) => {
         if (setting && setting.statusBarHeight > 0) {
           this.setState({
