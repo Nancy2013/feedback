@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-26 10:14:23
+ * @LastEditTime: 2021-07-29 14:55:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -149,7 +149,7 @@ class List extends React.Component {
       }
     });
   };
-  handleScrollEnd() {
+  handleScrollEnd = () => {
     const { haveData } = this.state;
     if (haveData && !requestLock) {
       this.setState(
@@ -162,7 +162,7 @@ class List extends React.Component {
         }
       );
     }
-  }
+  };
   /** 该问题是否已解决
    * @method handleResolved
    */
@@ -246,7 +246,7 @@ class List extends React.Component {
     }
     canClick = true;
   };
-  handleDeletePostDialog() {
+  handleDeletePostDialog = () => {
     const {
       intl: { formatMessage },
     } = this.props;
@@ -257,12 +257,12 @@ class List extends React.Component {
       this.handleDelete();
       return true;
     });
-  }
-  handleHideDelete() {
+  };
+  handleHideDelete = () => {
     this.setState({
       showDelete: false,
     });
-  }
+  };
   handleDelete() {
     let {
       userId,
@@ -298,39 +298,31 @@ class List extends React.Component {
     );
   }
   renderList() {
-    const { intl, supportPersonal, showDeleteVisible, height } = this.props;
-    const { postsList, haveData, deletePost, loadError } = this.state;
+    const {
+      intl: { formatMessage },
+    } = this.props;
+    const { postsList, haveData, loadError } = this.state;
     return (
       <MyScroll
         className={style.postsList}
-        onScrollToEnd={this.handleScrollEnd.bind(this)}
+        onScrollToEnd={this.handleScrollEnd}
         onScrollEnd={() => {
           this.scrolling = false;
         }}
         onScroll={() => {
           this.scrolling = true;
         }}
-        height={height}
         onRef={this.onScrollRef}
       >
         {postsList.map((post, _i) => {
           let time = formatTime(post.ctime);
           time =
             time === 'yesterday' || time === 'today'
-              ? intl.formatMessage({ id: time })
+              ? formatMessage({ id: time })
               : time;
           return (
             <li
-              className={classNames(
-                style.communityItem,
-                { isPublic: supportPersonal && !post.personal },
-                {
-                  isDelete:
-                    showDeleteVisible &&
-                    deletePost.threadid &&
-                    deletePost.threadid === post.threadid,
-                }
-              )}
+              className={classNames(style.communityItem)}
               key={_i}
               onTouchStart={(e) => {
                 this.touchStart(e, post);
@@ -350,10 +342,10 @@ class List extends React.Component {
                   <span
                     className={classNames(style.tag, style[formatTag(post)])}
                   >
-                    {intl.formatMessage({ id: formatTag(post) })}
+                    {formatMessage({ id: formatTag(post) })}
                   </span>
                 )}
-                <span className={style.comment}>{`${intl.formatMessage({
+                <span className={style.comment}>{`${formatMessage({
                   id: 'reply',
                 })}   ${post.replies || 0}`}</span>
                 <span className={style.time}>{time}</span>
@@ -366,7 +358,7 @@ class List extends React.Component {
             <div className={style.loadingBox}>
               <LoadingPage className={style.loadingPageIcon} />
             </div>
-            <span>{intl.formatMessage({ id: 'loading' })}</span>
+            <span>{formatMessage({ id: 'loading' })}</span>
           </div>
         ) : null}
       </MyScroll>
@@ -419,14 +411,14 @@ class List extends React.Component {
               <div
                 ref="element"
                 className={style.maskLayer}
-                onClick={this.handleHideDelete.bind(this)}
+                onClick={this.handleHideDelete}
               ></div>
               <FixBottom adaptToX="padding" className={style.popBottom}>
                 <div className={style.bottomBtn}>
-                  <div onClick={this.handleDeletePostDialog.bind(this)}>
+                  <div onClick={this.handleDeletePostDialog}>
                     {formatMessage({ id: 'delFeedback' })}
                   </div>
-                  <div onClick={this.handleHideDelete.bind(this)}>
+                  <div onClick={this.handleHideDelete}>
                     {formatMessage({ id: 'cancel' })}
                   </div>
                 </div>
