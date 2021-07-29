@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 17:22:09
- * @LastEditTime: 2021-07-17 11:25:20
+ * @LastEditTime: 2021-07-29 09:59:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \curtain\src\panel\App.js
@@ -14,7 +14,7 @@ import Main from 'viewsPath/main';
 import Detail from 'viewsPath/main/Detail';
 import Add from 'viewsPath/main/Add';
 import Success from 'viewsPath/main/Success';
-import { getUserInfo, initSDK, getHostName } from '@/sdk';
+import { getUserInfo, initSDK } from '@/sdk';
 import { getUrlParams } from 'utilsPath';
 
 const APP = class extends React.PureComponent {
@@ -25,7 +25,6 @@ const APP = class extends React.PureComponent {
       userId: '',
       lid: 'cf7a67e78338c7401deaeb96488f46fb',
       userInfo: {},
-      urlPrefix: '',
       urlParams: getUrlParams(),
     };
     console.log(props);
@@ -46,18 +45,15 @@ const APP = class extends React.PureComponent {
   initPage() {
     let p1 = getUserInfo();
     let p2 = initSDK();
-    let p3 = getHostName();
-    let promiseList = [p1, p2, p3];
+    let promiseList = [p1, p2];
     Promise.all(promiseList).then((resList) => {
       console.log('--------  resList  ----------', resList);
       let userInfo = resList[0];
       let lidObj = resList[1];
-      let urlPrefix = `${resList[2].protocol}://${resList[2].hostName}`;
       this.setState({
         userId: userInfo.userId,
         lid: lidObj.lid,
         userInfo: { ...userInfo },
-        urlPrefix: urlPrefix,
       });
     });
   }
