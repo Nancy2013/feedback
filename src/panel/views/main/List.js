@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-29 14:55:14
+ * @LastEditTime: 2021-07-29 15:01:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -19,7 +19,7 @@ import PageStatus from './PageStatus';
 import Page from 'componentsPath/dna/Page';
 import FixBottom from 'componentsPath/dna/FixBottom';
 import Modal from 'componentsPath/Modal';
-import { getMyPosts, setResolved, removeThread } from 'servicesPath';
+import { getMyPosts, removeThread } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
 import add from '@/panel/images/add.svg';
 import style from 'stylesPath/index.less';
@@ -163,31 +163,10 @@ class List extends React.Component {
       );
     }
   };
-  /** 该问题是否已解决
-   * @method handleResolved
-   */
-  handleResolved(resolve, post, _i) {
-    const { userId, lid } = this.props;
-    const { postsList } = this.state;
-    if (resolve) {
-      setResolved(userId, lid, {
-        threadid: post.threadid,
-        resolved: 1,
-      }).then((res) => {
-        console.log('已解决操作结果：', res);
-      });
-    }
-    let newPostsList = [...postsList];
-    newPostsList[_i].hideResolve = true;
-    newPostsList[_i].resolved = 1;
-    this.setState({
-      postsList: [...newPostsList],
-    });
-  }
   onScrollRef = (ref) => {
     this.scrollerChild = ref;
   };
-  handleOnload() {
+  handleOnload = () => {
     this.postParams = {
       page: 1,
       pagesize: 30,
@@ -200,7 +179,7 @@ class List extends React.Component {
         this.getData(true);
       }
     );
-  }
+  };
   //监听长按事件，长按唤出弹窗时间为1s
   touchStart = (e, post) => {
     canClick = true;
@@ -372,9 +351,7 @@ class List extends React.Component {
     const { pageStatus, showDelete, loading } = this.state;
     const pageConfig = {
       status: pageStatus,
-      onRefresh: () => {
-        this.getData(true);
-      },
+      onRefresh: this.handleOnload,
     };
     return (
       <Page

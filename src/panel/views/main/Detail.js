@@ -271,6 +271,16 @@ class PostDetail extends React.Component {
       return true;
     });
   }
+  handleOnload = () => {
+    this.setState(
+      {
+        pageStatus: 'loading',
+      },
+      () => {
+        this.getData();
+      }
+    );
+  };
 
   render() {
     const { intl } = this.props;
@@ -283,9 +293,7 @@ class PostDetail extends React.Component {
         : time;
     const pageConfig = {
       status: pageStatus,
-      onRefresh: () => {
-        this.getData();
-      },
+      onRefresh: this.handleOnload,
     };
     return (
       <Page
