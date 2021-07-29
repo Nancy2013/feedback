@@ -273,7 +273,7 @@ class PostDetail extends React.Component {
   }
 
   render() {
-    const { intl, urlPrefix } = this.props;
+    const { intl } = this.props;
     const { pageStatus, postDetail, posts, showDelete, showEnd, loading } =
       this.state;
     let time = formatTime(postDetail.ctime);
@@ -312,14 +312,6 @@ class PostDetail extends React.Component {
             >
               <div className={style.postContent}>
                 <UserInfo
-                  icon={
-                    postDetail.usericon
-                      ? postDetail.usericon.indexOf('http://') > -1 ||
-                        postDetail.usericon.indexOf('https://') > -1
-                        ? postDetail.usericon
-                        : `${urlPrefix}${postDetail.usericon}`
-                      : ''
-                  }
                   name={postDetail.username}
                   time={time}
                   formatTime={false}
@@ -379,7 +371,6 @@ class PostDetail extends React.Component {
                         key={_i}
                         postMap={this.postMap}
                         index={_i}
-                        urlPrefix={urlPrefix}
                         showDelete={this.showDelete.bind(this)}
                         onClickReply={this.handleClickReplayItem.bind(
                           this,

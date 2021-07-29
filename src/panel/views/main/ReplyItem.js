@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { injectIntl } from 'react-intl';
 import ImagesList from './../../components/ImagesList';
 import UserInfo from './../../components/UserInfo';
-import officialIcon from './../../images/icon.png';
 import { formatTime } from 'utilsPath';
 import style from 'stylesPath/index.less';
 
@@ -79,18 +78,12 @@ class ReplyItem extends React.Component {
     });
   }
   render() {
-    const { reply, urlPrefix, intl, index, postMap, isDelete } = this.props;
+    const { reply, intl, index, postMap, isDelete } = this.props;
     let time = formatTime(reply.ctime);
     time =
       time === 'yesterday' || time === 'today'
         ? intl.formatMessage({ id: time })
         : time;
-    let userIcon = reply.usericon
-      ? (reply.usericon.indexOf('http://') > -1 ||
-          reply.usericon.indexOf('https://')) > -1
-        ? reply.usericon
-        : `${urlPrefix}${reply.usericon}`
-      : '';
     return (
       <div
         className={classNames(style.replyItem, { [style.isDelete]: isDelete })}
@@ -102,7 +95,6 @@ class ReplyItem extends React.Component {
         <UserInfo
           official={reply.official === 1}
           formatTime={false}
-          icon={reply.official === 1 ? officialIcon : userIcon}
           name={
             reply.official === 1
               ? intl.formatMessage({ id: 'systemReply' })
