@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-29 16:29:46
+ * @LastEditTime: 2021-07-29 17:15:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -111,6 +111,8 @@ class ReplyInput extends React.PureComponent {
     const { files } = this.state;
     selectPicture()
       .then((res) => {
+        console.error('【selectPicture】');
+        console.log(res);
         if (res.status === 0 && res.path) {
           let index = files.length;
           let obj = {

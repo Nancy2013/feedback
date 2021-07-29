@@ -2,11 +2,13 @@
  * @Description: SDK
  * @Author: your name
  * @Date: 2019-05-17 17:02:04
- * @LastEditTime: 2021-07-15 17:26:30
+ * @LastEditTime: 2021-07-29 17:48:59
  * @LastEditors: Please set LastEditors
  */
 import sdk from 'broadlink-jssdk';
 import { formatNickName } from 'utilsPath';
+import config from '@/panel/config';
+const { BASE_URL } = config;
 
 // 关闭当前webView
 export const closeWebView = () => {
@@ -77,7 +79,7 @@ export const selectPicture = () => {
 export const uploadFileByApp = (file) => {
   let params = {
     method: 'multipart', //http 请求方法 目前支持get post multipart 文件上传
-    interfaceName: 'userfeedback/v2/staticfilesys/feebback/upload',
+    interfaceName: `${BASE_URL}/userfeedback/v2/staticfilesys/feebback/upload`,
     filePath: file,
   };
   return sdk.platformSDK
