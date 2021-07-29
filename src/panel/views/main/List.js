@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-29 15:01:11
+ * @LastEditTime: 2021-07-29 16:07:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -280,7 +280,8 @@ class List extends React.Component {
     const {
       intl: { formatMessage },
     } = this.props;
-    const { postsList, haveData, loadError } = this.state;
+    const { postsList, haveData, loadError, showDelete, deletePost } =
+      this.state;
     return (
       <MyScroll
         className={style.postsList}
@@ -301,7 +302,12 @@ class List extends React.Component {
               : time;
           return (
             <li
-              className={classNames(style.communityItem)}
+              className={classNames(style.communityItem, {
+                [style.isDelete]:
+                  showDelete &&
+                  deletePost.threadid &&
+                  deletePost.threadid === post.threadid,
+              })}
               key={_i}
               onTouchStart={(e) => {
                 this.touchStart(e, post);
