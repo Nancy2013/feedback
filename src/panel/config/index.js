@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-26 16:43:39
- * @LastEditTime: 2021-07-30 13:53:59
+ * @LastEditTime: 2021-07-30 16:03:51
  * @LastEditors: Please set LastEditors
  * @Description: config
  * @FilePath: \curtain\src\panel\config.js
@@ -11,8 +11,6 @@ const config = {
   personal: 1, // 0:公开，1:私密
   category: 'other', // 功能建议
   type: 'suggest_0',
-  // BASE_URL: '',
-  BASE_URL: 'https://3079592a830389510fadef125fa3cd71appservice.ibroadlink.com',
 };
 
 export default config;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_reply_pic_x@2x</title>
+    <g id="feedback" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="填写内容" transform="translate(-74.000000, -285.000000)">
+            <g id="icon_reply_pic_x" transform="translate(74.000000, 285.000000)">
+                <path d="M0,0 L16,0 L16,16 L4,16 C1.790861,16 2.705415e-16,14.209139 0,12 L0,0 L0,0 Z" id="矩形" fill="#000000" opacity="0.5"></path>
+                <path d="M10.9329966,4.33333333 L11.8758057,5.27614237 L9.04633333,8.10433333 L11.8758057,10.9329966 L10.9329966,11.8758057 L8.10433333,9.04633333 L5.27614237,11.8758057 L4.33333333,10.9329966 L7.16133333,8.10433333 L4.33333333,5.27614237 L5.27614237,4.33333333 L8.10433333,7.16133333 L10.9329966,4.33333333 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

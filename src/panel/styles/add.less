@@ -27,52 +27,7 @@
 .feedbackTypeItem .arrow {
   width: 1.226667rem;
 }
-.editProblem {
-  background: #fff;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.editProblem .moduleTitle {
-  margin-bottom: 0.266667rem;
-}
-.editProblem .editProblemContent {
-  margin: 0 0.4rem 0.773333rem 0.4rem;
-  border: 1px solid rgba(225, 225, 225, 1);
-  position: relative;
-}
-.editProblem .imgList {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-}
-.editProblem .imgList .imgItem {
-  width: 1.6rem;
-  height: 1.6rem;
-  margin-right: 0.4rem;
-  margin-top: 0.2666667rem;
-  position: relative;
-  padding: 0;
-}
-.editProblem .imgList .imgItem .del {
-  position: absolute;
-  width: 0.426667rem;
-  height: 0.426667rem;
-  top: 0px;
-  right: 0px;
-  z-index: 2;
-  background-repeat: none;
-  background-size: 100%;
-  background-image: url(./../images/del.png);
-}
-.editProblemContent {
-  padding: 0.266667rem 0.4rem 0.4rem 0.4rem;
-}
-.editProblem .imgItem img {
-  height: 100%;
-  width: 100%;
-}
+
 .imgList .addImg {
   background-repeat: no-repeat;
   background-size: 0.8rem;
@@ -80,11 +35,7 @@
   background-image: url(./../images/addImage.png);
   border: 1px solid rgba(225, 225, 225, 1);
 }
-.editProblem .imgCont .count {
-  font-size: 0.32rem;
-  color: rgba(153, 153, 153, 1);
-  line-height: 0.453333rem;
-}
+
 .problemDes {
   width: 100%;
   font-size: 0.426667rem;
@@ -93,15 +44,6 @@
   line-height: 0.586667rem;
   -webkit-user-select: auto;
   user-select: auto;
-}
-.editProblem .btnWrap {
-  position: fixed;
-  width: 100%;
-  bottom: 0.746667rem;
-}
-.editProblem .btnWrap .button {
-  display: block;
-  margin: 0 0.4rem;
 }
 
 .editSuccess {
@@ -430,17 +372,7 @@
   color: #007fff;
   display: inline-block;
 }
-.editProblem.isIphoneX .btnWrap {
-  bottom: 1.7rem;
-}
-.editProblem .bgImgItem .uploadImgWrap {
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
+
 .uploadLoading {
   background-color: rgba(0, 0, 0, 0.6);
 }
@@ -469,9 +401,7 @@
   font-weight: 400;
   color: rgba(153, 153, 153, 1);
 }
-.editProblem .personalList {
-  height: 7.2rem;
-}
+
 .personalList li {
   display: flex;
   padding: 0.32rem 0.4rem;
@@ -502,30 +432,15 @@
   background-size: 0.64rem auto;
   background-position: right center;
 }
-.editProblem .scroller {
-  min-height: 150% !important;
-}
+
 .personalList .personalActive.active {
   background-image: url('./../images/sel.png');
 }
-.editProblem.edit_suggest .scroller {
-  min-height: 100% !important;
-}
+
 textarea::-webkit-input-placeholder {
   color: #999;
 }
-.editProblem .editProblemContent .qustionDescPlace {
-  position: absolute;
-  top: 0.266666rem;
-  left: 0.4rem;
-  font-size: 0.426667rem;
-  font-weight: 400;
-  color: rgba(153, 153, 153, 1);
-  line-height: 0.586667rem;
-}
-.editProblem .editProblemContent .qustionDescPlace.none {
-  display: none;
-}
+
 .chooseModel {
   overflow: auto;
 }
@@ -671,7 +586,7 @@ textarea::-webkit-input-placeholder {
   height: 0.426667rem;
   top: 0px;
   right: 0px;
-  /* background-image: url('./images/del.png'); */
+  background-image: url('./../images/del.svg');
   background-repeat: no-repeat;
   background-size: 100%;
 }

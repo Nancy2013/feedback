@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-15 16:43:13
- * @LastEditTime: 2021-07-15 16:44:19
- * @LastEditors: your name
+ * @LastEditTime: 2021-07-30 15:41:00
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\panel\components\ImagesList\ImagesList.js
  */
@@ -74,7 +74,7 @@ class Index extends React.PureComponent {
           <WxImageViewer
             isOpen={isOpenView}
             speed={0}
-            zIndex={isOpenView ? 3000 : -1}
+            zIndex={isOpenView ? 9999 : -1}
             maxZoomNum={2}
             onClose={this.onClose.bind(this)}
             urls={list}

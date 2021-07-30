@@ -1,14 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 17:16:42
- * @LastEditTime: 2021-07-29 17:46:43
+ * @LastEditTime: 2021-07-30 16:05:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\services\appAsk.js
  */
 import axios from 'axios';
-import config from '@/panel/config';
-const { BASE_URL } = config;
+// const BASE_URL = '';
+const BASE_URL =
+  'https://3079592a830389510fadef125fa3cd71appservice.ibroadlink.com';
 
 let commonHeader = {
   licenseid: '1a04dfbce6df97d592a694af8824f6c3',

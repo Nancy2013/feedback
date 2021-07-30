@@ -2,13 +2,11 @@
  * @Description: SDK
  * @Author: your name
  * @Date: 2019-05-17 17:02:04
- * @LastEditTime: 2021-07-30 14:08:48
+ * @LastEditTime: 2021-07-30 15:55:30
  * @LastEditors: Please set LastEditors
  */
 import sdk from 'broadlink-jssdk';
 import { formatNickName } from 'utilsPath';
-import config from '@/panel/config';
-const { BASE_URL } = config;
 
 // 关闭当前webView
 export const closeWebView = () => {
