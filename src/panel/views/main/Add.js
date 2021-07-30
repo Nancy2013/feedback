@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-29 17:15:50
+ * @LastEditTime: 2021-07-30 14:02:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -53,8 +53,8 @@ class ReplyInput extends React.PureComponent {
     this.msgHistory = {};
   }
   componentDidMount() {
-    this.props.onRef && this.props.onRef(this);
-    this.rePlyText.focus();
+    // this.props.onRef && this.props.onRef(this);
+    // this.rePlyText.focus();
   }
   componentWillReceiveProps(nextProps) {
     const { replyFlag, message, files } = this.state;
@@ -91,9 +91,14 @@ class ReplyInput extends React.PureComponent {
     let len2 = v.length;
     let len = len1 + len2;
     if (len <= 400) {
-      this.setState({
-        message: e.target.value,
-      });
+      this.setState(
+        {
+          message: e.target.value,
+        },
+        () => {
+          console.info('【message】', this.state.message);
+        }
+      );
     }
   };
   handleDeleteImg(e, index) {
@@ -447,7 +452,7 @@ class ReplyInput extends React.PureComponent {
             <div className={style.left}>
               <textarea
                 ref={(input) => {
-                  this.rePlyText = input;
+                  if (input) input.focus();
                 }}
                 onChange={this.handleChangeDesc}
                 placeholder={

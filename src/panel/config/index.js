@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-26 16:43:39
- * @LastEditTime: 2021-07-29 17:48:40
+ * @LastEditTime: 2021-07-30 13:53:59
  * @LastEditors: Please set LastEditors
  * @Description: config
  * @FilePath: \curtain\src\panel\config.js
