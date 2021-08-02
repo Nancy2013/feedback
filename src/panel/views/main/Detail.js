@@ -130,7 +130,7 @@ class PostDetail extends React.Component {
   }
 
   // 问题已解决
-  handleSureResolved() {
+  handleSureResolved = () => {
     const { postDetail } = this.state;
     const {
       userId,
@@ -158,7 +158,7 @@ class PostDetail extends React.Component {
         Toast.info(`${formatMessage({ id: 'operateError' })}${error}`);
       }
     });
-  }
+  };
   // 删除评论
   handleDeleteReply() {
     const reply = this.deleteReply;
@@ -194,7 +194,7 @@ class PostDetail extends React.Component {
       }
     );
   }
-  handleScrollEnd() {
+  handleScrollEnd = () => {
     const { posts } = this.state;
     if (posts.length < this.allPosts.length) {
       this.page += 1;
@@ -224,12 +224,12 @@ class PostDetail extends React.Component {
         }
       );
     }
-  }
+  };
   onScrollRef = (ref) => {
     this.scrollerChild = ref;
   };
   // 唤起回复
-  handleClickReplayItem(reply) {
+  handleClickReplayItem = (reply) => {
     this.setState(
       {
         replyObj: reply,
@@ -238,7 +238,7 @@ class PostDetail extends React.Component {
         this.reply();
       }
     );
-  }
+  };
   // 回复
   reply = () => {
     const { postDetail, replyObj } = this.state;
@@ -248,18 +248,18 @@ class PostDetail extends React.Component {
   onRef(ref) {
     this.replyInput = ref;
   }
-  handleHideDelete() {
+  handleHideDelete = () => {
     this.setState({
       showDelete: false,
     });
-  }
-  showDelete(reply) {
+  };
+  showDelete = (reply) => {
     this.deleteReply = { ...reply };
     this.setState({
       showDelete: true,
     });
-  }
-  handleDeleteReplyDialog() {
+  };
+  handleDeleteReplyDialog = () => {
     const {
       intl: { formatMessage },
     } = this.props;
@@ -270,22 +270,32 @@ class PostDetail extends React.Component {
       this.handleDeleteReply();
       return true;
     });
-  }
+  };
+  handleOnload = () => {
+    this.setState(
+      {
+        pageStatus: 'loading',
+      },
+      () => {
+        this.getData();
+      }
+    );
+  };
 
   render() {
-    const { intl } = this.props;
+    const {
+      intl: { formatMessage },
+    } = this.props;
     const { pageStatus, postDetail, posts, showDelete, showEnd, loading } =
       this.state;
     let time = formatTime(postDetail.ctime);
     time =
       time === 'yesterday' || time === 'today'
-        ? intl.formatMessage({ id: time })
+        ? formatMessage({ id: time })
         : time;
     const pageConfig = {
       status: pageStatus,
-      onRefresh: () => {
-        this.getData();
-      },
+      onRefresh: this.handleOnload,
     };
     return (
       <Page
@@ -293,7 +303,7 @@ class PostDetail extends React.Component {
       >
         <div className={style.postDetailPage} ref={(el) => (this.el = el)}>
           <NavBar
-            title={intl.formatMessage({ id: 'detail' })}
+            title={formatMessage({ id: 'detail' })}
             opacity
             color={'#000'}
             className={style.navbarHook}
@@ -301,7 +311,7 @@ class PostDetail extends React.Component {
           {pageStatus === 'success' && postDetail ? (
             <Scroller
               className={style.cont}
-              onScrollToEnd={this.handleScrollEnd.bind(this)}
+              onScrollToEnd={this.handleScrollEnd}
               onScrollEnd={() => {
                 this.scrolling = false;
               }}
@@ -334,10 +344,10 @@ class PostDetail extends React.Component {
                           style[formatTag(postDetail)]
                         )}
                       >
-                        {intl.formatMessage({ id: formatTag(postDetail) })}
+                        {formatMessage({ id: formatTag(postDetail) })}
                       </span>
                     )}
-                    <span className={style.comment}>{`${intl.formatMessage({
+                    <span className={style.comment}>{`${formatMessage({
                       id: 'reply',
                     })}   ${postDetail.replies || 0}`}</span>
                   </div>
@@ -347,9 +357,9 @@ class PostDetail extends React.Component {
                       postDetail.mine === 1 && postDetail.resolved !== 1 ? (
                         <div
                           className={classNames(style.resolved, style.btn)}
-                          onClick={this.handleSureResolved.bind(this)}
+                          onClick={this.handleSureResolved}
                         >
-                          {intl.formatMessage({ id: 'resolved' })}
+                          {formatMessage({ id: 'resolved' })}
                         </div>
                       ) : null
                     }
@@ -371,18 +381,15 @@ class PostDetail extends React.Component {
                         key={_i}
                         postMap={this.postMap}
                         index={_i}
-                        showDelete={this.showDelete.bind(this)}
-                        onClickReply={this.handleClickReplayItem.bind(
-                          this,
-                          reply
-                        )}
+                        showDelete={() => this.showDelete(reply)}
+                        onClickReply={() => this.handleClickReplayItem(reply)}
                       />
                     );
                   })}
               </div>
               {showEnd && (
                 <div className={style.noDataTipBox}>
-                  <span>{intl.formatMessage({ id: 'inTheEnd' })}</span>
+                  <span>{formatMessage({ id: 'inTheEnd' })}</span>
                 </div>
               )}
             </Scroller>
@@ -395,7 +402,7 @@ class PostDetail extends React.Component {
             <div className={style.replyBox} onClick={this.reply}>
               <div className={style.placeBox}>
                 <img src={edit} alt="" className={style.mr15} />
-                {intl.formatMessage({ id: 'replyText' })}
+                {formatMessage({ id: 'replyText' })}
               </div>
             </div>
           )}
@@ -404,15 +411,15 @@ class PostDetail extends React.Component {
               <div
                 ref="element"
                 className={style.maskLayer}
-                onClick={this.handleHideDelete.bind(this)}
+                onClick={this.handleHideDelete}
               ></div>
               <FixBottom adaptToX="padding" className={style.popBottom}>
                 <div className={style.bottomBtn}>
-                  <div onClick={this.handleDeleteReplyDialog.bind(this)}>
-                    {intl.formatMessage({ id: 'delFeedback' })}
+                  <div onClick={this.handleDeleteReplyDialog}>
+                    {formatMessage({ id: 'delFeedback' })}
                   </div>
-                  <div onClick={this.handleHideDelete.bind(this)}>
-                    {intl.formatMessage({ id: 'cancel' })}
+                  <div onClick={this.handleHideDelete}>
+                    {formatMessage({ id: 'cancel' })}
                   </div>
                 </div>
               </FixBottom>

@@ -72,17 +72,18 @@ class ReplyItem extends React.Component {
     }
     canClick = true;
   };
-  handleHideDelete() {
-    this.setState({
-      showDelete: false,
-    });
-  }
   render() {
-    const { reply, intl, index, postMap, isDelete } = this.props;
+    const {
+      reply,
+      intl: { formatMessage },
+      index,
+      postMap,
+      isDelete,
+    } = this.props;
     let time = formatTime(reply.ctime);
     time =
       time === 'yesterday' || time === 'today'
-        ? intl.formatMessage({ id: time })
+        ? formatMessage({ id: time })
         : time;
     return (
       <div
@@ -97,7 +98,7 @@ class ReplyItem extends React.Component {
           formatTime={false}
           name={
             reply.official === 1
-              ? intl.formatMessage({ id: 'systemReply' })
+              ? formatMessage({ id: 'systemReply' })
               : reply.username
           }
           time={time}
@@ -106,12 +107,12 @@ class ReplyItem extends React.Component {
           <div className={style.replyMessage}>
             {reply.replypostid ? (
               <span className={style.replyTo}>
-                {intl.formatMessage({ id: 'reply' })}
+                {formatMessage({ id: 'reply' })}
                 <span className={style.replyToName}>
                   {`@${
                     postMap[reply.replypostid] &&
                     postMap[reply.replypostid].official
-                      ? intl.formatMessage({ id: 'systemReply' })
+                      ? formatMessage({ id: 'systemReply' })
                       : reply.replyto
                   }`}
                 </span>

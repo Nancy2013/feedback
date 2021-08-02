@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-26 10:16:11
+ * @LastEditTime: 2021-07-30 14:02:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -53,8 +53,8 @@ class ReplyInput extends React.PureComponent {
     this.msgHistory = {};
   }
   componentDidMount() {
-    this.props.onRef && this.props.onRef(this);
-    this.rePlyText.focus();
+    // this.props.onRef && this.props.onRef(this);
+    // this.rePlyText.focus();
   }
   componentWillReceiveProps(nextProps) {
     const { replyFlag, message, files } = this.state;
@@ -83,7 +83,7 @@ class ReplyInput extends React.PureComponent {
       });
     }
   }
-  handleChangeDesc(e) {
+  handleChangeDesc = (e) => {
     const v = e.target.value;
     let len1 = v.match(/[\u4E00-\u9FA5]/g)
       ? v.match(/[\u4E00-\u9FA5]/g).length
@@ -91,11 +91,16 @@ class ReplyInput extends React.PureComponent {
     let len2 = v.length;
     let len = len1 + len2;
     if (len <= 400) {
-      this.setState({
-        message: e.target.value,
-      });
+      this.setState(
+        {
+          message: e.target.value,
+        },
+        () => {
+          console.info('【message】', this.state.message);
+        }
+      );
     }
-  }
+  };
   handleDeleteImg(e, index) {
     const { files } = this.state;
     e.stopPropagation();
@@ -111,6 +116,8 @@ class ReplyInput extends React.PureComponent {
     const { files } = this.state;
     selectPicture()
       .then((res) => {
+        console.error('【selectPicture】');
+        console.log(res);
         if (res.status === 0 && res.path) {
           let index = files.length;
           let obj = {
@@ -254,7 +261,7 @@ class ReplyInput extends React.PureComponent {
   };
 
   // 点击发送反馈的信息
-  handleSendBtn() {
+  handleSendBtn = () => {
     let { files, message, replyFlag } = this.state;
     if (requestLock) {
       return;
@@ -298,7 +305,7 @@ class ReplyInput extends React.PureComponent {
         }
       );
     }
-  }
+  };
 
   handlePageBack() {
     const { files } = this.state;
@@ -400,7 +407,9 @@ class ReplyInput extends React.PureComponent {
     }
   };
   render() {
-    const { intl } = this.props;
+    const {
+      intl: { formatMessage },
+    } = this.props;
     const { message, files, isOpenView, viewIndex, viewFiles, loading } =
       this.state;
     let showLen = 0;
@@ -419,17 +428,17 @@ class ReplyInput extends React.PureComponent {
           })}
         >
           <NavBar
-            title={intl.formatMessage({
+            title={formatMessage({
               id: threadid === undefined ? 'add' : 'reply',
             })}
             opacity
             color={'#000'}
             className={style.navbarHook}
             right={{
-              text: intl.formatMessage({
+              text: formatMessage({
                 id: threadid === undefined ? 'submit' : 'send',
               }),
-              handler: this.handleSendBtn.bind(this),
+              handler: this.handleSendBtn,
             }}
             disbled={!(message2.length > 0 || showLen > 0)}
             leftHandle={() => this.leftHandle(message2, showLen)}
@@ -443,13 +452,13 @@ class ReplyInput extends React.PureComponent {
             <div className={style.left}>
               <textarea
                 ref={(input) => {
-                  this.rePlyText = input;
+                  if (input) input.focus();
                 }}
-                onChange={this.handleChangeDesc.bind(this)}
+                onChange={this.handleChangeDesc}
                 placeholder={
                   threadid === undefined
-                    ? intl.formatMessage({ id: 'addFeedback' })
-                    : intl.formatMessage({ id: 'replyText' })
+                    ? formatMessage({ id: 'addFeedback' })
+                    : formatMessage({ id: 'replyText' })
                 }
                 className={style.problemDes}
                 autoFocus="autofocus"
