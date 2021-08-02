@@ -8,6 +8,8 @@ TCL 问题反馈
 
 ## 定制化
 
+- broadlink-jssdk 使用本地引入方式，路径 src/broadlink-jssdk
+
 # 命令
 
 ## npm start
