@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 17:22:09
- * @LastEditTime: 2021-07-29 09:59:20
+ * @LastEditTime: 2021-08-04 12:28:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \curtain\src\panel\App.js
@@ -27,7 +27,6 @@ const APP = class extends React.PureComponent {
       userInfo: {},
       urlParams: getUrlParams(),
     };
-    console.log(props);
   }
   componentDidMount() {
     // DOM加载完成
@@ -47,7 +46,6 @@ const APP = class extends React.PureComponent {
     let p2 = initSDK();
     let promiseList = [p1, p2];
     Promise.all(promiseList).then((resList) => {
-      console.log('--------  resList  ----------', resList);
       let userInfo = resList[0];
       let lidObj = resList[1];
       this.setState({

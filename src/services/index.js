@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 17:16:42
- * @LastEditTime: 2021-08-03 15:37:08
+ * @LastEditTime: 2021-08-04 12:25:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\services\appAsk.js
@@ -77,7 +77,6 @@ export const postFeedback = (userid = '', lid, params) => {
  */
 
 export const getMyPosts = (userid = '', lid, params) => {
-  console.log('【getMyPosts】', 'userid: ', userid, ' lid: ', lid);
   return axios
     .post(`${BASE_URL}/userfeedback/v2/feedback/my`, params, {
       headers: {

@@ -1,27 +1,23 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-29 16:07:15
+ * @LastEditTime: 2021-08-04 11:54:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
  */
 import React from 'react';
 import classNames from 'classnames';
-import Device from 'componentsPath/device.js';
 import Toast from 'componentsPath/Toast';
 import MyScroll from '@/panel/components/Scroller';
 import { injectIntl } from 'react-intl';
 import LoadingPage from 'componentsPath/dna/LoadingPage';
 import Loading from 'componentsPath/ActivityIndicator';
-import NavBar from 'componentsPath/dna/NavBar';
 import PageStatus from './PageStatus';
-import Page from 'componentsPath/dna/Page';
 import FixBottom from 'componentsPath/dna/FixBottom';
 import Modal from 'componentsPath/Modal';
 import { getMyPosts, removeThread } from 'servicesPath';
 import { formatTag, formatTime } from 'utilsPath';
-import add from '@/panel/images/add.svg';
 import style from 'stylesPath/index.less';
 
 let requestLock = false;
@@ -352,7 +348,6 @@ class List extends React.Component {
   render() {
     const {
       intl: { formatMessage },
-      history,
     } = this.props;
     const { pageStatus, showDelete, loading } = this.state;
     const pageConfig = {
@@ -360,23 +355,8 @@ class List extends React.Component {
       onRefresh: this.handleOnload,
     };
     return (
-      <Page
-        className={classNames({ [style.paddingBottomX]: Device.isIphoneX })}
-      >
+      <>
         <div className={classNames(style.messagePage)}>
-          <NavBar
-            title={formatMessage({ id: 'feedBack' })}
-            exit
-            opacity
-            color={'#000'}
-            className={style.navbarHook}
-            right={{
-              icon: add,
-              handler: () => {
-                history.push('/add');
-              },
-            }}
-          />
           <div className={style.myPostsIndex}>
             <div
               className={classNames(style.myPosts)}
@@ -410,7 +390,7 @@ class List extends React.Component {
           )}
         </div>
         {loading && <Loading />}
-      </Page>
+      </>
     );
   }
 }
