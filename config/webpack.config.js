@@ -239,7 +239,7 @@ module.exports = function (webpackEnv, webServer, platform) {
         ? undefined
         : //DNA平台的编译输出目录有'zh-cn'
         iotPlatform === DNA
-        ? path.resolve(paths.appBuild, 'zh-cn')
+        ? paths.appBuild
         : paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
@@ -593,7 +593,9 @@ module.exports = function (webpackEnv, webServer, platform) {
         }),
       // Generates an `index.html` file with the <script> injected.
       newHtmlWebpackPlugin(
-        iotPlatform === 'dna' && !isRunOnDevServer ? 'app.html' : 'index.html',
+        iotPlatform === 'dna' && !isRunOnDevServer
+          ? 'index.html'
+          : 'index.html',
         'main'
       ),
 

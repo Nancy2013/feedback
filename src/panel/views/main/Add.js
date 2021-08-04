@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-30 14:02:55
+ * @LastEditTime: 2021-08-03 15:38:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -91,14 +91,9 @@ class ReplyInput extends React.PureComponent {
     let len2 = v.length;
     let len = len1 + len2;
     if (len <= 400) {
-      this.setState(
-        {
-          message: e.target.value,
-        },
-        () => {
-          console.info('【message】', this.state.message);
-        }
-      );
+      this.setState({
+        message: e.target.value,
+      });
     }
   };
   handleDeleteImg(e, index) {

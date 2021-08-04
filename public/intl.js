@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 14:38:33
- * @LastEditTime: 2021-07-23 16:27:50
+ * @LastEditTime: 2021-08-02 15:57:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\public\intl.js
@@ -41,6 +41,7 @@ var __APP_STRINGS__ = {
     operateError: '操作失败',
     deleteTip: '确定要删除当前{status,select,0 {反馈} 1 {回复}}？',
     exitTip: '退出后，内容将被删除，确认退出？',
+    replyToName: '回复{name}',
 
     //Modal
     'internal.Modal.confirm': '确定',
@@ -48,15 +49,10 @@ var __APP_STRINGS__ = {
 
     //ActivityIndicator
     'internal.ActivityIndicator.loading': '加载中',
-
-    // 无效
-    community_theme_1006: '功能建议',
-
-    replyToName: '回复{name}',
   },
   en: {
     loading: 'loading',
-    done: 'done',
+    done: 'Done',
     feedBack: 'Feedback',
     add: 'Add Feedback',
     success: 'Submitted Successful!',
@@ -86,7 +82,10 @@ var __APP_STRINGS__ = {
     uploadingImage: 'Uploading image, please wait',
     operateSuccess: 'operate success',
     operateError: 'operate error',
+    deleteTip:
+      'Are you sure to delete this {status,select,0 {feedback} 1 {reply}}？ ',
     exitTip: 'After exit, the content will be deleted, confirm exit?',
+    replyToName: 'answers {name}',
 
     //Modal
     'internal.Modal.confirm': 'YES',
@@ -96,8 +95,6 @@ var __APP_STRINGS__ = {
     'internal.ActivityIndicator.loading': 'Loading',
 
     // 无效
-    community_theme_1006: 'Suggestions',
     deletePostTip: 'Are you sure you want to delete this feedback?',
-    replyToName: 'answers {name}',
   },
 };

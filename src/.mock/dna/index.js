@@ -156,17 +156,17 @@ const platformSDK = (() => {
         //"lid": "cf7a67e78338c7401deaeb96488f46fb"
         // "lid": "e32422b34ea5a3db7d8e8dd545da174d"
         // "lid": "1401476e0c0ab68eca2277527d87efa0" 中国测试集群
-        lid: '26c1a19074798f60bbe038dc0c87109e',
+        lid: 'bffd4d702ec53938c31eb10cc0194b4a',
         //"lid": "88a316ea069f0c65d0c4e49da812f038", // 云端造数据需要的licenseID
       },
       getUserInfo: {
-        userId: '003962bab48d5ed8bf5be6f308b10f54',
+        userId: '0477551bbf8a6ae650a31606fe3592be',
         //  "userId": "003962bab48d5ed8bf5be6f308929299",
         nickName: '测试1号',
         userName: '测试1号',
         userIcon:
           'https://app-service-chn-467a8f05.ibroadlink.com/accountpic/a6/4e/379195b48e51af83a5dec711c318f364f639a16ddd63f2a17fd611cad1b6.png',
-        loginSession: '04078d1585ca08de1acde930275b337d',
+        loginSession: '424217a10fb86efb8c07e62818bc2d6e',
       },
       getFamilyInfo: {
         cityCode: '',
