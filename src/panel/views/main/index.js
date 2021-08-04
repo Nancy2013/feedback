@@ -1,20 +1,48 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 17:07:44
- * @LastEditTime: 2021-07-21 15:30:29
+ * @LastEditTime: 2021-08-04 12:25:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \panel\Main.js
  */
 import React from 'react';
 import { injectIntl } from 'react-intl';
+import classNames from 'classnames';
+import Device from 'componentsPath/device.js';
+import NavBar from 'componentsPath/dna/NavBar';
+import Page from 'componentsPath/dna/Page';
+import Loading from 'componentsPath/ActivityIndicator';
+import add from '@/panel/images/add.svg';
 import List from './List';
+import style from 'stylesPath/index.less';
 
 const Main = (props) => {
   console.log('【main】', props);
-  const { userId } = props;
+  const {
+    userId,
+    intl: { formatMessage },
+    history,
+  } = props;
 
-  return userId ? <List {...props} /> : <></>;
+  return (
+    <Page className={classNames({ [style.paddingBottomX]: Device.isIphoneX })}>
+      <NavBar
+        title={formatMessage({ id: 'feedBack' })}
+        exit
+        opacity
+        color={'#000'}
+        className={style.navbarHook}
+        right={{
+          icon: add,
+          handler: () => {
+            history.push('/add');
+          },
+        }}
+      />
+      {userId ? <List {...props} /> : <Loading />}
+    </Page>
+  );
 };
 
 export default injectIntl(Main);

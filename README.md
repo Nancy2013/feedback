@@ -6,9 +6,27 @@ TCL 问题反馈
 
 # 蓝湖
 
+https://lanhuapp.com/web/#/item/project/stage?pid=8c5e9f51-2c9e-4255-bfbf-e828752f8783&image_id=54f7f40b-415d-4a34-b0ff-4a02fb7f9fa9
+
 ## 定制化
 
 - broadlink-jssdk 使用本地引入方式，路径 src/broadlink-jssdk
+
+## 部署
+
+北美集群： https://cf7a67e78338c7401deaeb96488f46fbappservice.ibroadlink.com/appfront/v1/webui/feedback
+
+欧洲集群： https://5eda600025ae5057181daaa2124f79b7appservice.ibroadlink.com/appfront/v1/webui/feedback
+
+中国集群： https://3079592a830389510fadef125fa3cd71appservice.ibroadlink.com/appfront/v1/webui/feedback
+
+## 后端
+
+北美集群：https://cf7a67e78338c7401deaeb96488f46fbappservice.ibroadlink.com
+
+欧洲集群：https://5eda600025ae5057181daaa2124f79b7appservice.ibroadlink.com
+
+中国集群：https://3079592a830389510fadef125fa3cd71appservice.ibroadlink.com
 
 # 命令
 
