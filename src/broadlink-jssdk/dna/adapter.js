@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-29 11:22:41
- * @LastEditTime: 2021-07-29 14:06:35
+ * @LastEditTime: 2021-08-05 15:24:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\broadlink-jssdk\dna\adapter.js
@@ -79,7 +79,7 @@ const platformSDK = (() => {
   };
 })();
 
-const ready = () => deviceInfoPromise;
+const ready = () => deviceInfoPromise.then((data) => ({ status: data }));
 
 export default {
   platform: 'dna',

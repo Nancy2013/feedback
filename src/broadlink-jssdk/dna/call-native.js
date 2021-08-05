@@ -4,7 +4,7 @@ const _cordovaReadyPromise = new Promise(function (resolve, reject) {
   console.time('cordova');
 
   const script = document.createElement('script');
-  // script.async = true;
+  script.async = true;
   var ua = navigator.userAgent.toLowerCase();
   console.log('【ua】', ua);
   if (
@@ -27,33 +27,9 @@ const _cordovaReadyPromise = new Promise(function (resolve, reject) {
   );
 });
 
-const deviceInfoPromise = async function () {
-  await _cordovaReadyPromise;
-  const info = await _callNative('deviceinfo');
-  const device = {};
-  Object.defineProperty(device, 'deviceID', {
-    value: info.deviceID || null,
-    writable: false,
-  });
-  Object.defineProperty(device, 'subDeviceID', {
-    value: info.subDeviceID || null,
-    writable: false,
-  });
-  Object.defineProperty(device, 'deviceName', {
-    value: info.deviceName || null,
-    writable: false,
-  });
-  if (device.deviceID) {
-    return {
-      online: info.deviceStatus + '',
-      name: info.deviceName,
-      deviceID: device.deviceID,
-      subDeviceID: device.subDeviceID,
-    };
-  } else {
-    throw new Error('cant get device id');
-  }
-};
+const deviceInfoPromise = (async function () {
+  return _cordovaReadyPromise;
+})();
 
 const [localTimeout, remoteTimeout, sendCount] = (() => {
   /*eslint-disable*/
