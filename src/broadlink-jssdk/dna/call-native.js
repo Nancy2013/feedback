@@ -4,7 +4,7 @@ const _cordovaReadyPromise = new Promise(function (resolve, reject) {
   console.time('cordova');
 
   const script = document.createElement('script');
-  // script.src = '../../cordova.js';
+  // script.async = true;
   var ua = navigator.userAgent.toLowerCase();
   console.log('【ua】', ua);
   if (
