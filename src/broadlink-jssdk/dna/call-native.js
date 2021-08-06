@@ -11,9 +11,9 @@ const _cordovaReadyPromise = new Promise(function (resolve, reject) {
     ua.match(/iphone\sos/i) + '' === 'iphone os' ||
     ua.match(/ipad/i) + '' === 'ipad'
   ) {
-    script.src = './ios/cordova.js';
+    script.src = './ios/cordova.min.js';
   } else if (ua.match(/android/i) + '' === 'android') {
-    script.src = './android/cordova.js';
+    script.src = './android/cordova.min.js';
   }
   document.getElementsByTagName('head')[0].appendChild(script);
 

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-07-22 16:13:11
+ * @LastEditTime: 2021-08-06 09:30:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -21,7 +21,7 @@ const Component = (props) => {
   } = props;
 
   const goList = () => {
-    history.push('/');
+    history.replace('/');
   };
   return (
     <Page>
