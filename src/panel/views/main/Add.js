@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-02-23 10:09:50
- * @LastEditTime: 2021-08-03 15:38:23
+ * @LastEditTime: 2021-08-06 09:26:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \integrated-stove\src\panel\views\home\Close.js
@@ -240,7 +240,7 @@ class ReplyInput extends React.PureComponent {
         },
         () => {
           if (res && res.status === 0) {
-            history.push({
+            history.replace({
               pathname: '/success',
               state: {
                 id: res.result,
