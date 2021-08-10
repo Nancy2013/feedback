@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 17:22:09
- * @LastEditTime: 2021-08-04 12:28:13
+ * @LastEditTime: 2021-08-10 10:07:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \curtain\src\panel\App.js
@@ -30,14 +30,17 @@ const APP = class extends React.PureComponent {
   }
   componentDidMount() {
     // DOM加载完成
-    const { ready } = this.props;
-    if (ready) {
+    const { isReady } = this.props;
+    if (isReady) {
       this.initPage();
     }
   }
-  // 全局弹窗
-  componentWillReceiveProps(nextProps) {}
-
+  componentDidUpdate(prevProps) {
+    if (this.props.isReady !== prevProps.isReady) {
+      console.log('【componentDidUpdate】', this.props.isReady);
+      this.initPage();
+    }
+  }
   /** 界面初始化
    * @method initPage
    */

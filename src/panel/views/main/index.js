@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-07 17:07:44
- * @LastEditTime: 2021-08-04 12:25:21
+ * @LastEditTime: 2021-08-09 17:40:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \panel\Main.js
@@ -12,7 +12,6 @@ import classNames from 'classnames';
 import Device from 'componentsPath/device.js';
 import NavBar from 'componentsPath/dna/NavBar';
 import Page from 'componentsPath/dna/Page';
-import Loading from 'componentsPath/ActivityIndicator';
 import add from '@/panel/images/add.svg';
 import List from './List';
 import style from 'stylesPath/index.less';
@@ -40,7 +39,7 @@ const Main = (props) => {
           },
         }}
       />
-      {userId ? <List {...props} /> : <Loading />}
+      {userId ? <List {...props} /> : <></>}
     </Page>
   );
 };
