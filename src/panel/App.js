@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-23 17:22:09
- * @LastEditTime: 2021-08-10 10:07:19
+ * @LastEditTime: 2021-08-10 10:49:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \curtain\src\panel\App.js
@@ -37,7 +37,6 @@ const APP = class extends React.PureComponent {
   }
   componentDidUpdate(prevProps) {
     if (this.props.isReady !== prevProps.isReady) {
-      console.log('【componentDidUpdate】', this.props.isReady);
       this.initPage();
     }
   }

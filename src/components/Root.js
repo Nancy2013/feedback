@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-12 16:00:45
- * @LastEditTime: 2021-08-10 10:23:55
+ * @LastEditTime: 2021-08-10 10:59:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \tcl\src\components\Root.js
@@ -66,10 +66,7 @@ class Root extends PureComponent {
     sdk
       .ready()
       .then((data) => {
-        console.log(data);
-        if (data) {
-          ready('READY');
-        }
+        ready('READY');
       })
       .catch((e) => {
         console.error(e);
@@ -78,6 +75,7 @@ class Root extends PureComponent {
 
   render() {
     const { children, isReady } = this.props;
+    console.log('【isReady】', isReady);
     return (
       <React.Fragment>
         {React.Children.map(children, (child) =>
